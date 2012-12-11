@@ -1,8 +1,10 @@
-\documentclass[a4paper,Title page]{report}
+\documentclass[a4paper]{report}
 \usepackage[T1]{fontenc}
 \usepackage[french]{babel} 
 \usepackage{lmodern} % Pour changer le pack de police
 \usepackage[top=2cm, bottom=2cm, left=3cm, right=3cm]{geometry}
+\usepackage[final]{pdfpages} 
+\usepackage{graphicx}
 
 %------------------------------------------
 %création d'un sommaire cliquable
@@ -14,9 +16,9 @@ breaklinks=true, %permet le retour à la ligne dans les liens trop longs
 urlcolor= blue, %couleur des hyperliens 
 linkcolor= black,	%couleur des liens internes 
 citecolor=black,	%couleur des références 
-pdftitle={Rapport de stage}, %informations apparaissant dans 
-pdfauthor={Demeulemeester Kilian}, %les informations du document 
-pdfsubject={Simulation}	%sous Acrobat. 
+pdftitle={TeXaS : Spécifications}, %informations apparaissant dans 
+pdfauthor={K \& N}, %les informations du document 
+pdfsubject={TeXaS}	%sous Acrobat. 
 }
 
 \usepackage{makeidx}
@@ -43,7 +45,7 @@ pdfsubject={Simulation}	%sous Acrobat.
 
 \section{Création de document}
 
-Lors de la création d'un document, l'utilisateur \emph{doit} choisir parmis les 7 templates proposés (rapports de stage, de projet, lettre, etc.).
+Lors de la création d'un document, l'utilisateur \emph{doit} choisir parmis les 6 gabarits (ou templates) proposés (rapports de stage, de projet, lettre, etc.).
 
 Le logiciel laisse à l'utilisateur le choix entre mode par défaut (afin de se concentrer sur le contenu, pas sur la forme, qui est définie par défaut) et mode personnalisé (choix de personnalisation avancés, pour la page de garde, les entêtes, etc.).
 
@@ -70,28 +72,104 @@ Ce fichier XML est ensuite converti en un code LaTeX qui est compilé et rendu en
 
 \chapter{Création du document}
 
+\section{Gabarits proposés}
 
-
-
-
-\section{Templates proposés}
-
-
+Il s'agit des gabarits proposés à l'utilisateur pour créer son document :
+\begin{itemize}
+	\item Rapport de stage
+	\item Rapport de projet
+	\item Lettre formelle (de motivation, par ex.)
+	\item Cours
+	\item Fiche de révision
+	\item Article court (essai anglais, par ex.)
+\end{itemize}
 
 \subsection{Rapport de stage}
 
-Il s'agit du template permettant à l'utilisateur de créer son rapport de stage (1\up{ère}, 2\up{ème}, etc. année). 
-Il se présente de la forme suivante :
+Gabarit permettant à l'utilisateur de créer son rapport de stage (1\up{ère}, 2\up{ème}, etc. année). 
+
+Visible sur la figure \ref{Template : Rapport de stage}.
+
+\begin{center}
+\begin{figure}%
+\includegraphics[width=\columnwidth]{Templates/rapportStageTemplate1.pdf}
+\caption{Template : Rapport de stage}%
+\label{Template : Rapport de stage}%
+\end{figure}
+\end{center}
 
 \subsection{Rapport de projet}
 
+Gabarit permettant à l'utilisateur de créer son rapport de projet.
+
+Visible sur la figure \ref{Template : Rapport de projet}
+
+\begin{center}
+\begin{figure}%
+\includegraphics[width=\columnwidth]{Templates/rapportProjetTemplate.pdf}
+\caption{Template : Rapport de projet}%
+\label{Template : Rapport de projet}%
+\end{figure}
+\end{center}
+
 \subsection{Lettre formelle}
+
+Gabarit permettant à l'utilisateur d'écrire une lettre formelle (une lettre de motivation par exemple).
+
+Visible sur la figure \ref{Template : Lettre}
+
+\begin{center}
+\begin{figure}%
+\includegraphics[width=\columnwidth]{Templates/lettre.pdf}
+\caption{Template : Lettre}%
+\label{Template : Lettre}%
+\end{figure}
+\end{center}
 
 \subsection{Cours}
 
+
+Gabarit permettant à l'utilisateur d'écrire un cours (cours magistral à Supélec par exemple).
+
+Visible sur la figure \ref{Template : Cours}
+
+\begin{center}
+\begin{figure}%
+\includegraphics[width=\columnwidth]{Templates/coursTemplate.pdf}
+\caption{Template : Cours}%
+\label{Template : Cours}%
+\end{figure}
+\end{center}
+
 \subsection{Fiche de révision}
 
+
+Gabarit permettant à l'utilisateur de créer des fiches de révisions (ou mémo).
+
+Visible sur la figure \ref{Template : Mémo}
+
+\begin{center}
+\begin{figure}%
+\includegraphics[width=\columnwidth]{Templates/memoTemplate.pdf}
+\caption{Template : Mémo}%
+\label{Template : Mémo}%
+\end{figure}
+\end{center}
+
 \subsection{Article court}
+
+
+Gabarit permettant à l'utilisateur d'écrire un cours article (pour un essai d'anglais, une description de projet personnalisé, etc.).
+
+Visible sur la figure \ref{Template : Article court}
+
+\begin{center}
+\begin{figure}%
+\includegraphics[width=\columnwidth]{Templates/articleTemplate.pdf}
+\caption{Template : Article court}%
+\label{Template : Article court}%
+\end{figure}
+\end{center}
 
 %----------------------------------
 % PARTIE : Algorithmes
