@@ -1,7 +1,8 @@
-\documentclass[a4paper,10pt]{report}
+\documentclass[a4paper,Title page]{report}
 \usepackage[T1]{fontenc}
 \usepackage[french]{babel} 
 \usepackage{lmodern} % Pour changer le pack de police
+\usepackage[top=2cm, bottom=2cm, left=3cm, right=3cm]{geometry}
 
 %------------------------------------------
 %création d'un sommaire cliquable
@@ -52,13 +53,26 @@ Enfin, il définit les informations de son document (si celles-ci son nécessaires
 
 La rédaction du document s'effectue dans une interface de type WYSIWYM\footnote{What you see is what you get}.
 
-La saisie de texte s'effectue directement sur celui-ci, alors que les éléments hors textes (mathématiques, tableaux, matrices, figures, titres, etc.) son créés à l'aide d'un ruban de création.
+La saisie de texte s'effectue directement sur celle-ci, alors que les éléments hors textes (mathématiques, tableaux, matrices, figures, titres, etc.) son créés à l'aide d'un ruban de création.
 
 Sur la droite s'affiche un plan détaillé du document, facilitant la navigation dans le projet.
 
 Les menus sont affichés à gauche et à droite du document.
 
+\section{Visualisation du document}
+
+Le document est visualisable en format pdf, ouvert dans le lecteur par défaut de l'utilisateur (pas de pdf reader dans le logiciel). 
+
+Pour ce, le logiciel crée un fichier XML généré \emph{en continu} tout au long de la création du document par l'utilisateur. 
+
+Ce fichier XML est ensuite converti en un code LaTeX qui est compilé et rendu en pdf.
+
+
 \chapter{Création du document}
+
+
+
+
 
 \section{Templates proposés}
 
