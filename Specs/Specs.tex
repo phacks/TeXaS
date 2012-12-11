@@ -2,14 +2,26 @@
 \usepackage[T1]{fontenc}
 \usepackage[french]{babel} 
 \usepackage{lmodern} % Pour changer le pack de police
-\usepackage{makeidx}
-\title{Le titre}
-\author{\textsc{Nom} Prénom}
-\date{} % Pour mettre la date du jour, tapez \today 
 
+%------------------------------------------
+%création d'un sommaire cliquable
+%------------------------------------------
+\usepackage{hyperref} % Créer des liens et des signets 
+\hypersetup{	
+colorlinks=true, %colorise les liens 
+breaklinks=true, %permet le retour à la ligne dans les liens trop longs 
+urlcolor= blue, %couleur des hyperliens 
+linkcolor= black,	%couleur des liens internes 
+citecolor=black,	%couleur des références 
+pdftitle={Rapport de stage}, %informations apparaissant dans 
+pdfauthor={Demeulemeester Kilian}, %les informations du document 
+pdfsubject={Simulation}	%sous Acrobat. 
+}
+
+\usepackage{makeidx}
 \title{TeXaS : Spécifications}
-\date{}
 \author{K \& N}
+\date{\today} % Pour mettre la date du jour, tapez \today 
 \makeindex
 
 \begin{document}
@@ -18,6 +30,62 @@
 
 
 \tableofcontents
+
+%----------------------------------
+% PARTIE : Fonctionnalités
+%----------------------------------
+\part{Fonctionnalités}
+
+\chapter{TeXaS : vue d'ensemble des fonctionnalités}
+
+\emph{L'ensemble des fonctionnalités présentées ici sont détaillées dans les chapitres suivants. Ce chapitre effectue un recensement général des fonctionnalités générale du logiciel, facilitant la compréhension du projet}.
+
+\section{Création de document}
+
+Lors de la création d'un document, l'utilisateur \emph{doit} choisir parmis les 7 templates proposés (rapports de stage, de projet, lettre, etc.).
+
+Le logiciel laisse à l'utilisateur le choix entre mode par défaut (afin de se concentrer sur le contenu, pas sur la forme, qui est définie par défaut) et mode personnalisé (choix de personnalisation avancés, pour la page de garde, les entêtes, etc.).
+
+Enfin, il définit les informations de son document (si celles-ci son nécessaires) : nom de l'auteur, nom du document, dates, etc.
+
+\section{Rédaction de document}
+
+La rédaction du document s'effectue dans une interface de type WYSIWYM\footnote{What you see is what you get}.
+
+La saisie de texte s'effectue directement sur celui-ci, alors que les éléments hors textes (mathématiques, tableaux, matrices, figures, titres, etc.) son créés à l'aide d'un ruban de création.
+
+Sur la droite s'affiche un plan détaillé du document, facilitant la navigation dans le projet.
+
+Les menus sont affichés à gauche et à droite du document.
+
+\chapter{Création du document}
+
+\section{Templates proposés}
+
+
+
+\subsection{Rapport de stage}
+
+Il s'agit du template permettant à l'utilisateur de créer son rapport de stage (1\up{ère}, 2\up{ème}, etc. année). 
+Il se présente de la forme suivante :
+
+\subsection{Rapport de projet}
+
+\subsection{Lettre formelle}
+
+\subsection{Cours}
+
+\subsection{Fiche de révision}
+
+\subsection{Article court}
+
+%----------------------------------
+% PARTIE : Algorithmes
+%----------------------------------
+\part{Algorithmes}
+\chapter{XML vers LaTeX}
+\chapter{Saisie vers XML}
+\chapter{Formule vers XML}
 
 
 \listoffigures
