@@ -185,13 +185,35 @@ De plus, lorsque nous avons étudié les interfaces LaTeX en WYSIWYM qui sont déjà
 
 C'est pourquoi nous avons voulu introduire un nouveau type d'interface, basé sur une structure claire en trois colonnes et orientée autour d'un "ruban" dynamique qui propose certains menus d'une façon beaucoup plus intuitive et facilement navigable.
 
-
-
-
-
 \section{Structure}
+L'interface du logiciel se divise en trois colonnes, ainsi qu'un ruban d'insertion dynamique. Un mockup de l'interface est donné à la figure \ref{Mockup de l'interface d'édition de texte}\\
+
+La première colonne, la plus à gauche, regroupe les menus qui ne concernent pas directement le contenu du document. On y retrouve les items suivants : 
+\begin{description}
+\item[Mon projet :] Regroupe les actions relatives au fichier.
+\item[Préférences : ] Gestion des préférences du logiciel.
+\item[Personnaliser : ] Personnalisation du document.
+\item[Editer le code : ] Accès direct au code LaTeX, avec possibilité de modifications.
+\item[Exporter en PDF : ] Exporte le document en PDF.
+\item[Aide : ] Accès à l'aide.
+\end{description}
+
+La colonne centrale comporte l'éditeur de texte WYSIWYM à proprement parler, une barre d'outils supérieure $-$ dédiée au formatage du texte (gras, italique, souligné), à la création de listes à puces et à la gestion des indices/exposants $-$ et d'un bouton d'accès au ruban en bas.\\
+
+La colonne de droite, quant à elle, est un récapitulatif de la structure du document, avec une présentation de l'arborescence de celui-ci. Les différents titres seront cliquables et fonctionneront à la manière des ancres d'une page web.
+
+\begin{center}
+\begin{figure}%
+\includegraphics[width=\columnwidth]{Mockups/edition.png}
+\caption{Mockup de l'interface d'édition de texte}%
+\label{Mockup de l'interface d'édition de texte}%
+\end{figure}
+\end{center}
+
 
 \chapter{Insertion via le ruban}
+
+
 \chapter{Menus de gauche}
 
 
