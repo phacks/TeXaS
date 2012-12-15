@@ -226,14 +226,14 @@ Les codes générés automatiques sont disponible en annexe \ref{Code LaTeX : Rappo
 \chapter{Présentation générale}
 
 \section{Philosophie}
-Une des caractéristiques les plus cruciales du logiciel doit être sa capacité à être utilisé de la manière la plus intuitive qui soit, de manière à ce que même un débutant total de LaTeX puisse l'exploiter à son maximum sans avoir à rentrer dans le code ``en dur''.\\
+Une des caractéristiques les plus cruciales du logiciel doit être sa capacité à être utilisé de la manière la plus intuitive qui soit, de manière à ce que même un débutant total de LaTeX puisse l'exploiter à son maximum sans avoir à rentrer dans le code ``en dur''.\par\vspace{\baselineskip}
 
-De plus, lorsque nous avons étudié les interfaces LaTeX en WYSIWYM qui sont déjà sur le marché (elles sont Open Source pour la plupart), nous avons remarqué que leur utilisation était basée sur une hiérarchie profonde et pénible de menus, tous situés dans la barre d'outils. Cette organisation rend, selon nous, le logiciel peu convivial et entraîne une utilisation très restreinte de l'espace.\\
+De plus, lorsque nous avons étudié les interfaces LaTeX en WYSIWYM qui sont déjà sur le marché (elles sont Open Source pour la plupart), nous avons remarqué que leur utilisation était basée sur une hiérarchie profonde et pénible de menus, tous situés dans la barre d'outils. Cette organisation rend, selon nous, le logiciel peu convivial et entraîne une utilisation très restreinte de l'espace.\par\vspace{\baselineskip}
 
 C'est pourquoi nous avons voulu introduire un nouveau type d'interface, basé sur une structure claire en trois colonnes et orientée autour d'un "ruban" dynamique qui propose certains menus d'une façon beaucoup plus intuitive et facilement navigable.
 
 \section{Structure}
-L'interface du logiciel se divise en trois colonnes, ainsi qu'un ruban d'insertion dynamique. Un mockup de l'interface est donné à la figure \ref{Mockup de l'interface d'édition de texte}\\
+L'interface du logiciel se divise en trois colonnes, ainsi qu'un ruban d'insertion dynamique. Un mockup de l'interface est donné à la figure \ref{Mockup de l'interface d'édition de texte}\par\vspace{\baselineskip}
 
 La première colonne, la plus à gauche, regroupe les menus qui ne concernent pas directement le contenu du document. On y retrouve les items suivants : 
 \begin{description}
@@ -245,7 +245,7 @@ La première colonne, la plus à gauche, regroupe les menus qui ne concernent pas 
 \item[Aide : ] Accès à l'aide.
 \end{description}
 
-La colonne centrale comporte l'éditeur de texte WYSIWYM à proprement parler, une barre d'outils supérieure $-$ dédiée au formatage du texte (gras, italique, souligné), à la création de listes à puces et à la gestion des indices/exposants $-$ et d'un bouton d'accès au ruban en bas.\\
+La colonne centrale comporte l'éditeur de texte WYSIWYM à proprement parler, une barre d'outils supérieure $-$ dédiée au formatage du texte (gras, italique, souligné), à la création de listes à puces et à la gestion des indices/exposants $-$ et d'un bouton d'accès au ruban en bas.\par\vspace{\baselineskip}
 
 La colonne de droite, quant à elle, est un récapitulatif de la structure du document, avec une présentation de l'arborescence de celui-ci. Les différents titres seront cliquables et fonctionneront à la manière des ancres d'une page web.
 
@@ -352,19 +352,21 @@ Voici le code (fichier .cls) correspondant -- les champs Prénom Nom étant complé
   
 \fancypagestyle{plain}{%
   \fancyhf{}\fancyfoot[R]{
-  \footnotesize Rapport de stage de type exécution, Prénom Nom $\bullet$ \thepage}
+  \footnotesize Rapport de stage de type exécution, 
+  																					Prénom Nom $\bullet$ \thepage}
   \renewcommand{\headrulewidth}{0pt}
   \renewcommand{\footrulewidth}{0.2pt}}
 \end{verbatim}
 
-\ \\
+\par\vspace{\baselineskip}
 
 \hrule
-\ \\
+
+\par\vspace{\baselineskip}
 
 Le code généré est le suivant :
 
-\begin{verbatim}
+\begin{verbatim}{Code LaTex : Rapport de Stage}
 
 \documentclass{rapport}
 \usepackage[latin1]{inputenc} %package encodage
@@ -392,7 +394,8 @@ pdfsubject={Simulation}	%sous Acrobat.
 \usepackage{fancyhdr}%package en tête et pied de page
 
 
-\renewcommand{\labelitemi}{$\ast$} %changement des puces par défaut par des étoiles
+\renewcommand{\labelitemi}{$\ast$}
+						%changement des puces par défaut par des étoiles
 
 \KOMAoptions{DIV=last}
 
@@ -406,7 +409,8 @@ pdfsubject={Simulation}	%sous Acrobat.
 \lhead{Mon Enteprise}
 \chead{}
 \rhead{\sc{Supelec} \includegraphics[height=1em]{logoPelec.jpg}}
-\rfoot{Rapport de stage de type exécution - Juin à Juillet 2012 $\bullet$ \thepage}
+\rfoot{Rapport de stage de type exécution 
+								- Date1 à Date2 $\bullet$ \thepage}
 \cfoot{}
 \lfoot{}
 \renewcommand{\headrulewidth}{0.2pt}
@@ -419,10 +423,11 @@ pdfsubject={Simulation}	%sous Acrobat.
 
 \end{verbatim}
 
-\ \\
+\par\vspace{\baselineskip}
 
 \hrule
-\ \\
+
+\par\vspace{\baselineskip}
 
 Le fichier xml correspondant est le suivant :
 
@@ -464,9 +469,11 @@ Le fichier xml correspondant est le suivant :
 	<document>
 		<entete>
 			<lhead> Mon Entreprise </lhead>
-			<chead> \sc{Supelec} \includegraphics[height=1em]{logoPelec.jpg} </chead>
+			<chead> \sc{Supelec} 
+			\includegraphics[height=1em]{logoPelec.jpg} </chead>
 			<rhead> </rhead>
-			<rfoot> Rapport de stage de type execution - Juin a Juillet 2012 $\bullet$ \thepage </rfoot>
+			<rfoot> Rapport de stage de type execution 
+			- Date1 a Date2 $\bullet$ \thepage </rfoot>
 			<cfoot> </cfoot>
 			<lfoot> </lfoot>
 			<command>
