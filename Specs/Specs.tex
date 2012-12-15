@@ -1,4 +1,5 @@
 \documentclass[a4paper]{report}
+\makeatletter\@addtoreset{chapter}{part}\makeatother%
 \usepackage[T1]{fontenc}
 \usepackage[french]{babel} 
 \usepackage{lmodern} % Pour changer le pack de police
@@ -40,6 +41,7 @@
 %------------------------------------------
 \usepackage{hyperref} % Créer des liens et des signets 
 \hypersetup{	
+hypertexnames=false,
 colorlinks=true, %colorise les liens 
 breaklinks=true, %permet le retour à la ligne dans les liens trop longs 
 urlcolor= blue, %couleur des hyperliens 
@@ -210,7 +212,7 @@ La définition des propriétés du document est automatique.
 
 Il y a donc la génération du code (LaTeX et XML) formant la base du document.
 
-Les codes générés automatiques sont disponible en annexe \ref{Code LaTeX : Rapport de stage} à \ref{Code LateX : Lettre formelle}.
+Les codes générés automatiques sont disponible en annexe \ref{Code LaTeX : Rapport de stage} à \ref{Code LaTeX : Lettre formelle}.
 
 \subsection{Mode personnalisé}
 
@@ -221,11 +223,10 @@ Les codes générés automatiques sont disponible en annexe \ref{Code LaTeX : Rappo
 % PARTIE : Ergonomie
 %----------------------------------
 \part{Ergonomie}
-\setcounter{chapter}{0}
 \chapter{Présentation générale}
 
 \section{Philosophie}
-Une des caractéristiques les plus cruciales du logiciel doit être sa capacité à être utilisé de la manière la plus intuitive qui soit, de manière à ce que même un débutant total de LaTeX puisse l'exploiter à son maximum sans avoir à rentrer dans le code "en dur".\\
+Une des caractéristiques les plus cruciales du logiciel doit être sa capacité à être utilisé de la manière la plus intuitive qui soit, de manière à ce que même un débutant total de LaTeX puisse l'exploiter à son maximum sans avoir à rentrer dans le code ``en dur''.\\
 
 De plus, lorsque nous avons étudié les interfaces LaTeX en WYSIWYM qui sont déjà sur le marché (elles sont Open Source pour la plupart), nous avons remarqué que leur utilisation était basée sur une hiérarchie profonde et pénible de menus, tous situés dans la barre d'outils. Cette organisation rend, selon nous, le logiciel peu convivial et entraîne une utilisation très restreinte de l'espace.\\
 
@@ -269,7 +270,6 @@ L'interface graphique sera codée à l'aide de la librairie Swing de Java.
 % PARTIE : Algorithmes
 %----------------------------------
 \part{Algorithmes}
-\setcounter{chapter}{0}
 \chapter{XML vers LaTeX}
 \chapter{Saisie vers XML}
 \chapter{Formule vers XML}
@@ -282,6 +282,7 @@ L'interface graphique sera codée à l'aide de la librairie Swing de Java.
 \appendix
 
 \part*{Annexes}
+\addcontentsline{toc}{part}{Annexes}
 
 \chapter{Création de document}
 
