@@ -5,6 +5,35 @@
 \usepackage[top=2cm, bottom=2cm, left=3cm, right=3cm]{geometry}
 \usepackage[final]{pdfpages} 
 \usepackage{graphicx}
+\usepackage{xcolor}
+%------------------------------------------
+%création d'une structure XML
+%------------------------------------------
+\usepackage{listings}
+\usepackage{listings,color}
+ 
+\definecolor{gray}{rgb}{0.4,0.4,0.4}
+\definecolor{darkblue}{rgb}{0.0,0.0,0.6}
+\definecolor{cyan}{rgb}{0.0,0.6,0.6}
+ 
+\lstset{
+  basicstyle=\ttfamily,
+  columns=fullflexible,
+  showstringspaces=false,
+  commentstyle=\color{gray}\upshape
+}
+ 
+\lstdefinelanguage{XML}
+{
+  basicstyle=\ttfamily\color{darkblue}\bfseries,
+  morestring=[b]",
+  morestring=[s]{>}{<},
+  morecomment=[s]{<?}{?>},
+  stringstyle=\color{black},
+  identifierstyle=\color{darkblue},
+  keywordstyle=\color{cyan},
+  morekeywords={xmlns,version,type}% list your attributes here
+}
 
 %------------------------------------------
 %création d'un sommaire cliquable
@@ -31,6 +60,7 @@ pdfsubject={TeXaS}	%sous Acrobat.
 
 \maketitle
 
+\lstset{language=XML}
 
 \tableofcontents
 
@@ -174,6 +204,15 @@ Visible sur la figure \ref{Template : Article court}
 \clearpage
 \section{Mode par défaut / personnalisé}
 
+\subsection{Mode par défaut}
+
+La définition des propriétés du document est automatique.
+
+Il y a donc la génération du code (LaTeX et XML) formant la base du document.
+
+Les codes générés automatiques sont disponible en annexe \ref{Code LaTeX : Rapport de stage} à \ref{Code LateX : Lettre formelle}.
+
+\subsection{Mode personnalisé}
 
 
 
@@ -187,7 +226,230 @@ Visible sur la figure \ref{Template : Article court}
 \chapter{Formule vers XML}
 
 
+%----------------------------------
+% PARTIE : Annexes
+%----------------------------------
+
+\appendix
+
+\part*{Annexes}
+
+\chapter{Création de document}
+
+\section{Mode par défaut}
+
+\subsection{Code LaTeX : Rapport de stage}
+\label{Code LaTeX : Rapport de stage}
+
+Ce document utilise une classe de document personnalisé : la classe rapport.
+
+Voici le code (fichier .cls) correspondant -- les champs Prénom Nom étant complétés par les valeurs correcte de l'utilisateur:
+
+\begin{verbatim}
+% Classe rapport.cls - Version 1.0
+% Ki.D sep 2012
+%
+\NeedsTeXFormat{LaTeX2e}[2011/06/27]
+\ProvidesClass{rapport}[2012/09/18 v1.0 Classe rapport Rapport de Stage]
+\LoadClass[DIV=12]{scrreprt}
+\RequirePackage{calc}
+\RequirePackage{color}
+\RequirePackage{fancyhdr}
+
+\definecolor{chapterCoul}{rgb}{.21,.37,.57}
+
+\definecolor{sectionCoul}{rgb}{.31,.51,.74}
+
+\renewcommand{\thechapter}{\Roman{chapter}}
+
+\renewcommand{\@makechapterhead}[1]{%
+	\color{chapterCoul}
+  \vspace*{50\p@}%
+  {\parindent \z@ \raggedright \normalfont
+    \ifnum \c@secnumdepth >\m@ne
+        \huge\scshape \space \thechapter . \space % Chapter number
+        \nobreak
+    \fi
+    \huge  \scshape #1\par               % chapter title
+    \vspace{5pt}%                        % add vertical space
+    \hrule                               % horizontal rule
+    \nobreak
+    \vskip 40\p@
+  }
+  \color{black}
+  }
+
+\renewcommand{\@makeschapterhead}[1]{%
+	\color{chapterCoul}
+  \vspace*{50\p@}%
+  {\parindent \z@ \raggedright
+    \normalfont
+    \interlinepenalty\@M
+    \huge \scshape #1\par                % chapter title
+    \vspace{5pt}%                        % add vertical space
+    \hrule                               % horizontal line
+    \nobreak
+    \vskip 40\p@
+  }
+  \color{black}
+  }
+  
+  \renewcommand\section{
+  \@startsection {section}{1}{\z@}%
+                                   {-3.5ex \@plus -1ex \@minus -.2ex}%
+                                   {2.3ex \@plus.2ex}%
+                                   {\color{sectionCoul}\normalfont\Large}}
+  
+\fancypagestyle{plain}{%
+  \fancyhf{}\fancyfoot[R]{
+  \footnotesize Rapport de stage de type exécution, Prénom Nom $\bullet$ \thepage}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0.2pt}}
+\end{verbatim}
+
+\ \\
+
+\hrule
+\ \\
+
+Le code généré est le suivant :
+
+\begin{verbatim}
+
+\documentclass{rapport}
+\usepackage[latin1]{inputenc} %package encodage
+\usepackage[T1]{fontenc} %package encodage
+\usepackage[francais]{babel} %package encodage
+\usepackage{eurosym} %symbole euro
+\usepackage{graphicx} %insertion de figures
+\usepackage{array} %tableaux plus personnalisé 
+\usepackage{multirow} %permet la fusion dans les tableaux
+\usepackage{calc} %permet de calculer dans les commandes LaTeX
+
+%Liens cliquables
+\usepackage{hyperref} % Créer des liens et des signets 
+\hypersetup{	
+colorlinks=true, %colorise les liens 
+breaklinks=true, %permet le retour à la ligne dans les liens trop longs 
+urlcolor= blue, %couleur des hyperliens 
+linkcolor= black,	%couleur des liens internes 
+citecolor=black,	%couleur des références 
+pdftitle={Rapport de stage}, %informations apparaissant dans 
+pdfauthor={Demeulemeester Kilian}, %les informations du document 
+pdfsubject={Simulation}	%sous Acrobat. 
+} 
+
+\usepackage{fancyhdr}%package en tête et pied de page
+
+
+\renewcommand{\labelitemi}{$\ast$} %changement des puces par défaut par des étoiles
+
+\KOMAoptions{DIV=last}
+
+%----------------------------------------------------------
+%DEBUT DOCUMENT
+%----------------------------------------------------------
+
+\begin{document}
+
+%mise en forme de l'en tête et pied de page
+\lhead{Mon Enteprise}
+\chead{}
+\rhead{\sc{Supelec} \includegraphics[height=1em]{logoPelec.jpg}}
+\rfoot{Rapport de stage de type exécution - Juin à Juillet 2012 $\bullet$ \thepage}
+\cfoot{}
+\lfoot{}
+\renewcommand{\headrulewidth}{0.2pt}
+\renewcommand{\footrulewidth}{0.2pt}
+
+\pagestyle{fancy}
+\tableofcontents
+
+\end{document}
+
+\end{verbatim}
+
+\ \\
+
+\hrule
+\ \\
+
+Le fichier xml correspondant est le suivant :
+
+\begin{lstlisting}
+<?xml version= "1.0" encoding="ISO-8859-1"?>
+<LaTeX>
+	<tete>
+		<class> rapport </class>
+		<packages>	
+			<package> inputenc <option> latin1 </option> </package>
+			<package> fontenc <option> T1 </option> </package>
+			<package> babel <option> francais </option> </package>
+			<package> eurosym </package>
+			<package> graphics </package>
+			<package> array </package>
+			<package> mutlirow </package>
+			<package> calc </package>
+			<package> hyperref 
+				<parametres>
+				\hypersetup{
+				colorlinks=true
+				breaklinks=true
+				urlcolor= blue
+				linkcolor= black
+				citecolor=black
+				pdftitle={Rapport de stage}
+				pdfauthor={Nom Prenom}
+				pdfsubject={Sujet}
+				}
+				</parametres> 
+			</package>
+			<package> fancyhdr </package>
+		</packages>
+		<command>
+			\renewcommand{\labelitemi}{$\ast$}
+			\KOMAoptions{DIV=last}
+		</command>
+	</tete>
+	<document>
+		<entete>
+			<lhead> Mon Entreprise </lhead>
+			<chead> \sc{Supelec} \includegraphics[height=1em]{logoPelec.jpg} </chead>
+			<rhead> </rhead>
+			<rfoot> Rapport de stage de type execution - Juin a Juillet 2012 $\bullet$ \thepage </rfoot>
+			<cfoot> </cfoot>
+			<lfoot> </lfoot>
+			<command>
+				\renewcommand{\headrulewidth}{0.2pt}
+				\renewcommand{\footrulewidth}{0.2pt}
+			</command>
+			<pagestyle> fancy </pagestyle>
+			
+		</entete>
+		<command> \tableofcontents </command>
+	</document>
+</LaTeX>
+\end{lstlisting}
+
+\subsection{Code LaTeX : Rapport de projet}
+\label{Code LaTeX : Rapport de projet}
+
+\subsection{Code LaTeX : Lettre formelle}
+\label{Code LaTeX : Lettre formelle}
+
+\subsection{Code LaTeX : Cours}
+\label{Code LaTeX : Cours}
+
+\subsection{Code LaTeX : Fiche de révision}
+\label{Code LaTeX : Fiche de révision}
+
+\subsection{Code LaTeX : Article court}
+\label{Code LaTeX : Article court}
+
+
 \listoffigures
 \listoftables
 \printindex
+
+
 \end{document}
