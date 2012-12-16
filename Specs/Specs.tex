@@ -316,7 +316,7 @@ Une des caractéristiques les plus cruciales du logiciel doit être sa capacité à 
 
 De plus, lorsque nous avons étudié les interfaces LaTeX en WYSIWYM qui sont déjà sur le marché (elles sont Open Source pour la plupart), nous avons remarqué que leur utilisation était basée sur une hiérarchie profonde et pénible de menus, tous situés dans la barre d'outils. Cette organisation rend, selon nous, le logiciel peu convivial et entraîne une utilisation très restreinte de l'espace.\par\vspace{\baselineskip}
 
-C'est pourquoi nous avons voulu introduire un nouveau type d'interface, basé sur une structure claire en trois colonnes et orientée autour d'un "ruban" dynamique qui propose certains menus d'une façon beaucoup plus intuitive et facilement navigable.
+C'est pourquoi nous avons voulu introduire un nouveau type d'interface, basé sur une structure claire en trois colonnes et orientée autour d'un ``ruban'' dynamique qui propose certains menus d'une façon beaucoup plus intuitive et facilement navigable.
 
 \section{Structure}
 L'interface du logiciel se divise en trois colonnes, ainsi qu'un ruban d'insertion dynamique. Un mockup de l'interface est donné à la figure \ref{Mockup de l'interface d'édition de texte}\par\vspace{\baselineskip}
@@ -347,6 +347,25 @@ La colonne de droite, quant à elle, est un récapitulatif de la structure du docu
 L'interface graphique sera codée à l'aide de la librairie Swing de Java.
 
 \chapter{Insertion via le ruban}
+\section{Fonctionnalités}
+Le ruban est l'outil central pour l'édition de documents dans TeXaS. Il sert en effet à insérer, dans l'éditeur de texte, tous les éléments structurants (titres, sections), les formules mathématiques, les figures, les tableaux, ainsi que certains blocs de texte spéciaux (citation, code, note en bas de page).
+
+Le ruban est situé au bas de l'éditeur de texte, et il est, sauf requête explicite de la part de l'utilisateur, caché (cf. figure \ref{Mockup de l'interface d'édition de texte}). Lorsque que l'utilisateur désire insérer un élément, le ruban se dévoile alors (toujours en bas de page) et propose cinq types d'insertion différents :\emph{Titres}, \emph{Maths}, \emph{Figures}, \emph{Tableaux}, \emph{Blocs}.
+Un mockup du ruban ``déplié'' est donné à la figure \ref{Mockup de l'interface d'insertion}.\par\vspace{\baselineskip}
+
+Ensuite, lors du choix d'un des types d'insertion par l'utilisateur, le ruban correspondant prend la place de celui-ci. Ces rubans spécifiques sont détaillés dans les paragraphes qui suivent.
+
+\begin{center}
+\begin{figure}%
+\includegraphics[width=\columnwidth]{Mockups/insertion.png}
+\caption{Mockup de l'interface d'insertion}%
+\label{Mockup de l'interface d'insertion}%
+\end{figure}
+\end{center}
+
+\section{Insérer un titre}
+
+
 
 
 \chapter{Menus de gauche}
