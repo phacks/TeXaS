@@ -7,6 +7,8 @@
 \usepackage[final]{pdfpages} 
 \usepackage{graphicx}
 \usepackage{xcolor}
+\usepackage{multirow}
+\usepackage{array}
 %------------------------------------------
 %création d'une structure XML
 %------------------------------------------
@@ -216,6 +218,90 @@ Les codes générés automatiques sont disponible en annexe \ref{Code LaTeX : Rappo
 
 \subsection{Mode personnalisé}
 
+\emph{Ce mode de fonctionnement est dans la majorité des cas non utilisé, puisque les  templates répondent au maximum aux besoins.}
+
+L'utilisateur doit préciser certaines valeurs de paramètres : 
+\begin{itemize}
+	\item Choix du pack de police
+		\begin{itemize}
+			\item bookman
+			\item charter
+			\item newcent
+			\item lmodern
+			\item mathpazo
+			\item mathptmx 
+		\end{itemize}
+	
+	\item Choix des marges :
+	
+	L'utilisateur intervient dans la commande \\ \verb|\usepackage[top=..., bottom=..., left=..., right=...]{geometry} |
+	
+	\item Choix de l'orientation du document (paysage, portrait)
+	
+	\item Choix du nombre de colonne du document (1 ou 2) :
+	
+	L'utilisateur intervient dans la commande \\ \verb|\documentclass[twocolum]{-classe du document-}|
+	
+	\item Mode deux pages (impression livret) :
+	
+	Ajout de la commande \\ \verb|\documentclass[twosides]{-classe du document-}|
+	
+	\item Choix des types de titres (numérotation, couleur, soulignement)
+	
+	\emph{Réfléxion en cours}
+
+\end{itemize}
+
+\section{Informations document}
+
+\subsection{En tête et pied de page}
+
+L'utilisateur définit les informations qu'il veut voir apparaître dans ces en-tête et pied de page (par défaut, il lui est proposé le mode standard, i.e. le numéro simple au centre du bas de page).
+
+Il peut compléter les 6 champs au total :
+
+\begin{center}
+\begin{tabular}{|p{2cm}|p{2cm}|p{2cm}|}
+\hline
+lhead & chead & rhead \\
+\hline
+\multicolumn{3}{|c|}{} \\
+\multicolumn{3}{|c|}{CORPS DU DOCUMENT}\\
+\multicolumn{3}{|c|}{}\\
+\hline
+lfoot & cfoot & rfoot \\
+\hline
+\end{tabular}
+\end{center}
+
+Les commandes renseignées sont les suivantes :
+
+\begin{verbatim}
+%mise en forme de l'en tête et pied de page
+\lhead{}
+\chead{}
+\rhead{}
+\rfoot{}
+\cfoot{}
+\lfoot{}
+\renewcommand{\headrulewidth}{0.2pt} %modification de la
+\renewcommand{\footrulewidth}{0.2pt} %taille des règles
+
+\pagestyle{fancy}
+\end{verbatim}
+
+\subsection{Page de garde}
+
+L'utilisateur doit choisir parmis les options qu'il veut voir apparaître sur sa page de garde, ainsi que leurs contenu.
+\begin{itemize}
+	\item Titre
+	\item Sous titre
+	\item Sous sous titre
+	\item Image
+	\item Auteur
+	\item Date du document
+	\item Dates (projet, stage, par exemple)
+\end{itemize}
 
 
 
@@ -238,11 +324,11 @@ L'interface du logiciel se divise en trois colonnes, ainsi qu'un ruban d'inserti
 La première colonne, la plus à gauche, regroupe les menus qui ne concernent pas directement le contenu du document. On y retrouve les items suivants : 
 \begin{description}
 \item[Mon projet :] Regroupe les actions relatives au fichier.
-\item[Préférences : ] Gestion des préférences du logiciel.
-\item[Personnaliser : ] Personnalisation du document.
-\item[Editer le code : ] Accès direct au code LaTeX, avec possibilité de modifications.
-\item[Exporter en PDF : ] Exporte le document en PDF.
-\item[Aide : ] Accès à l'aide.
+\item[Préférences :] Gestion des préférences du logiciel.
+\item[Personnaliser :] Personnalisation du document.
+\item[Editer le code :] Accès direct au code LaTeX, avec possibilité de modifications.
+\item[Exporter en PDF :] Exporte le document en PDF.
+\item[Aide :] Accès à l'aide.
 \end{description}
 
 La colonne centrale comporte l'éditeur de texte WYSIWYM à proprement parler, une barre d'outils supérieure $-$ dédiée au formatage du texte (gras, italique, souligné), à la création de listes à puces et à la gestion des indices/exposants $-$ et d'un bouton d'accès au ruban en bas.\par\vspace{\baselineskip}
