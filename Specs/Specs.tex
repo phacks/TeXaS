@@ -763,6 +763,8 @@ XML \\
 
 On trouvera en Annexe \ref{Tableau complexe LaTeX - XML} un tableau complexe pour une meilleure visualisation.
 
+On trouvera enfin en Annexe \ref{Exemple table complexe LaTeX - XML} un exemple de table complexe (tableau légendé, référencé dans la table des figures).
+
 
 \chapter{Saisie vers XML}
 \chapter{Formule vers XML}
@@ -1005,7 +1007,7 @@ Le fichier xml correspondant est le suivant :
 
 Tableau A : \par\vspace{\baselineskip}
 
-\begin{tabular}{|l|c|c|c|c|}
+\begin{tabular}{|c|c|c|c|c|}
 \hline
 1 & \multicolumn{2}{c|}{2} & 3 & 4 \\
 \hline
@@ -1023,7 +1025,7 @@ Tableau A : \par\vspace{\baselineskip}
 LaTeX \\
 \hline
 
-\verbé\begin{tabular}{|l|c|c|c|c|}é \\
+\verbé\begin{tabular}{|c|c|c|c|c|}é \\
 \verbé\hline é \\
 \verbé1 & \multicolumn{2}{c|}{2} & 3 & 4 \\ é \\
 \verbé\hline é \\
@@ -1070,6 +1072,96 @@ XML \\
 		<TD> 15 </TD>
 	</TR>
 </tabular>
+\end{lstlisting}\\
+
+\hline
+\end{tabular}
+
+\subsection{Table complexe LaTeX - XML}
+\label{Exemple table complexe LaTeX - XML}
+
+Tableau B : \par\vspace{\baselineskip}
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+1 & \multicolumn{2}{c|}{2} & 3 & 4 \\
+\hline
+\multicolumn{2}{|l|}{5} & 6 & 7 & 8 \\
+\hline
+\multirow{2}{*}{9} & 10 & \multicolumn{3}{c|}{11} \\
+\cline{2-5}
+& 12 & 13 & 14 & 15 \\
+\hline
+\end{tabular}
+\caption{Exemple table complexe LaTeX - XML}
+\end{center}
+\end{table}
+\par\vspace{\baselineskip}
+
+\begin{tabular}{|l|}
+\hline
+LaTeX \\
+\hline
+
+\verbé\begin{table}é\\
+\verbé\begin{center}é\\
+\verbé\begin{tabular}{|c|c|c|c|c|}é \\
+\verbé\hline é \\
+\verbé1 & \multicolumn{2}{c|}{2} & 3 & 4 \\ é \\
+\verbé\hline é \\
+\verbé\multicolumn{2}{|l|}{5} & 6 & 7 & 8 \\ é \\
+\verbé\hline é \\
+\verbé\hline é\\
+\verbé\multirow{2}{*}{9} & 10 & \multicolumn{3}{c|}{11} \\é\\
+\verbé\cline{2-5} é\\
+\verbé& 12 & 13 & 14 & 15 \\ é\\
+\verbé\hline é\\
+\verbé\end{tabular} é\\
+\verbé\caption{Exemple table complexe LaTeX - XML}é\\
+\verbé\label{Exemple table complexe LaTeX - XML}é\\
+\verbé\end{center}é\\
+\verbé\end{table}é\\
+\hline
+\end{tabular}
+
+\begin{tabular}{|l|}
+\hline
+XML \\
+\hline
+
+\begin{lstlisting}
+<table>
+	<center>
+	<tabular border="true">
+		<TR>
+			<TD>1</TD>
+			<TD colspan=2>2</TD>
+			<TD>3</TD>
+			<TD>4</TD>
+		</TR>
+		<TR>
+			<TD colspan=2>5</TD>
+			<TD>6</TD>
+			<TD>7</TD>
+			<TD>8</TD>
+		</TR>
+		<TR>
+			<TD rowspan=2>9</TD>
+			<TD> 10 </TD>
+			<TD colspan=3>11</TD>
+		</TR>
+		<TR>
+			<TD> 12 </TD>
+			<TD> 13 </TD>
+			<TD> 14 </TD>
+			<TD> 15 </TD>
+		</TR>
+	</tabular>
+	<caption>Exemple table complexe LaTeX - XML</caption>
+	<label>Exemple table complexe LaTeX - XML</label>
+	</center>
+</table>
 \end{lstlisting}\\
 
 \hline
