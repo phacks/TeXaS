@@ -432,6 +432,65 @@ Un mockup du ruban d'insertion de tableaux est donné à la figure \ref{Mockup de 
 %----------------------------------
 \part{Algorithmes}
 \chapter{XML vers LaTeX}
+
+\section{Commandes LaTeX et leur équivalent XML}
+
+\subsection{Hiérarchie}
+
+\subsubsection{Structure des titres}
+
+\begin{tabular}{|l|l|}
+\hline
+LaTeX & XML \\
+\hline
+\verb|\part{Ma partie}| & \verb|<part> Ma partie </part>|\\
+\hline
+\verb|\chapter{Ma partie}| & \verb|<chapter> Ma partie </chapter>|\\
+\hline
+\verb|\section{Ma partie}| & \verb|<section> Ma partie </section>|\\
+\hline
+\verb|\subsection{Ma partie}| & \verb|<subsection> Ma partie </section>|\\
+\hline
+\verb|\subsubsection{Ma partie}| & \verb|<subsubsection> Ma partie </section>|\\
+\hline
+\end{tabular}
+
+\subsubsection{Structure globale}
+
+\begin{tabular}{|l|l|}
+\hline
+LaTeX & XML \\
+\hline
+\verb|\tableofcontents| & \verb|<command> \tableofcontents </command>|\\
+\hline
+\verb|\listoffigures| & \verb|<command> \listoffigures </command>|\\
+\hline
+\verb|\listoftables| & \verb|<command> \listoftables </command>|\\
+\hline
+\verb|\printindex| & \verb|<command> \printindex </command>|\\
+\hline
+\verb|\appendix| & \verb|<command> \appendix </command>|\\
+\hline
+\end{tabular}
+
+\subsubsection{Structure paragraphe}
+\begin{tabular}{|l|l|}
+LaTeX & XML \\
+\hline
+\verb|\begin{itemize}| &  \verb|<itemize>|\\
+\verb|\item item1| 		 &	\verb|	  <item> item1 </item>| \\
+\verb|\item item2|		 &  \verb|	  <item> item2 </item>| \\
+\verb|\end{itemize}|	 &	\verb|<\itemize>| \\
+\hline
+\verb|\begin{description}| &  \verb|<description>|\\
+\verb|\item[label1] item1| &	\verb|	  <item> <label> label1 </label> item1 </item>| \\
+\verb|\item[label2] item2| &  \verb|	  <item> <label> label2 </label> item2 </item>| \\
+\verb|\end{description}|	 &	\verb|<\description>| \\
+\hline
+\multicolumn{2}{|l|}{La structure est similaire pour les énumérations (\verb|\begin{enumerate...|).} \\
+\hline
+\end{tabular}
+
 \chapter{Saisie vers XML}
 \chapter{Formule vers XML}
 
