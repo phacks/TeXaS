@@ -9,6 +9,7 @@
 \usepackage{xcolor}
 \usepackage{multirow}
 \usepackage{array}
+\usepackage{calc} %Pour faire des calculs simple en code latex
 %------------------------------------------
 %création d'une structure XML
 %------------------------------------------
@@ -581,6 +582,339 @@ Un mockup du ruban d'insertion de symboles est donné à la figure \ref{Mockup de 
 %----------------------------------
 \part{Algorithmes}
 \chapter{XML vers LaTeX}
+
+\section{Commandes LaTeX et leur équivalent XML}
+
+\subsection{Hiérarchie}
+
+\subsubsection{Structure des titres}
+
+\begin{tabular}{|l|l|}
+\hline
+LaTeX & XML \\
+\hline
+\verb|\part{Ma partie}| & \begin{lstlisting} 
+<part> Ma partie </part> 
+\end{lstlisting} \\
+\hline
+\verb|\chapter{Ma partie}| & \begin{lstlisting}
+<chapter> Ma partie </chapter>
+\end{lstlisting} \\
+\hline
+\verb|\section{Ma partie}| & \begin{lstlisting}
+<section> Ma partie </section>
+\end{lstlisting} \\
+\hline
+\verb|\subsection{Ma partie}| & \begin{lstlisting}
+<subsection> Ma partie </section>
+\end{lstlisting} \\
+\hline
+\verb|\subsubsection{Ma partie}| & \begin{lstlisting}
+<subsubsection> Ma partie </section>
+\end{lstlisting} \\
+\hline
+\end{tabular}
+
+\subsubsection{Structure globale}
+
+\begin{tabular}{|l|l|}
+\hline
+LaTeX & XML \\
+\hline
+\verb|\tableofcontents| & \begin{lstlisting}
+<command> \tableofcontents </command>
+\end{lstlisting}\\
+\hline
+\verb|\listoffigures| & \begin{lstlisting}
+<command> \listoffigures </command>
+\end{lstlisting}\\
+\hline
+\verb|\listoftables| & \begin{lstlisting}
+<command> \listoftables </command>
+\end{lstlisting}\\
+\hline
+\verb|\printindex| & \begin{lstlisting}
+<command> \printindex </command>
+\end{lstlisting}\\
+\hline
+\verb|\appendix| & \begin{lstlisting}
+<command> \appendix </command>
+\end{lstlisting}\\
+\hline
+\end{tabular}
+
+\subsubsection{Structure paragraphe}
+
+\begin{tabular}{|l|}
+\hline
+LaTeX \\
+\hline
+\verb|\begin{itemize}|\\
+\verb|	\item item1| 	\\
+\verb|	\item item2|	\\
+\verb|\end{itemize}| \\
+\hline
+\verb|\begin{description}|\\
+\verb|	\item[label1] item1| \\
+\verb|	\item[label2] item2|  \\
+\verb|\end{description}|	 \\
+\hline
+\end{tabular}
+\begin{tabular}{|l|}
+\hline
+XML \\
+\hline
+\begin{lstlisting}
+<itemize>
+	<item> item1 </item>
+	<item> item2 </item>
+</itemize>
+\end{lstlisting} \\
+\hline
+\begin{lstlisting}
+<description>
+	<item> <label> label1 </label> item1 </item>
+	<item> <label> label2 </label> item2 </item>
+</description>
+\end{lstlisting} \\
+\hline
+\end{tabular}
+
+\subsection{Insertion}
+
+\subsubsection{Figures}
+
+\begin{tabular}{|l|}
+\hline
+LaTeX  \\
+\hline
+\verb|\begin{figure}| \\
+\verb|	\includegraphics[width=largeur]{filename}| \\ 			
+\verb|	\caption{Ma légende}| \\ 													
+\verb|	\label{Reférénce}| \\ 															
+\verb|\end{figure}| \\
+\hline
+\end{tabular} \par\vspace{\baselineskip}
+
+\begin{tabular}{|l|}
+\hline
+XML \\
+\hline
+\begin{lstlisting}
+<figure>
+	<include>
+		<taille> width=largeur </taille>
+		filename
+	</include>
+	<caption> légende </caption>
+	<label> label </label>
+</figure>
+\end{lstlisting} \\
+\hline
+\end{tabular}
+
+\subsubsection{Tableau dans le texte}
+
+\emph{Des exemples étant plus parlant, voici quelques situations\footnote{cf https://who.rocq.inria.fr/Michel.Crucianu/src/RepresTableauxRI.pdf} :} \par\vspace{\baselineskip}
+
+\begin{tabular}{p{6cm} p{6cm}}
+
+\begin{center}%
+Tableau 1 :
+\begin{tabular}{|c|c|c|}
+\hline
+a1 & a2 & a3 \\
+\hline
+b1 & b2 & b3 \\
+\hline
+\end{tabular}
+\par\vspace{\baselineskip}
+
+\begin{tabular}{|l|}
+\hline
+LaTeX  \\
+\hline
+\verb&\begin{tabular}{|c|c|c|}& \\
+\verb|	\hline| \\
+\verb|	a1 & a2 & a3 \\| \\ 			
+\verb|	\hline| \\
+\verb|	b1 & b2 & b3 \\| \\ 															
+\verb|	\hline| \\
+\verb|\end{tabular}| \\
+\hline
+\end{tabular} \par\vspace{\baselineskip}
+
+\begin{tabular}{|l|}
+\hline
+XML \\
+\hline
+\begin{lstlisting}
+<tabular border="true">
+	<TR>
+		<TD>a1</TD>
+		<TD>a2</TD>
+		<TD>a3</TD> 
+	</TR>
+	<TR>
+		<TD>b1</TD>
+		<TD>b2</TD>
+		<TD>b3</TD> 
+	</TR>
+</tabular>
+\end{lstlisting} \\
+\hline
+\end{tabular}
+\end{center}
+&
+
+\begin{center}%
+Tableau 2 :
+\begin{tabular}{ccc}
+a1 & a2 & a3 \\
+b1 & b2 & b3 \\
+\end{tabular}
+\par\vspace{\baselineskip}
+
+\begin{tabular}{|l|}
+\hline
+LaTeX  \\
+\hline
+\verb&\begin{tabular}{ccc}& \\
+\verb|	a1 & a2 & a3 \\| \\
+\verb|	b1 & b2 & b3 \\| \\
+\verb|\end{tabular}| \\
+\hline
+\end{tabular} \par\vspace{\baselineskip}
+
+\begin{tabular}{|l|}
+\hline
+XML \\
+\hline
+\begin{lstlisting}
+<tabular border="false">
+	<TR>
+		<TD>a1</TD>
+		<TD>a2</TD>
+		<TD>a3</TD> 
+	</TR>
+	<TR>
+		<TD>b1</TD>
+		<TD>b2</TD>
+		<TD>b3</TD> 
+	</TR>
+</tabular>
+\end{lstlisting} \\
+\hline
+\end{tabular}
+\end{center}
+
+\end{tabular}
+
+\par\vspace{\baselineskip}
+
+\begin{tabular}{p{7cm}p{7cm}}
+\begin{center}
+Tableau 3 : 
+\begin{tabular}{|c|c|c|}
+\hline
+\multirow{2}{*}{a1} & a2 & a3\\
+\cline{2-3}
+&b2 & b3 \\
+\hline
+\end{tabular}
+\par\vspace{\baselineskip}
+
+\begin{tabular}{|l|}
+\hline
+LaTeX \\
+\hline
+\verb&\begin{tabular}{|c|c|c|}& \\
+\verb|	\hline| \\
+\verb|	\multirow{2}{*}{a1} & a2 & a3\\ | \\
+\verb|	\cline{2-3}| \\
+\verb|											& b2 & b3 \\| \\
+\verb|	\hline| \\
+\verb|\end{tabular}| \\
+\hline
+\end{tabular}
+\par\vspace{\baselineskip}
+
+\begin{tabular}{|l|}
+\hline
+XML \\
+\hline
+\begin{lstlisting}
+<tabular border="true">
+	<TR>
+		<TD rowspan=2>a1</TD>
+		<TD>a2</TD>
+		<TD>a3</TD> 
+	</TR>
+	<TR>
+		<TD>b2</TD>
+		<TD>b3</TD> 
+	</TR>
+</tabular>
+\end{lstlisting} \\
+\hline
+\end{tabular}
+\end{center}
+& 
+\begin{center}
+Tableau 4 : 
+\begin{tabular}{|c|c|c|}
+\hline
+\multicolumn{2}{|c|}{a1} & a2 \\
+\hline
+b1 & b2 & b3 \\
+\hline
+\end{tabular}
+\par\vspace{\baselineskip}
+
+\begin{tabular}{|l|}
+\hline
+LaTeX \\
+\hline
+\verb&\begin{tabular}{|c|c|c|}& \\
+\verb|	\hline| \\
+\verbé	\multicolum{2}{|c|}{a1} & a2\\ é \\
+\verb|	\hline| \\
+\verb|											b1 & b2 & b3 \\| \\
+\verb|	\hline| \\
+\verb|\end{tabular}| \\
+\hline
+\end{tabular}
+\par\vspace{\baselineskip}
+
+\begin{tabular}{|l|}
+\hline
+XML \\
+\hline
+\begin{lstlisting}
+<tabular border="true">
+	<TR>
+		<TD colspan=2>a1</TD>
+		<TD>a2</TD> 
+	</TR>
+	<TR>
+		<TD>b1</TD>
+		<TD>b2</TD>
+		<TD>b3</TD> 
+	</TR>
+</tabular>
+\end{lstlisting} \\
+\hline
+\end{tabular}
+\end{center}
+
+\end{tabular}
+\par\vspace{\baselineskip}
+
+On trouvera en Annexe \ref{Tableau complexe LaTeX - XML} un tableau complexe pour une meilleure visualisation.
+
+On trouvera enfin en Annexe \ref{Exemple table complexe LaTeX - XML} un exemple de table complexe (tableau légendé, référencé dans la table des figures).
+
+
 \chapter{Saisie vers XML}
 \chapter{Formule vers XML}
 
@@ -813,6 +1147,174 @@ Le fichier xml correspondant est le suivant :
 \subsection{Code LaTeX : Article court}
 \label{Code LaTeX : Article court}
 
+\chapter{Algorithmes}
+
+\section{XML vers LaTeX}
+
+\subsection{Tableau complexe LaTeX - XML}
+\label{Tableau complexe LaTeX - XML}
+
+Tableau A : \par\vspace{\baselineskip}
+
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+1 & \multicolumn{2}{c|}{2} & 3 & 4 \\
+\hline
+\multicolumn{2}{|l|}{5} & 6 & 7 & 8 \\
+\hline
+\multirow{2}{*}{9} & 10 & \multicolumn{3}{c|}{11} \\
+\cline{2-5}
+& 12 & 13 & 14 & 15 \\
+\hline
+\end{tabular}
+\par\vspace{\baselineskip}
+
+\begin{tabular}{|l|}
+\hline
+LaTeX \\
+\hline
+
+\verbé\begin{tabular}{|c|c|c|c|c|}é \\
+\verbé\hline é \\
+\verbé1 & \multicolumn{2}{c|}{2} & 3 & 4 \\ é \\
+\verbé\hline é \\
+\verbé\multicolumn{2}{|l|}{5} & 6 & 7 & 8 \\ é \\
+\verbé\hline é \\
+\verbé\hline é\\
+\verbé\multirow{2}{*}{9} & 10 & \multicolumn{3}{c|}{11} \\é\\
+\verbé\cline{2-5} é\\
+\verbé& 12 & 13 & 14 & 15 \\ é\\
+\verbé\hline é\\
+\verbé\end{tabular} é\\
+
+\hline
+\end{tabular}
+
+\begin{tabular}{|l|}
+\hline
+XML \\
+\hline
+
+\begin{lstlisting}
+<tabular border="true">
+	<TR>
+		<TD>1</TD>
+		<TD colspan=2>2</TD>
+		<TD>3</TD>
+		<TD>4</TD>
+	</TR>
+	<TR>
+		<TD colspan=2>5</TD>
+		<TD>6</TD>
+		<TD>7</TD>
+		<TD>8</TD>
+	</TR>
+	<TR>
+		<TD rowspan=2>9</TD>
+		<TD> 10 </TD>
+		<TD colspan=3>11</TD>
+	</TR>
+	<TR>
+		<TD> 12 </TD>
+		<TD> 13 </TD>
+		<TD> 14 </TD>
+		<TD> 15 </TD>
+	</TR>
+</tabular>
+\end{lstlisting}\\
+
+\hline
+\end{tabular}
+
+\subsection{Table complexe LaTeX - XML}
+\label{Exemple table complexe LaTeX - XML}
+
+Tableau B : \par\vspace{\baselineskip}
+\begin{table}[h]
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+1 & \multicolumn{2}{c|}{2} & 3 & 4 \\
+\hline
+\multicolumn{2}{|l|}{5} & 6 & 7 & 8 \\
+\hline
+\multirow{2}{*}{9} & 10 & \multicolumn{3}{c|}{11} \\
+\cline{2-5}
+& 12 & 13 & 14 & 15 \\
+\hline
+\end{tabular}
+\caption{Exemple table complexe LaTeX - XML}
+\end{center}
+\end{table}
+\par\vspace{\baselineskip}
+
+\begin{tabular}{|l|}
+\hline
+LaTeX \\
+\hline
+
+\verbé\begin{table}é\\
+\verbé\begin{center}é\\
+\verbé\begin{tabular}{|c|c|c|c|c|}é \\
+\verbé\hline é \\
+\verbé1 & \multicolumn{2}{c|}{2} & 3 & 4 \\ é \\
+\verbé\hline é \\
+\verbé\multicolumn{2}{|l|}{5} & 6 & 7 & 8 \\ é \\
+\verbé\hline é \\
+\verbé\hline é\\
+\verbé\multirow{2}{*}{9} & 10 & \multicolumn{3}{c|}{11} \\é\\
+\verbé\cline{2-5} é\\
+\verbé& 12 & 13 & 14 & 15 \\ é\\
+\verbé\hline é\\
+\verbé\end{tabular} é\\
+\verbé\caption{Exemple table complexe LaTeX - XML}é\\
+\verbé\label{Exemple table complexe LaTeX - XML}é\\
+\verbé\end{center}é\\
+\verbé\end{table}é\\
+\hline
+\end{tabular}
+
+\begin{tabular}{|l|}
+\hline
+XML \\
+\hline
+
+\begin{lstlisting}
+<table>
+	<center>
+	<tabular border="true">
+		<TR>
+			<TD>1</TD>
+			<TD colspan=2>2</TD>
+			<TD>3</TD>
+			<TD>4</TD>
+		</TR>
+		<TR>
+			<TD colspan=2>5</TD>
+			<TD>6</TD>
+			<TD>7</TD>
+			<TD>8</TD>
+		</TR>
+		<TR>
+			<TD rowspan=2>9</TD>
+			<TD> 10 </TD>
+			<TD colspan=3>11</TD>
+		</TR>
+		<TR>
+			<TD> 12 </TD>
+			<TD> 13 </TD>
+			<TD> 14 </TD>
+			<TD> 15 </TD>
+		</TR>
+	</tabular>
+	<caption>Exemple table complexe LaTeX - XML</caption>
+	<label>Exemple table complexe LaTeX - XML</label>
+	</center>
+</table>
+\end{lstlisting}\\
+
+\hline
+\end{tabular}
 
 \listoffigures
 \listoftables
