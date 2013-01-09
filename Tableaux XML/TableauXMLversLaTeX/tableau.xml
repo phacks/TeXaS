@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tabular border="true">
+	<tr>
+		<td>1</td>
+		<td colspan="2">2</td>
+		<td>3</td>
+		<td>4</td>
+	</tr>
+	<tr>
+		<td colspan="2">5</td>
+		<td>6</td>
+		<td>7</td>
+		<td>8</td>
+	</tr>
+	<tr>
+		<td rowspan="2">9</td>
+		<td> 10 </td>
+		<td colspan="3">11</td>
+	</tr>
+	<tr>
+		<td> 12 </td>
+		<td> 13 </td>
+		<td> 14 </td>
+		<td> 15 </td>
+	</tr>
+</tabular>

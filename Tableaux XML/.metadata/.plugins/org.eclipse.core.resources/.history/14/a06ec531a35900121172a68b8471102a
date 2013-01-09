@@ -1,0 +1,29 @@
+import java.util.Iterator;
+import java.util.List;
+
+import org.jdom2.*;
+
+
+public class TableauLaTeX {
+
+	boolean bordure;
+	int nbColonnes;
+	
+	public TableauLaTeX(Element tableauXML){
+		this.bordure = tableauXML.getAttributeValue("border").equals("true");
+		System.out.println(tableauXML.getAttributeValue("border"));
+		System.out.println(bordure);
+		List listeCellules = tableauXML.getChild("tr").getChildren();
+		Iterator i = listeCellules.iterator();
+		while (i.hasNext()){
+			Element courant = (Element)i.next();
+			String nbColonnesFusionnee = courant.getAttributeValue("colspan");
+			if (!(nbColonnesFusionnee == null)){
+				nbColonnes += Integer.decode(nbColonnesFusionnee);
+			}
+			else nbColonnes++;
+		}
+		System.out.println(nbColonnes);
+	}
+	
+}

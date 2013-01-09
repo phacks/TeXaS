@@ -1,0 +1,69 @@
+import java.util.Iterator;
+import java.util.List;
+
+import org.jdom2.*;
+
+
+public class TableauLaTeX {
+
+	boolean bordure;
+	int nbColonnes;
+	
+	String codeLaTeXTableau;
+	
+	public TableauLaTeX(Element tableauXML){
+		
+		// Création du booleéen représentant si le tableau sera encadré ou non
+		this.bordure = tableauXML.getAttributeValue("border").equals("true");
+
+		// Décompte du nombre de colonne, prenant en compte l'éventuelle fusion de colonne
+		List listeCellules = tableauXML.getChild("tr").getChildren();
+		Iterator i = listeCellules.iterator();
+		while (i.hasNext()){
+			Element courant = (Element)i.next();
+			String nbColonnesFusionnee = courant.getAttributeValue("colspan");
+			if (!(nbColonnesFusionnee == null)){
+				nbColonnes += Integer.decode(nbColonnesFusionnee);
+			}
+			else nbColonnes++;
+		}
+		
+		//Ecriture de la balise ouvrante du code LaTeX
+		if (bordure){
+			codeLaTeXTableau = "\\begin{tabular}{|";
+			for (int j = 1; j <= nbColonnes; j++) {
+				codeLaTeXTableau = codeLaTeXTableau + "c|";
+			}
+			codeLaTeXTableau = codeLaTeXTableau + "} \n\\hline \n";
+		}
+		
+		else{
+			codeLaTeXTableau = "\\begin{tabular}{";
+			for (int j = 1; j < nbColonnes; j++) {
+				codeLaTeXTableau = codeLaTeXTableau + "c ";
+			}
+			codeLaTeXTableau = codeLaTeXTableau + "c} \n";
+		}
+		
+//		//Ecriture du contenu du tableau
+//		List listeLignes = tableauXML.getChildren("tr");
+//		Iterator iterLignes = listeLignes.iterator();
+//		while(iterLignes.hasNext()){
+//			Element courant = (Element)iterLignes.next();
+//			listeCellules = courant.getChildren("td");
+//			String nbColonnesFusionnee = courant.getAttributeValue("colspan");
+//			String nbLignesFusionnee = courant.getAttributeValue("rowspan");
+//			if (!(nbColonnesFusionnee == null)){
+//			}
+//			else nbColonnes++;
+//		}
+		
+		
+		//Ecriture de la balise fermante du code LaTeX
+		codeLaTeXTableau = codeLaTeXTableau + "\\end{tabular}";
+		
+		System.out.println(codeLaTeXTableau);
+		
+	}
+	
+}
