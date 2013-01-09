@@ -595,9 +595,9 @@ Un mockup du ruban d'insertion de parenthèses est donné à la figure \ref{Mockup 
 
 
 %----------------------------------
-% PARTIE : Algorithmes
+% PARTIE : Structures de données & Algorithmes
 %----------------------------------
-\part{Algorithmes}
+\part{Structures de données \& Algorithmes}
 \chapter{XML vers LaTeX}
 
 \section{Commandes LaTeX et leur équivalent XML}
@@ -767,16 +767,16 @@ XML \\
 \hline
 \begin{lstlisting}
 <tabular border="true">
-	<TR>
-		<TD>a1</TD>
-		<TD>a2</TD>
-		<TD>a3</TD> 
-	</TR>
-	<TR>
-		<TD>b1</TD>
-		<TD>b2</TD>
-		<TD>b3</TD> 
-	</TR>
+	<tr>
+		<td>a1</td>
+		<td>a2</td>
+		<td>a3</td> 
+	</tr>
+	<tr>
+		<td>b1</td>
+		<td>b2</td>
+		<td>b3</td> 
+	</tr>
 </tabular>
 \end{lstlisting} \\
 \hline
@@ -809,16 +809,16 @@ XML \\
 \hline
 \begin{lstlisting}
 <tabular border="false">
-	<TR>
-		<TD>a1</TD>
-		<TD>a2</TD>
-		<TD>a3</TD> 
-	</TR>
-	<TR>
-		<TD>b1</TD>
-		<TD>b2</TD>
-		<TD>b3</TD> 
-	</TR>
+	<tr>
+		<td>a1</td>
+		<td>a2</td>
+		<td>a3</td> 
+	</tr>
+	<tr>
+		<td>b1</td>
+		<td>b2</td>
+		<td>b3</td> 
+	</tr>
 </tabular>
 \end{lstlisting} \\
 \hline
@@ -862,15 +862,15 @@ XML \\
 \hline
 \begin{lstlisting}
 <tabular border="true">
-	<TR>
-		<TD rowspan=2>a1</TD>
-		<TD>a2</TD>
-		<TD>a3</TD> 
-	</TR>
-	<TR>
-		<TD>b2</TD>
-		<TD>b3</TD> 
-	</TR>
+	<tr>
+		<td rowspan=2>a1</td>
+		<td>a2</td>
+		<td>a3</td> 
+	</tr>
+	<tr>
+		<td>b2</td>
+		<td>b3</td> 
+	</tr>
 </tabular>
 \end{lstlisting} \\
 \hline
@@ -909,15 +909,15 @@ XML \\
 \hline
 \begin{lstlisting}
 <tabular border="true">
-	<TR>
-		<TD colspan=2>a1</TD>
-		<TD>a2</TD> 
-	</TR>
-	<TR>
-		<TD>b1</TD>
-		<TD>b2</TD>
-		<TD>b3</TD> 
-	</TR>
+	<tr>
+		<td colspan=2>a1</td>
+		<td>a2</td> 
+	</tr>
+	<tr>
+		<td>b1</td>
+		<td>b2</td>
+		<td>b3</td> 
+	</tr>
 </tabular>
 \end{lstlisting} \\
 \hline
@@ -1177,7 +1177,7 @@ Tableau A : \par\vspace{\baselineskip}
 \hline
 1 & \multicolumn{2}{c|}{2} & 3 & 4 \\
 \hline
-\multicolumn{2}{|l|}{5} & 6 & 7 & 8 \\
+\multicolumn{2}{|c|}{5} & 6 & 7 & 8 \\
 \hline
 \multirow{2}{*}{9} & 10 & \multicolumn{3}{c|}{11} \\
 \cline{2-5}
@@ -1195,7 +1195,7 @@ LaTeX \\
 \verbé\hline é \\
 \verbé1 & \multicolumn{2}{c|}{2} & 3 & 4 \\ é \\
 \verbé\hline é \\
-\verbé\multicolumn{2}{|l|}{5} & 6 & 7 & 8 \\ é \\
+\verbé\multicolumn{2}{|c|}{5} & 6 & 7 & 8 \\ é \\
 \verbé\hline é \\
 \verbé\hline é\\
 \verbé\multirow{2}{*}{9} & 10 & \multicolumn{3}{c|}{11} \\é\\
@@ -1214,29 +1214,29 @@ XML \\
 
 \begin{lstlisting}
 <tabular border="true">
-	<TR>
-		<TD>1</TD>
-		<TD colspan=2>2</TD>
-		<TD>3</TD>
-		<TD>4</TD>
-	</TR>
-	<TR>
-		<TD colspan=2>5</TD>
-		<TD>6</TD>
-		<TD>7</TD>
-		<TD>8</TD>
-	</TR>
-	<TR>
-		<TD rowspan=2>9</TD>
-		<TD> 10 </TD>
-		<TD colspan=3>11</TD>
-	</TR>
-	<TR>
-		<TD> 12 </TD>
-		<TD> 13 </TD>
-		<TD> 14 </TD>
-		<TD> 15 </TD>
-	</TR>
+	<tr>
+		<td>1</td>
+		<td colspan=2>2</td>
+		<td>3</td>
+		<td>4</td>
+	</tr>
+	<tr>
+		<td colspan=2>5</td>
+		<td>6</td>
+		<td>7</td>
+		<td>8</td>
+	</tr>
+	<tr>
+		<td rowspan=2>9</td>
+		<td> 10 </td>
+		<td colspan=3>11</td>
+	</tr>
+	<tr>
+		<td> 12 </td>
+		<td> 13 </td>
+		<td> 14 </td>
+		<td> 15 </td>
+	</tr>
 </tabular>
 \end{lstlisting}\\
 
@@ -1300,29 +1300,29 @@ XML \\
 <table>
 	<center>
 	<tabular border="true">
-		<TR>
-			<TD>1</TD>
-			<TD colspan=2>2</TD>
-			<TD>3</TD>
-			<TD>4</TD>
-		</TR>
-		<TR>
-			<TD colspan=2>5</TD>
-			<TD>6</TD>
-			<TD>7</TD>
-			<TD>8</TD>
-		</TR>
-		<TR>
-			<TD rowspan=2>9</TD>
-			<TD> 10 </TD>
-			<TD colspan=3>11</TD>
-		</TR>
-		<TR>
-			<TD> 12 </TD>
-			<TD> 13 </TD>
-			<TD> 14 </TD>
-			<TD> 15 </TD>
-		</TR>
+		<tr>
+			<td>1</td>
+			<td colspan=2>2</td>
+			<td>3</td>
+			<td>4</td>
+		</tr>
+		<tr>
+			<td colspan=2>5</td>
+			<td>6</td>
+			<td>7</td>
+			<td>8</td>
+		</tr>
+		<tr>
+			<td rowspan=2>9</td>
+			<td> 10 </td>
+			<td colspan=3>11</td>
+		</tr>
+		<tr>
+			<td> 12 </td>
+			<td> 13 </td>
+			<td> 14 </td>
+			<td> 15 </td>
+		</tr>
 	</tabular>
 	<caption>Exemple table complexe LaTeX - XML</caption>
 	<label>Exemple table complexe LaTeX - XML</label>
