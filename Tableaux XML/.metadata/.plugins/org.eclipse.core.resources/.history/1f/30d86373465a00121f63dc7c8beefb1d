@@ -1,0 +1,138 @@
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+
+import org.jdom2.*;
+
+
+public class TableauLaTeX2 {
+
+	boolean bordure;
+	int nbColonnes;
+	int nbLignes;
+	boolean[][] structureTableau;
+
+	String codeLaTeXTableau;
+
+	public TableauLaTeX2(Element tableauXML){
+
+		// Création du booleéen représentant si le tableau sera encadré ou non
+		this.bordure = tableauXML.getAttributeValue("border").equals("true");
+
+		// Décompte du nombre de colonne, prenant en compte l'éventuelle fusion de colonne
+		List listeCellules = tableauXML.getChild("tr").getChildren();
+		Iterator i = listeCellules.iterator();
+		while (i.hasNext()){
+			Element courant = (Element)i.next();
+			String nbColonnesFusionnee = courant.getAttributeValue("colspan");
+			if (!(nbColonnesFusionnee == null)){
+				nbColonnes += Integer.decode(nbColonnesFusionnee);
+			}
+			else nbColonnes++;
+		}
+
+		// Décompte du nombre de lignes
+		nbLignes = tableauXML.getChildren("tr").size();
+
+		// Création du tableau JAVA représentant la structure du tableau LaTeX
+		structureTableau = new boolean[nbLignes][nbColonnes];
+		for (int iLigne = 0; iLigne < nbLignes; iLigne++) {
+			Arrays.fill(structureTableau[iLigne], true);
+		}
+
+
+		int indiceLigne = 0;
+		int indiceColonne = 0;
+
+		List listeLignes = tableauXML.getChildren("tr");
+		Iterator iterLignes = listeLignes.iterator();
+		while(iterLignes.hasNext()){
+			Element courantLignes = (Element)iterLignes.next();
+			listeCellules = courantLignes.getChildren("td");
+			Iterator iterCellules = listeCellules.iterator();
+			while(iterCellules.hasNext()){
+				Element courant = (Element)iterCellules.next();
+				String nbLignesFusionnee = courant.getAttributeValue("rowspan");
+				//Traitement des lignes fusionnées
+				if (!(nbLignesFusionnee == null)){
+					for (int i1 = 1; i1 < Integer.decode(nbLignesFusionnee); i1++) {
+						structureTableau[indiceLigne+i1][indiceColonne] = false;
+					}
+				}
+				indiceColonne++;
+			}
+			indiceColonne=0;
+			indiceLigne++;
+		}
+
+
+
+		//Ecriture de la balise ouvrante du code LaTeX
+		if (bordure){
+			codeLaTeXTableau = "\\begin{tabular}{|";
+			for (int j = 1; j <= nbColonnes; j++) {
+				codeLaTeXTableau = codeLaTeXTableau + "c|";
+			}
+			codeLaTeXTableau = codeLaTeXTableau + "} \n \\hline \n";
+		}
+
+		else{
+			codeLaTeXTableau = "\\begin{tabular}{";
+			for (int j = 1; j < nbColonnes; j++) {
+				codeLaTeXTableau = codeLaTeXTableau + "c ";
+			}
+			codeLaTeXTableau = codeLaTeXTableau + "c} \n";
+		}
+
+		//Ecriture du contenu du tableau (NB : il faut écrire la partie SANS bordure)
+		listeLignes = tableauXML.getChildren("tr");
+		iterLignes = listeLignes.iterator();
+		indiceLigne=0;
+		indiceColonne=0;
+		while(iterLignes.hasNext()){
+			Element courantLignes = (Element)iterLignes.next();
+			listeCellules = courantLignes.getChildren("td");
+			Iterator iterCellules = listeCellules.iterator();
+			while(iterCellules.hasNext()){
+				if(!structureTableau[indiceLigne][indiceColonne]){
+					codeLaTeXTableau = codeLaTeXTableau + " &";
+				}
+				else{	
+					Element courant = (Element)iterCellules.next();
+					System.out.println("Element : " + courant.getText());
+					String nbColonnesFusionnee = courant.getAttributeValue("colspan");
+					String nbLignesFusionne = courant.getAttributeValue("rowspan");
+					//Traitement des colonnes fusionnées
+					if (!(nbColonnesFusionnee == null)){
+						codeLaTeXTableau = codeLaTeXTableau + " \\mutlicolumn{"+Integer.decode(nbColonnesFusionnee)+"}{c|}{"+courant.getText()+"} &";
+					}
+					else if (!(nbLignesFusionne == null)){
+						codeLaTeXTableau = codeLaTeXTableau + " \\multirow{"+Integer.decode(nbLignesFusionne)+"}{*}{"+courant.getText()+"} &";
+					}
+					//Traitement des colonnes "classiques"
+					else{
+						codeLaTeXTableau = codeLaTeXTableau + " " + courant.getText() + " &";
+					}
+				}
+				indiceColonne++;
+			}
+			// Retrait du dernier "&" en trop, remplacé par le retour ligne
+			codeLaTeXTableau = codeLaTeXTableau.substring(0,codeLaTeXTableau.length()-2) + " \\\\ \n";
+			
+			// Ajout de la bordure
+			
+
+			indiceColonne=0;
+			indiceLigne++;
+
+		}
+
+
+		//Ecriture de la balise fermante du code LaTeX
+		codeLaTeXTableau = codeLaTeXTableau + "\\end{tabular}";
+
+		System.out.println(codeLaTeXTableau);
+
+	}
+
+}

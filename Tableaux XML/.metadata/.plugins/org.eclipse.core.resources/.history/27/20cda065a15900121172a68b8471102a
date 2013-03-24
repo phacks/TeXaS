@@ -1,0 +1,22 @@
+import java.util.Iterator;
+import java.util.List;
+
+import org.jdom2.*;
+
+
+public class TableauLaTeX {
+
+	boolean bordure;
+	int nbColonnes;
+	
+	public TableauLaTeX(Element tableauXML){
+		this.bordure = tableauXML.getAttributeValue("border").equals("true");
+		List listeCellules = tableauXML.getChild("tr").getChildren();
+		Iterator i = listeCellules.iterator();
+		while (i.hasNext()){
+			Element courant = (Element)i.next();
+			System.out.println(courant.getChild("td").getText());
+		}
+	}
+	
+}
