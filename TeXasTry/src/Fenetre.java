@@ -52,6 +52,8 @@ public class Fenetre extends JFrame {
 
 		this.setContentPane(container); 
 		this.pack();
+		this.setDefaultLookAndFeelDecorated(true);
+		this.setExtendedState(this.MAXIMIZED_BOTH);
 		this.setVisible(true);
 
 	}       

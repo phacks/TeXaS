@@ -9,6 +9,9 @@ import java.text.ParseException;
 
 import javax.swing.JPanel;
 
+import menubas.menubastableau.MenuBasTableaux;
+
+
 
 public class MenuBas extends JPanel {
 
