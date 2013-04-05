@@ -15,6 +15,8 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JTextField;
 import javax.swing.text.MaskFormatter;
 
+import menubas.menubastableau.BoutonIcone;
+
 import briquesElementaires.JPanelDef;
 import briquesElementaires.Police;
 

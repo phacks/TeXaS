@@ -11,6 +11,8 @@ import java.awt.RenderingHints;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 
+import briquesElementaires.Couleur;
+
 
 
 public class BoutonMenuGaucheBase extends JButton{
@@ -58,10 +60,10 @@ public class BoutonMenuGaucheBase extends JButton{
 
 
 		if (check){
-			GradientPaint gpCheck = new GradientPaint(0, this.getHeight(), new Color(30,103,203), this.getWidth()/2, this.getHeight(),new Color(94,162,246),true);
+			GradientPaint gpCheck = new GradientPaint(0, this.getHeight(), Couleur.vertFonce, this.getWidth()/2, this.getHeight(), Couleur.vertClair,true);
 			Shape.setPaint(gpCheck);
 			g.fillRect(0, 0, this.getWidth(),this.getHeight());
-			g.setColor(new Color(7,63,151));
+			g.setColor(Couleur.vertFonceBordure);
 			g.drawLine(0, 0, this.getWidth(), 0);
 			g.drawLine(0, this.getHeight()-1, this.getWidth(), this.getHeight()-1);
 			g.setColor(Color.WHITE);

@@ -17,7 +17,6 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JTextField;
 import javax.swing.text.MaskFormatter;
 
-import menubas.BoutonIcone;
 import menubas.BoutonMenuBasValidate;
 import menubas.RadioButtonMenuBas;
 import menubas.TextAligned;
