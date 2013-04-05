@@ -109,39 +109,39 @@ public class MenuBasTableaux extends JPanelDef  {
 
 		fieldColonnes.addFocusListener(new FocusListener() {
 			public void focusLost(FocusEvent e) {
-				partieCentrale.setNbColonne(Integer.parseInt(fieldColonnes.getText()));
-				partieCentrale.redessiner();
+					partieCentrale.setNbColonne(Integer.parseInt(fieldColonnes.getText()));
+					partieCentrale.redessiner();
 			}
 
 			@Override
 			public void focusGained(FocusEvent e) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 		});
-		
+
 		fieldLignes.addFocusListener(new FocusListener() {
-			
+
 			@Override
 			public void focusLost(FocusEvent e) {
-				partieCentrale.setNbLigne(Integer.parseInt(fieldLignes.getText()));
-				partieCentrale.redessiner();
+					partieCentrale.setNbLigne(Integer.parseInt(fieldLignes.getText()));
+					partieCentrale.redessiner();
 			}
-			
+
 			@Override
 			public void focusGained(FocusEvent e) {
 				// TODO Auto-generated method stub
 			}
 		});
-		
+
 		fieldColonnes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {	
 				partieCentrale.setNbColonne(Integer.parseInt(fieldColonnes.getText()));
 				partieCentrale.redessiner();
 			}
 		});
-		
+
 		fieldLignes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {	
 				partieCentrale.setNbLigne(Integer.parseInt(fieldLignes.getText()));

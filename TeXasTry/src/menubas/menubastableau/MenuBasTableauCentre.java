@@ -13,7 +13,7 @@ public class MenuBasTableauCentre extends JPanelDef {
 
 	private int nbLigne = 2;
 	private int nbColonne = 3;
-	private JTable structureTableau;
+	private MenubasTableauTable structureTableau;
 
 	public MenuBasTableauCentre(){
 		super();
@@ -24,10 +24,7 @@ public class MenuBasTableauCentre extends JPanelDef {
 
 	public void redessiner() {
 		this.removeAll();
-		structureTableau = new JTable(nbLigne, nbColonne);
-		structureTableau.setTableHeader(null);
-		structureTableau.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-		//		structureTableau.setShowGrid(false);
+		structureTableau = new MenubasTableauTable(nbLigne, nbColonne);
 		JScrollPane scrollpane = new JScrollPane(structureTableau, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		//		scrollpane.setPreferredSize(new Dimension(Math.min(nbColonne*30+20,400),Math.min(nbLigne*30+20,200)));
 
