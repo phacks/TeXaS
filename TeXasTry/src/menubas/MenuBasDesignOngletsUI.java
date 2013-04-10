@@ -25,8 +25,6 @@ import briquesElementaires.Couleur;
 
 public class MenuBasDesignOngletsUI extends MetalTabbedPaneUI {
 
-	private Image image;
-
 	private int maxWidth = 0;
 	Font segoe = new Font("Segoe UI Light", Font.PLAIN, 15);
 	Font segoeBold = new Font("Segoe UI Light", Font.BOLD,15);
@@ -34,12 +32,6 @@ public class MenuBasDesignOngletsUI extends MetalTabbedPaneUI {
 
 	public MenuBasDesignOngletsUI(){
 		super();
-		try {
-			image =  ImageIO.read(new File("fondOnglet.png"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 
 

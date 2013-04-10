@@ -26,6 +26,7 @@ public class MenubasTableauTable extends JTable {
 		ModeleTableauCentre modeleTableauCentre = new ModeleTableauCentre(contenu,title);
 		this.setModel(modeleTableauCentre);
 		this.setTableHeader(null);
+		this.setUI(new MenuBasTableUI(contenu));
 		this.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
 	}
@@ -70,6 +71,7 @@ public class MenubasTableauTable extends JTable {
 
 		public void setValueAt(Object value, int row, int col) {
 			this.data[row][col] = value;
+			repaint();
 		}
 
 	}

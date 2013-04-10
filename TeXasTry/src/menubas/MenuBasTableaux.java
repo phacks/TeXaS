@@ -15,7 +15,7 @@ import javax.swing.JFormattedTextField;
 import javax.swing.JTextField;
 import javax.swing.text.MaskFormatter;
 
-import menubas.menubastableau.BoutonIcone;
+import menubas.menubastableau.BoutonIconeUpAndDown;
 
 import briquesElementaires.JPanelDef;
 import briquesElementaires.Police;
@@ -37,10 +37,10 @@ public class MenuBasTableaux extends JPanelDef {
 	private RadioButtonMenuBas checkLegende = new RadioButtonMenuBas("Légende", true);
 	private RadioButtonMenuBas checkNumerotation = new RadioButtonMenuBas("Numérotation", true);
 
-	private BoutonIcone up1 = new BoutonIcone("up");
-	private BoutonIcone down1 = new BoutonIcone("down");
-	private BoutonIcone up2 = new BoutonIcone("up");
-	private BoutonIcone down2 = new BoutonIcone("down");
+	private BoutonIconeUpAndDown up1 = new BoutonIconeUpAndDown("up");
+	private BoutonIconeUpAndDown down1 = new BoutonIconeUpAndDown("down");
+	private BoutonIconeUpAndDown up2 = new BoutonIconeUpAndDown("up");
+	private BoutonIconeUpAndDown down2 = new BoutonIconeUpAndDown("down");
 
 	private FormattedTextPositiveInteger fieldLignes = new FormattedTextPositiveInteger(NumberFormat.getIntegerInstance());
 	private FormattedTextPositiveInteger fieldColonnes = new FormattedTextPositiveInteger(NumberFormat.getIntegerInstance());

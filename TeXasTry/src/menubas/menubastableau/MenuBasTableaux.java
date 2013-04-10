@@ -37,15 +37,16 @@ public class MenuBasTableaux extends JPanelDef  {
 
 	// Les éléments interagissant
 	private BoutonMenuBasValidate boutInserer = new BoutonMenuBasValidate("Insérer");
+	private BoutonMenuBasValidate boutFusionner = new BoutonMenuBasValidate("Fusionner");
 
 	private RadioButtonMenuBas checkBordures = new RadioButtonMenuBas("Bordure", true);
 	private RadioButtonMenuBas checkLegende = new RadioButtonMenuBas("Légende", true);
 	private RadioButtonMenuBas checkNumerotation = new RadioButtonMenuBas("Numérotation", true);
 
-	private BoutonIcone up1 = new BoutonIcone("up");
-	private BoutonIcone down1 = new BoutonIcone("down");
-	private BoutonIcone up2 = new BoutonIcone("up");
-	private BoutonIcone down2 = new BoutonIcone("down");
+	private BoutonIconeUpAndDown up1 = new BoutonIconeUpAndDown("up");
+	private BoutonIconeUpAndDown down1 = new BoutonIconeUpAndDown("down");
+	private BoutonIconeUpAndDown up2 = new BoutonIconeUpAndDown("up");
+	private BoutonIconeUpAndDown down2 = new BoutonIconeUpAndDown("down");
 
 	private FormattedTextPositiveInteger fieldLignes = new FormattedTextPositiveInteger(NumberFormat.getIntegerInstance());
 	private FormattedTextPositiveInteger fieldColonnes = new FormattedTextPositiveInteger(NumberFormat.getIntegerInstance());
@@ -192,7 +193,7 @@ public class MenuBasTableaux extends JPanelDef  {
 		// Traitement partie droite
 
 		partieDroite.setLayout(new GridLayout(2,1));
-		partieDroite.add(new JPanelDef());
+		partieDroite.add(boutFusionner);
 		partieDroite.add(boutInserer);
 		this.add(partieDroite, BorderLayout.EAST);
 

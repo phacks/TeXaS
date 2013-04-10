@@ -35,18 +35,18 @@ public class MenuBasTableauCentre extends JPanelDef {
 		scrollpane.setBorder(BorderFactory.createEmptyBorder());
 		this.repaint();
 		for(int i = 0; i < nbColonne; i++){
-			if(nbColonne*30<400){
+			if(nbColonne*60<400){
 				structureTableau.getColumnModel().getColumn(i).setPreferredWidth(400/nbColonne);
 			}
 			else{
-				structureTableau.getColumnModel().getColumn(i).setPreferredWidth(30);
+				structureTableau.getColumnModel().getColumn(i).setPreferredWidth(60);
 			}
 		}
 		for (int i = 0; i < nbLigne; i++) {
-			if(nbLigne*30<200){
+			if(nbLigne*60<200){
 				structureTableau.setRowHeight(i, 200/nbLigne);
 			} else {
-				structureTableau.setRowHeight(i, 30);
+				structureTableau.setRowHeight(i, 60);
 			}
 		}
 		this.add(scrollpane);
