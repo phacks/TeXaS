@@ -17,7 +17,7 @@ public class MenuBasBase extends JTabbedPane {
 	public MenuBasBase(){
 		super(JTabbedPane.BOTTOM);
 		this.setBackground(Color.WHITE);
-		MenuBasDesignOnglets menuBasDesign = new MenuBasDesignOnglets();
+		MenuBasDesignOngletsUI menuBasDesign = new MenuBasDesignOngletsUI();
 		this.setUI(menuBasDesign);
 		menuBasDesign.overrideContentBorderInsetsOfUI();
 		
