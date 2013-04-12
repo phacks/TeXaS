@@ -69,7 +69,7 @@ public class MenubasTableauTable extends JTable {
 		if(selectionExiste){
 			// On cherche la première cellule sélectionnée
 			int iHG = 0, jHG =0;
-			while(!(Boolean)contenu[iHG][jHG] || (iHG==(nbLigne-1) && jHG==(nbColonne-1))){
+			while(!(Boolean)contenu[iHG][jHG]){
 				if (jHG==(nbColonne-1)){
 					jHG=0;
 					iHG++;
@@ -92,7 +92,7 @@ public class MenubasTableauTable extends JTable {
 			/* On vérifie l'intégrité de la fusion
 		On cherche la dernière cellule selectionnée et on vérifie qu'on a bien un "carré" de selection */
 			int iBD = nbLigne-1, jBD = nbColonne-1;
-			while(!(Boolean)contenu[iBD][jBD] || (iBD==0 && jBD==0)){
+			while(!(Boolean)contenu[iBD][jBD]){
 				if (jBD==0){
 					jBD=nbColonne-1;
 					iBD--;
@@ -103,7 +103,7 @@ public class MenubasTableauTable extends JTable {
 			}
 
 			int iBG = nbLigne-1, jBG = 0;
-			while(!(Boolean)contenu[iBG][jBG] || (iBG==0 && jBG==nbColonne-1)){
+			while(!(Boolean)contenu[iBG][jBG]){
 				if (jBG==nbColonne-1){
 					jBG=0;
 					iBG--;
@@ -114,7 +114,7 @@ public class MenubasTableauTable extends JTable {
 			}
 
 			int iHD = 0, jHD = nbColonne-1;
-			while(!(Boolean)contenu[iHD][jHD] || (iHD==nbLigne-1 && jHD==0)){
+			while(!(Boolean)contenu[iHD][jHD]){
 				if (jHD==0){
 					jHD=nbColonne-1;
 					iHD++;
