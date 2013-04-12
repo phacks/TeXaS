@@ -109,8 +109,8 @@ public class MenuBasTableaux extends JPanelDef  {
 
 		fieldColonnes.addFocusListener(new FocusListener() {
 			public void focusLost(FocusEvent e) {
-					partieCentrale.setNbColonne(Integer.parseInt(fieldColonnes.getText()));
-					partieCentrale.redessiner();
+				partieCentrale.setNbColonne(Integer.parseInt(fieldColonnes.getText()));
+				partieCentrale.redessiner();
 			}
 
 			@Override
@@ -125,8 +125,8 @@ public class MenuBasTableaux extends JPanelDef  {
 
 			@Override
 			public void focusLost(FocusEvent e) {
-					partieCentrale.setNbLigne(Integer.parseInt(fieldLignes.getText()));
-					partieCentrale.redessiner();
+				partieCentrale.setNbLigne(Integer.parseInt(fieldLignes.getText()));
+				partieCentrale.redessiner();
 			}
 
 			@Override
@@ -207,11 +207,17 @@ public class MenuBasTableaux extends JPanelDef  {
 			}
 		});
 
+		boutFusionner.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				partieCentrale.fusionner();
+			}
+		});
+
 	}
 
 
 	public void reinistialisation() {
-
+		checkBordures.setSelected(true);
 		checkNumerotation.setSelected(true);
 		checkLegende.setSelected(true);
 

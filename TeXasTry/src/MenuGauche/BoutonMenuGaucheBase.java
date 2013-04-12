@@ -60,10 +60,10 @@ public class BoutonMenuGaucheBase extends JButton{
 
 
 		if (check){
-			GradientPaint gpCheck = new GradientPaint(0, this.getHeight(), Couleur.vertFonce, this.getWidth()/2, this.getHeight(), Couleur.vertClair,true);
+			GradientPaint gpCheck = new GradientPaint(0, this.getHeight(), Couleur.bleuFonce, this.getWidth()/2, this.getHeight(), Couleur.bleuClair,true);
 			Shape.setPaint(gpCheck);
 			g.fillRect(0, 0, this.getWidth(),this.getHeight());
-			g.setColor(Couleur.vertFonceBordure);
+			g.setColor(Couleur.bleuFonceBordure);
 			g.drawLine(0, 0, this.getWidth(), 0);
 			g.drawLine(0, this.getHeight()-1, this.getWidth(), this.getHeight()-1);
 			g.setColor(Color.WHITE);

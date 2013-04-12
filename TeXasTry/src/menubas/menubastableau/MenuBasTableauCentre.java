@@ -26,11 +26,7 @@ public class MenuBasTableauCentre extends JPanelDef {
 		this.removeAll();
 		structureTableau = new MenubasTableauTable(nbLigne, nbColonne);
 		JScrollPane scrollpane = new JScrollPane(structureTableau, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		//		scrollpane.setPreferredSize(new Dimension(Math.min(nbColonne*30+20,400),Math.min(nbLigne*30+20,200)));
-
 		scrollpane.setPreferredSize(new Dimension(420,220));
-
-
 		scrollpane.getViewport().setBackground(Couleur.white);
 		scrollpane.setBorder(BorderFactory.createEmptyBorder());
 		this.repaint();
@@ -69,5 +65,8 @@ public class MenuBasTableauCentre extends JPanelDef {
 		this.nbColonne = nbColonne;
 	}
 
+	public void fusionner() {
+		structureTableau.fusionner();		
+	}
 
 }

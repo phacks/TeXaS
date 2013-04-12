@@ -21,6 +21,9 @@ public class Couleur {
 	public static Color vertFonce = new Color(34, 137, 33);
 	public static Color vertClair = new Color(115, 207, 70);
 	public static Color vertFonceBordure = new Color(13, 92, 49);	
+	public static Color bleuFonce = new Color(14,87,183);
+	public static Color bleuClair = new Color(86,154,238);
+	public static Color bleuFonceBordure = new Color(22,61,118);
 	
 
 }
