@@ -52,6 +52,7 @@ public class MenubasTableauTable extends JTable {
 
 	public void fusionner() {
 		// Cette fonction fusionne les cellules du tableau sélectionnée (une seule selection - valide - possible)
+		
 		int nbColFus = 0;
 		int nbLigFus = 0;
 		boolean selectionCorrecte = true;
