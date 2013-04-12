@@ -52,108 +52,119 @@ public class MenubasTableauTable extends JTable {
 
 	public void fusionner() {
 		// Cette fonction fusionne les cellules du tableau sélectionnée (une seule selection - valide - possible)
-		
+
 		int nbColFus = 0;
 		int nbLigFus = 0;
 		boolean selectionCorrecte = true;
+		boolean selectionExiste = false;
 
-		// On cherche la première cellule sélectionnée
-		int iHG = 0, jHG =0;
-		while(!(Boolean)contenu[iHG][jHG] || (iHG==(nbLigne-1) && jHG==(nbColonne-1))){
-			if (jHG==(nbColonne-1)){
-				jHG=0;
-				iHG++;
-			}
-			else{
-				jHG++;
+		for (int i = 0; i < nbLigne; i++) {
+			for (int j = 0; j < nbColonne; j++) {
+				if(!selectionExiste){
+					selectionExiste = (Boolean)contenu[i][j];
+				}
 			}
 		}
 
-		// On décompte le nombre de colonne fusionnée
-		while((jHG+nbColFus)<nbColonne && (Boolean)contenu[iHG][jHG+nbColFus]){
-			nbColFus++;
-		}
+		if(selectionExiste){
+			// On cherche la première cellule sélectionnée
+			int iHG = 0, jHG =0;
+			while(!(Boolean)contenu[iHG][jHG] || (iHG==(nbLigne-1) && jHG==(nbColonne-1))){
+				if (jHG==(nbColonne-1)){
+					jHG=0;
+					iHG++;
+				}
+				else{
+					jHG++;
+				}
+			}
 
-		// On décompte le nombre de ligne fusionnée
-		while((iHG+nbLigFus)<nbLigne && (Boolean)contenu[iHG+nbLigFus][jHG]){
-			nbLigFus++;	
-		}
+			// On décompte le nombre de colonne fusionnée
+			while((jHG+nbColFus)<nbColonne && (Boolean)contenu[iHG][jHG+nbColFus]){
+				nbColFus++;
+			}
 
-		/* On vérifie l'intégrité de la fusion
+			// On décompte le nombre de ligne fusionnée
+			while((iHG+nbLigFus)<nbLigne && (Boolean)contenu[iHG+nbLigFus][jHG]){
+				nbLigFus++;	
+			}
+
+			/* On vérifie l'intégrité de la fusion
 		On cherche la dernière cellule selectionnée et on vérifie qu'on a bien un "carré" de selection */
-		int iBD = nbLigne-1, jBD = nbColonne-1;
-		while(!(Boolean)contenu[iBD][jBD] || (iBD==0 && jBD==0)){
-			if (jBD==0){
-				jBD=nbColonne-1;
-				iBD--;
+			int iBD = nbLigne-1, jBD = nbColonne-1;
+			while(!(Boolean)contenu[iBD][jBD] || (iBD==0 && jBD==0)){
+				if (jBD==0){
+					jBD=nbColonne-1;
+					iBD--;
+				}
+				else{
+					jBD--;
+				}
 			}
-			else{
-				jBD--;
+
+			int iBG = nbLigne-1, jBG = 0;
+			while(!(Boolean)contenu[iBG][jBG] || (iBG==0 && jBG==nbColonne-1)){
+				if (jBG==nbColonne-1){
+					jBG=0;
+					iBG--;
+				}
+				else{
+					jBG++;
+				}
 			}
-		}
-		
-		int iBG = nbLigne-1, jBG = 0;
-		while(!(Boolean)contenu[iBG][jBG] || (iBG==0 && jBG==nbColonne-1)){
-			if (jBG==nbColonne-1){
-				jBG=0;
-				iBG--;
+
+			int iHD = 0, jHD = nbColonne-1;
+			while(!(Boolean)contenu[iHD][jHD] || (iHD==nbLigne-1 && jHD==0)){
+				if (jHD==0){
+					jHD=nbColonne-1;
+					iHD++;
+				}
+				else{
+					jHD--;
+				}
 			}
-			else{
-				jBG++;
+
+			if(!((iHG==iHD) && (iBG == iBD) && (jHG == jBG) && (jHD == jBD))){
+				selectionCorrecte = false;
 			}
-		}
-		
-		int iHD = 0, jHD = nbColonne-1;
-		while(!(Boolean)contenu[iHD][jHD] || (iHD==nbLigne-1 && jHD==0)){
-			if (jHD==0){
-				jHD=nbColonne-1;
-				iHD++;
-			}
-			else{
-				jHD--;
-			}
-		}
-		
-		if(!((iHG==iHD) && (iBG == iBD) && (jHG == jBG) && (jHD == jBD))){
-			selectionCorrecte = false;
-		}
-		
-		if(selectionCorrecte){
-			for (int i2 = iHG; i2 <= iBD; i2++) {
-				for (int j2 = jHG; j2 <= jBD; j2++) {
-					if(!(Boolean)contenu[i2][j2]){
-						selectionCorrecte = false;
+
+			if(selectionCorrecte){
+				for (int i2 = iHG; i2 <= iBD; i2++) {
+					for (int j2 = jHG; j2 <= jBD; j2++) {
+						if(!(Boolean)contenu[i2][j2]){
+							selectionCorrecte = false;
+						}
 					}
 				}
 			}
-		}
 
-		// Lorsque la fusion est correcte, on l'effectue
-		if(selectionCorrecte){
-			for (int i2 = iHG; i2 < iHG+nbLigFus; i2++) {
-				for (int j2 = jHG; j2 < jHG+nbColFus; j2++) {
-					boolean b1 = false, b2 = false;
-					if(i2<(iHG+nbLigFus-1)){
-						b1 = true;
+			// Lorsque la fusion est correcte, on l'effectue
+			if(selectionCorrecte){
+				for (int i2 = iHG; i2 < iHG+nbLigFus; i2++) {
+					for (int j2 = jHG; j2 < jHG+nbColFus; j2++) {
+						boolean b1 = false, b2 = false;
+						if(i2<(iHG+nbLigFus-1)){
+							b1 = true;
+						}
+						if(j2<(jHG+nbColFus-1)){
+							b2 = true;
+						}
+						Boolean[] strucBase = {b1,b2};
+						this.fusion[i2][j2] = strucBase;
 					}
-					if(j2<(jHG+nbColFus-1)){
-						b2 = true;
-					}
-					Boolean[] strucBase = {b1,b2};
-					this.fusion[i2][j2] = strucBase;
 				}
 			}
-		}
 
 
-
-		for (int i1 = 0; i1 < nbLigne; i1++) {
-			for (int j1 = 0; j1 < nbColonne; j1++) {
-				this.modeleTableauCentre.setValueAt(false, i1, j1);
+			// Deselection des cases
+			for (int i1 = 0; i1 < nbLigne; i1++) {
+				for (int j1 = 0; j1 < nbColonne; j1++) {
+					this.modeleTableauCentre.setValueAt(false, i1, j1);
+				}
 			}
+			this.modeleTableauCentre.setFusion(this.fusion);
+			repaint();
 		}
-		this.modeleTableauCentre.setFusion(this.fusion);
-		repaint();
 	}
 
 
