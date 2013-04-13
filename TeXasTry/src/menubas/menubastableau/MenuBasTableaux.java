@@ -38,6 +38,7 @@ public class MenuBasTableaux extends JPanelDef  {
 	// Les éléments interagissant
 	private BoutonMenuBasValidate boutInserer = new BoutonMenuBasValidate("Insérer");
 	private BoutonMenuBasValidate boutFusionner = new BoutonMenuBasValidate("Fusionner");
+	private BoutonMenuBasValidate boutReinistialiser = new BoutonMenuBasValidate("Réinistialiser");
 
 	private RadioButtonMenuBas checkBordures = new RadioButtonMenuBas("Bordure", true);
 	private RadioButtonMenuBas checkLegende = new RadioButtonMenuBas("Légende", true);
@@ -192,8 +193,9 @@ public class MenuBasTableaux extends JPanelDef  {
 
 		// Traitement partie droite
 
-		partieDroite.setLayout(new GridLayout(2,1));
+		partieDroite.setLayout(new GridLayout(3,1));
 		partieDroite.add(boutFusionner);
+		partieDroite.add(boutReinistialiser);
 		partieDroite.add(boutInserer);
 		this.add(partieDroite, BorderLayout.EAST);
 
@@ -210,6 +212,12 @@ public class MenuBasTableaux extends JPanelDef  {
 		boutFusionner.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				partieCentrale.fusionner();
+			}
+		});
+		
+		boutReinistialiser.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				partieCentrale.redessiner();
 			}
 		});
 

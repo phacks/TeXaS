@@ -8,6 +8,7 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
+import java.awt.event.ActionEvent;
 import java.awt.geom.Area;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.RoundRectangle2D;
@@ -33,7 +34,6 @@ public class MenuBasDesignOngletsUI extends MetalTabbedPaneUI {
 	public MenuBasDesignOngletsUI(){
 		super();
 	}
-
 
 	protected int calculateTabWidth(int tabPlacement, int tabIndex,FontMetrics metrics) {
 		maxWidth = Math.max(maxWidth, super.calculateTabWidth(tabPlacement, tabIndex, metrics));

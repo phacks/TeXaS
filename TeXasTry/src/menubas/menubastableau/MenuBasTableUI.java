@@ -88,6 +88,8 @@ public class MenuBasTableUI extends BasicTableUI {
 	}
 	
 	private void drawCellule(Graphics2D g2D, int i, int j, boolean fusGauche, boolean fusDroite, boolean fusUp, boolean fusDown){
+		
+		
 		if(!fusGauche){
 			lineGauche(g2D, i, j);
 		}
