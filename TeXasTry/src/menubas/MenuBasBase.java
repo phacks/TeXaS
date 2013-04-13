@@ -31,14 +31,6 @@ public class MenuBasBase extends JTabbedPane implements ChangeListener, Runnable
 	private int previousTab = -1;
 	private int animationLongueur = 20;
 
-	public int getAnimationLength() {
-		return this.animationLongueur;
-	}
-
-	public void setAnimationLength(int length) {
-		this.animationLongueur = length;
-	}
-
 	public void stateChanged(ChangeEvent evt) {
 		new Thread(this).start();
 	}
@@ -75,8 +67,6 @@ public class MenuBasBase extends JTabbedPane implements ChangeListener, Runnable
 		float alpha = 1.0f;
 		
 		if(step != -1) {
-			float zizi = alpha - 0.05f*step;
-			System.out.println(zizi);
 			Rectangle size = this.getComponentAt(0).getBounds();
 			Graphics2D g2 = (Graphics2D)g;
 			g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha-0.05f*step)); 

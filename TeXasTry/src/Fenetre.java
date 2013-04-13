@@ -39,7 +39,7 @@ public class Fenetre extends JFrame {
 
 		container.setLayout(new BorderLayout());
 
-		container.add(menuGauchePan.getMenuGauche(), BorderLayout.WEST);
+		container.add(menuGauchePan, BorderLayout.WEST);
 
 		centre.setLayout(new BorderLayout());
 

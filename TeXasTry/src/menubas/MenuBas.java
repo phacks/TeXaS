@@ -8,6 +8,9 @@ import java.text.ParseException;
 
 import javax.swing.JPanel;
 
+import menubas.menubasBlocs.MenuBasBlocs;
+import menubas.menubasFigures.MenuBasFigures;
+import menubas.menubasTitre.MenuBasTitres;
 import menubas.menubastableau.MenuBasTableaux;
 
 
@@ -22,8 +25,7 @@ public class MenuBas extends JPanel{
 	// Menu Bas partie basse
 
 	private MenuBasBase menuBasChoix = new MenuBasBase();
-	private int indexOnglet = 0;
-
+	
 	// Menu Bas onglets
 
 	private MenuBasTitres menuBasTitres = new MenuBasTitres();

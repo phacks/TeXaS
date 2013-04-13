@@ -12,11 +12,10 @@ import java.awt.RenderingHints;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
+import briquesElementaires.Couleur;
+
 
 public class MenuGaucheBase extends JPanel {
-
-	private Color grisClair = new Color(234,237,239),  grisFonce = new Color(200,201,202);
-	
 	
 	public MenuGaucheBase() {
 		super();
@@ -28,9 +27,10 @@ public class MenuGaucheBase extends JPanel {
 		Shape.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
 		// Choix de la couleur du background (obligatoire, sinon bug)
-		GradientPaint gp = new GradientPaint(this.getWidth()-5, this.getHeight(), grisClair, this.getWidth(), this.getHeight(), grisFonce);
+		GradientPaint gp = new GradientPaint(this.getWidth()-4, this.getHeight(), Couleur.grisClair, this.getWidth(), this.getHeight(), Couleur.grisFonce);
 		Shape.setPaint(gp);
-		g.fillRect(0, 0, this.getWidth(), this.getHeight());
+		Shape.fillRect(0, 0, this.getWidth(), this.getHeight());
+		
 		
 		
 	}      

@@ -187,9 +187,13 @@ public class MenuBasTableaux extends JPanelDef  {
 		});
 		// Traitement partie centrale
 
-
-
 		this.add(partieCentrale,BorderLayout.CENTER);
+		checkBordures.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				MenuBasTableUI.setBordure(checkBordures.isSelected());
+				partieCentrale.repaint();
+			}
+		});
 
 		// Traitement partie droite
 
