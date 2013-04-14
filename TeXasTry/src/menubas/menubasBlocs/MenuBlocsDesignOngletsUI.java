@@ -22,9 +22,21 @@ import briquesElementaires.Police;
 public class MenuBlocsDesignOngletsUI extends MetalTabbedPaneUI{
 
 	int maxWidth;
+	public int getMaxWidth() {
+		return maxWidth;
+	}
+
+
+	public int getMaxHeight() {
+		return maxHeight;
+	}
+
+
+
+	int maxHeight;
 	Font segoe = new Font("Segoe UI Light", Font.PLAIN, 15);
 	Font segoeBold = new Font("Segoe UI Light", Font.BOLD,15);
-	
+
 
 	public MenuBlocsDesignOngletsUI(){
 		super();
@@ -43,39 +55,30 @@ public class MenuBlocsDesignOngletsUI extends MetalTabbedPaneUI{
 		{
 			vHeight += 1;
 		}
+		maxHeight = vHeight;
 		return vHeight+10;
 	}
 
 	protected void paintTabBorder(Graphics g, int tabPlacement, int tabIndex, int x, int y, int w, int h, boolean isSelected)
 	{
-		//		Graphics2D surface = (Graphics2D) g;
-		//		surface.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		//		surface.setColor(Color.WHITE.darker().darker());
-		//		Area bordure = new Area();
-		//		bordure.add(new Area(new Rectangle2D.Double(x-h/2,y,w+h,h/2)));
-		//		bordure.subtract(new Area(new RoundRectangle2D.Double(x-h,y,h,h,h,h)));
-		//		bordure.subtract(new Area(new RoundRectangle2D.Double(x+w, y, h, h,h,h)));
-		//		bordure.add(new Area(new RoundRectangle2D.Double(x, y-h, w, 2*h, h, h)));
-		//		surface.draw(bordure);	
-		//		surface.setColor(Color.WHITE);
-		//		surface.drawLine(x-h/2+4, y, x+w+h/2-4, y);
+
 	}
 
 	protected void paintTabBackground(Graphics g, int tabPlacement, int tabIndex, int x, int y, int w, int h, boolean isSelected)
 	{
 		Graphics2D surface = (Graphics2D) g;
 		surface.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		
+
 		if (isSelected){
 			surface.setColor(Couleur.bleuClairMenuGauche);
 		}
 		else{
 			surface.setColor(Couleur.white);
 		}
-		
+
 		surface.fillRect(x-5, y, w+5, h);
-		
-		surface.setColor(Couleur.grisClair);
+
+		surface.setColor(Couleur.grisFonce);
 		surface.drawLine(x+w-1, y, x+w-1, y+h);
 	}
 
@@ -86,15 +89,15 @@ public class MenuBlocsDesignOngletsUI extends MetalTabbedPaneUI{
 
 
 	protected void paintTabArea(Graphics g, int tabPlacement, int selectedIndex) {
-		
+
 		int th = tabPane.getBounds().height;
 
 		g.setColor(Couleur.white);
 		g.fillRect(0, 0, this.maxTabWidth+4, tabPane.getBounds().height);
 
-		g.setColor(Couleur.grisClair);
+		g.setColor(Couleur.grisFonce);
 		g.drawLine(this.maxTabWidth+1, 0, this.maxTabWidth+1, th);
-		
+
 		super.paintTabArea(g, tabPlacement, selectedIndex);
 
 	}
@@ -115,22 +118,7 @@ public class MenuBlocsDesignOngletsUI extends MetalTabbedPaneUI{
 
 
 	protected void paintContentBorderTopEdge(Graphics g, int tabPlacement,int selectedIndex, int x, int y, int w, int h) {
-		//		Graphics2D surface = (Graphics2D) g;
-		//		surface.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-		//
-		//		Rectangle selectedRect = selectedIndex < 0 ? null : getTabBounds(selectedIndex, calcRect);
-		//		int x1 = selectedRect.x - (selectedRect.height / 2) + 7 ;
-		//		int wRect = selectedRect.width + selectedRect.height; 
-		//		int x2 = x1 + wRect - 14;
-		//
-		//		g.setColor(Color.LIGHT_GRAY);
-		//
-		//		g.fillRect(x, y+h, x1-x, 1);
-		//		g.fillRect(x2, y+h, x+w-x2, 1);
-		//
-		//		g.setColor(Color.WHITE);
-		//
-		//		g.fillRect(x1-1, y+h, x2-x1+4, 1);
+		
 	}
 
 

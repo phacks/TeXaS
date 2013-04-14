@@ -30,7 +30,7 @@ public class BoutonMenuGaucheBase extends JButton implements MouseListener{
 	public BoutonMenuGaucheBase(String str){
 		super(str);
 		this.name = str;
-		this.setFont(Police.segoeGrand);
+		this.setFont(Police.segoe);
 		this.setBackground(Couleur.white);
 		this.setHorizontalAlignment(SwingConstants.CENTER);
 		this.setBorderPainted(false);

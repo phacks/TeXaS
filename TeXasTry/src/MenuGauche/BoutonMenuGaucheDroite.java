@@ -6,6 +6,8 @@ import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 
+import briquesElementaires.Police;
+
 
 
 public class BoutonMenuGaucheDroite extends JButton {
@@ -15,7 +17,7 @@ public class BoutonMenuGaucheDroite extends JButton {
 	public BoutonMenuGaucheDroite(String str) {
 		super(str);
 		this.name = str;
-		this.setFont(new Font("Segoe UI Light", Font.PLAIN, 20));
+		this.setFont(Police.segoe);
 		this.setBackground(Color.WHITE);
 		this.setHorizontalAlignment(SwingConstants.LEFT);
 		this.setBorderPainted(false);

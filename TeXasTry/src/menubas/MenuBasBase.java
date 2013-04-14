@@ -13,13 +13,17 @@ import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import briquesElementaires.Couleur;
+
 public class MenuBasBase extends JTabbedPane implements ChangeListener, Runnable {
 
+
+	private MenuBasDesignOngletsUI menuBasDesign;
 
 	public MenuBasBase(){
 		super(JTabbedPane.BOTTOM);
 		this.setBackground(Color.WHITE);
-		MenuBasDesignOngletsUI menuBasDesign = new MenuBasDesignOngletsUI();
+		menuBasDesign = new MenuBasDesignOngletsUI();
 		this.setUI(menuBasDesign);
 		menuBasDesign.overrideContentBorderInsetsOfUI();
 		this.addChangeListener(this);
@@ -29,6 +33,7 @@ public class MenuBasBase extends JTabbedPane implements ChangeListener, Runnable
 	private int step;
 	private BufferedImage buf = null;
 	private int previousTab = -1;
+	private int newTab = -1;
 	private int animationLongueur = 20;
 
 	public void stateChanged(ChangeEvent evt) {
@@ -38,6 +43,8 @@ public class MenuBasBase extends JTabbedPane implements ChangeListener, Runnable
 
 	public void run() {
 		step = 0;
+
+		newTab = this.getSelectedIndex();
 
 		// save the previous tab
 		if(previousTab != -1) {
@@ -63,14 +70,25 @@ public class MenuBasBase extends JTabbedPane implements ChangeListener, Runnable
 
 	public void paintChildren(Graphics g) {
 		super.paintChildren(g);
-		
+
 		float alpha = 1.0f;
-		
+
 		if(step != -1) {
 			Rectangle size = this.getComponentAt(0).getBounds();
 			Graphics2D g2 = (Graphics2D)g;
 			g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha-0.05f*step)); 
 			g2.drawImage(buf,(int)size.getX(),(int)size.getY(),null); 
+
+			g2.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, 0.5f)); 
+			g2.setColor(Couleur.bleuClairMenuGauche);
+			float positionXprevious = previousTab*(menuBasDesign.getMaxWidth()+20)+2;
+			float positionXnew = newTab*(menuBasDesign.getMaxWidth()+20)+2;
+			
+			float t = (float) step / animationLongueur;
+			float u = 1 - t;
+			int positionX = (int)(u*u*u*positionXprevious+3*u*u*t*positionXprevious+3*u*t*t*positionXnew+t*t*t*positionXnew);
+
+			g2.fillRect(positionX, this.getHeight()-menuBasDesign.getMaxHeight()-12, menuBasDesign.getMaxWidth()+20, menuBasDesign.getMaxHeight()+10);
 		}
 	}
 

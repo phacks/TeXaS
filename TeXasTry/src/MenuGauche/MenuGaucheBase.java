@@ -19,7 +19,7 @@ public class MenuGaucheBase extends JPanel {
 	
 	public MenuGaucheBase() {
 		super();
-		this.setLayout(new GridLayout(15,1));
+		this.setLayout(new GridLayout(18,1));
 	}
 	
 	public void paintComponent(Graphics g){

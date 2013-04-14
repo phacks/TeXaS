@@ -31,6 +31,7 @@ import briquesElementaires.Police;
 public class MenuBasTableaux extends JPanelDef  {
 
 	// Les JPanels
+	private JPanelDef main = new JPanelDef();
 	private JPanelDef partieGauche = new JPanelDef();
 	private MenuBasTableauCentre partieCentrale = new MenuBasTableauCentre();
 	private JPanelDef partieDroite = new JPanelDef();
@@ -54,9 +55,10 @@ public class MenuBasTableaux extends JPanelDef  {
 
 	public MenuBasTableaux() throws ParseException{
 		super();
-		this.setFont(Police.segoe);
-		this.setBackground(Color.WHITE);
 		this.setLayout(new BorderLayout());
+		main.setFont(Police.segoe);
+		main.setBackground(Color.WHITE);
+		main.setLayout(new BorderLayout());
 
 
 		// Traitement partie gauche
@@ -106,7 +108,7 @@ public class MenuBasTableaux extends JPanelDef  {
 		partieGauche.add(checkNumerotation);
 
 
-		this.add(partieGauche,BorderLayout.WEST);
+		main.add(partieGauche,BorderLayout.WEST);
 
 		fieldColonnes.addFocusListener(new FocusListener() {
 			public void focusLost(FocusEvent e) {
@@ -187,7 +189,7 @@ public class MenuBasTableaux extends JPanelDef  {
 		});
 		// Traitement partie centrale
 
-		this.add(partieCentrale,BorderLayout.CENTER);
+		main.add(partieCentrale,BorderLayout.CENTER);
 		checkBordures.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				MenuBasTableUI.setBordure(checkBordures.isSelected());
@@ -201,9 +203,10 @@ public class MenuBasTableaux extends JPanelDef  {
 		partieDroite.add(boutFusionner);
 		partieDroite.add(boutReinistialiser);
 		partieDroite.add(boutInserer);
-		this.add(partieDroite, BorderLayout.EAST);
+		main.add(partieDroite, BorderLayout.EAST);
 
-		this.revalidate();
+		this.add(new JPanelDef(), BorderLayout.WEST);
+		this.add(main, BorderLayout.CENTER);
 
 		boutInserer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

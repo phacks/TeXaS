@@ -1,6 +1,7 @@
 package menubas.menubasTitre;
 
-import java.awt.Color;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -8,11 +9,11 @@ import java.awt.event.ActionListener;
 import javax.swing.ButtonGroup;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.Border;
 
 import menubas.BoutonMenuBasValidate;
+import menubas.PanelboutonStyle;
 import menubas.RadioButtonMenuBas;
-
-
 import briquesElementaires.JPanelDef;
 import briquesElementaires.Police;
 
@@ -24,9 +25,11 @@ import briquesElementaires.Police;
 public class MenuBasTitres extends JPanelDef{
 
 	// Les JPanels
+	private JPanel main = new JPanelDef();
 	private JPanelDef partieGauche = new JPanelDef();
 	private JPanelDef partieCentrale = new JPanelDef();
 	private JPanelDef partieDroite = new JPanelDef();
+	private JPanelDef partieEast = new JPanelDef();
 
 
 	// Les éléments interagissant
@@ -49,7 +52,8 @@ public class MenuBasTitres extends JPanelDef{
 
 	public MenuBasTitres(){
 		super();
-		this.setLayout(new GridLayout(1, 3));
+		this.setLayout(new BorderLayout(30, 0));
+		main.setLayout(new GridLayout(1, 3));
 
 
 		// Traitement partie gauche
@@ -70,15 +74,26 @@ public class MenuBasTitres extends JPanelDef{
 		partieCentrale.add(checkTdM);
 
 		// Traitement partie droite
-		partieDroite.setLayout(new GridLayout(2,1));
+		partieDroite.setLayout(new GridLayout(3,1,20,20));
+		partieDroite.add(new JPanelDef());
 		texteTitre.setFont(Police.segoe);
 		texteTitre.setHorizontalAlignment(JTextField.CENTER);
 		partieDroite.add(texteTitre);
-		partieDroite.add(boutInserer);
+//		partieDroite.add(boutInserer);
 
-		this.add(partieGauche);
-		this.add(partieCentrale);
-		this.add(partieDroite);
+		
+		// Traitement partie basse
+		partieEast.setLayout(new GridLayout(3,1));
+		partieEast.add(new PanelboutonStyle());
+		partieEast.add(boutInserer);
+		partieEast.add(new PanelboutonStyle());
+		
+		main.add(partieGauche);
+		main.add(partieCentrale);
+		main.add(partieDroite);
+		
+		this.add(main, BorderLayout.CENTER);
+		this.add(partieEast, BorderLayout.EAST);
 		this.revalidate();
 
 		boutInserer.addActionListener(new ActionListener() {

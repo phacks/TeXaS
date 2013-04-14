@@ -15,7 +15,7 @@ public class MenuGaucheDroite extends JPanel {
 	
 	public MenuGaucheDroite(){
 		super();
-		this.setLayout(new GridLayout(15,1));
+		this.setLayout(new GridLayout(18,1));
 		this.setBackground(Color.WHITE);
 		this.setBorder(BorderFactory.createMatteBorder(0, 0, 0, 1, new Color(200,201,202)));
 	}

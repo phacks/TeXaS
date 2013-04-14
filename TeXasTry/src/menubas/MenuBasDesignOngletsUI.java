@@ -18,6 +18,8 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.plaf.metal.MetalTabbedPaneUI;
 
 import briquesElementaires.Couleur;
@@ -29,6 +31,16 @@ import briquesElementaires.Police;
 public class MenuBasDesignOngletsUI extends MetalTabbedPaneUI {
 
 	private int maxWidth = 0;
+	private int maxHeight = 0;
+	
+	public int getMaxWidth() {
+		return maxWidth;
+	}
+
+	public int getMaxHeight() {
+		return maxHeight;
+	}
+
 	Font segoe = new Font("Segoe UI Light", Font.PLAIN, 15);
 	Font segoeBold = new Font("Segoe UI Light", Font.BOLD,15);
 
@@ -51,6 +63,7 @@ public class MenuBasDesignOngletsUI extends MetalTabbedPaneUI {
 		{
 			vHeight += 1;
 		}
+		maxHeight = vHeight;
 		return vHeight+10;
 	}
 
@@ -135,7 +148,11 @@ public class MenuBasDesignOngletsUI extends MetalTabbedPaneUI {
 	             
 	        g.setFont(tabFont);
 	        g.drawString(title, textRect.x, textRect.y + metrics.getAscent());
-	    }        
+	    }
+
+
+
+	
 
 }
 //

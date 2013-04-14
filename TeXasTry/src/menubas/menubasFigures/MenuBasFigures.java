@@ -1,5 +1,6 @@
 package menubas.menubasFigures;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -9,6 +10,7 @@ import javax.swing.JSlider;
 import javax.swing.JTextField;
 
 import menubas.BoutonMenuBasValidate;
+import menubas.PanelboutonStyle;
 import menubas.RadioButtonMenuBas;
 import menubas.TextAligned;
 
@@ -21,6 +23,10 @@ import briquesElementaires.Police;
 
 public class MenuBasFigures extends JPanelDef {
 	// Les JPanelDefs
+		private JPanelDef main = new JPanelDef();
+		private JPanelDef main1 = new JPanelDef();	
+		private JPanelDef partieEast = new JPanelDef();
+	
 		private JPanelDef partieGauche = new JPanelDef();
 		private JPanelDef partieCentrale = new JPanelDef();
 		private JPanelDef partieDroite = new JPanelDef();
@@ -28,7 +34,7 @@ public class MenuBasFigures extends JPanelDef {
 
 		// Les éléments interagissant
 		private BoutonMenuBasValidate boutInserer = new BoutonMenuBasValidate("Insérer");
-		private BoutonMenuBasValidate boutImporter = new BoutonMenuBasValidate("Importer");
+		private BoutonMenuBasFigure boutImporter = new BoutonMenuBasFigure("Importer");
 
 		private JTextField texteLegende = new JTextField("Votre légende ici");
 
@@ -38,8 +44,12 @@ public class MenuBasFigures extends JPanelDef {
 
 		public MenuBasFigures(){
 			super();
-			this.setLayout(new GridLayout(1, 3, 30, 0));
-
+			
+			this.setLayout(new BorderLayout(30,0));
+			main1.setLayout(new BorderLayout());
+			main.setLayout(new GridLayout(1, 3, 30, 0));
+			
+			
 
 			// Traitement partie gauche
 
@@ -57,7 +67,7 @@ public class MenuBasFigures extends JPanelDef {
 			partieCentrale.add(checkLegende);
 			
 			JPanelDef panSlide = new JPanelDef();
-			panSlide.setLayout(new GridLayout(1,2));
+			panSlide.setLayout(new GridLayout(1,3));
 			
 			panSlide.add(new TextAligned("Taille :",false));
 			
@@ -69,18 +79,31 @@ public class MenuBasFigures extends JPanelDef {
 			slideTaille.setMinorTickSpacing(10);
 			slideTaille.setMajorTickSpacing(20);
 			panSlide.add(slideTaille);
+			panSlide.add(new JPanelDef());
 			partieCentrale.add(panSlide);
 
 			// Traitement partie droite
-			partieDroite.setLayout(new GridLayout(2,1));
+			partieDroite.setLayout(new GridLayout(3,1));
+			partieDroite.add(new JPanelDef());
 			texteLegende.setFont(Police.segoe);
 			texteLegende.setHorizontalAlignment(JTextField.CENTER);
 			partieDroite.add(texteLegende);
-			partieDroite.add(boutInserer);
+			partieDroite.add(new JPanelDef());
 
-			this.add(partieGauche);
-			this.add(partieCentrale);
-			this.add(partieDroite);
+			// Traitement partie East
+			partieEast.setLayout(new GridLayout(3,1));
+			partieEast.add(new PanelboutonStyle());
+			partieEast.add(boutInserer);
+			partieEast.add(new PanelboutonStyle());
+			
+			// Finalisation
+			main.add(partieGauche);
+			main.add(partieCentrale);
+			main.add(partieDroite);
+			main1.add(main, BorderLayout.CENTER);
+			main1.add(new JPanelDef(), BorderLayout.NORTH);
+			this.add(main1, BorderLayout.CENTER);
+			this.add(partieEast, BorderLayout.EAST);
 			this.revalidate();
 
 			boutInserer.addActionListener(new ActionListener() {
