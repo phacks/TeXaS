@@ -201,8 +201,8 @@ public class MenuBasTableaux extends JPanelDef  {
 
 		partieDroite.setLayout(new GridLayout(3,1));
 		partieDroite.add(boutFusionner);
-		partieDroite.add(boutReinistialiser);
 		partieDroite.add(boutInserer);
+		partieDroite.add(boutReinistialiser);
 		main.add(partieDroite, BorderLayout.EAST);
 
 		this.add(new JPanelDef(), BorderLayout.WEST);
@@ -235,7 +235,12 @@ public class MenuBasTableaux extends JPanelDef  {
 		checkBordures.setSelected(true);
 		checkNumerotation.setSelected(true);
 		checkLegende.setSelected(true);
-
+		fieldLignes.setText("2");
+		partieCentrale.setNbLigne(2);
+		fieldColonnes.setText("3");
+		partieCentrale.setNbColonne(3);
+		partieCentrale.redessiner();
+		
 	}
 
 

@@ -67,8 +67,11 @@ public class MenuBas extends JPanel{
 					menuBas.removeAll();
 
 					//FAUT IL OUI OU NON REINISTIALISER LE MENU LORS DE LA FERMETURE DU RUBAN ?
+					// SI NON COMMENTER CES LIGNES
 					menuBasTitres.reinistialisation();
 					menuBasFigures.reinistialisation();
+					menuBasTableaux.reinistialisation();
+					
 
 					menuBas.add(boutInserer,BorderLayout.NORTH);
 					menuBas.add(menuBasChoix, BorderLayout.SOUTH);

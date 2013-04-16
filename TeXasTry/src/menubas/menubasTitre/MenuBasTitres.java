@@ -14,6 +14,7 @@ import javax.swing.border.Border;
 import menubas.BoutonMenuBasValidate;
 import menubas.PanelboutonStyle;
 import menubas.RadioButtonMenuBas;
+import menubas.TextFieldAutoSuppression;
 import briquesElementaires.JPanelDef;
 import briquesElementaires.Police;
 
@@ -35,7 +36,7 @@ public class MenuBasTitres extends JPanelDef{
 	// Les éléments interagissant
 	private BoutonMenuBasValidate boutInserer = new BoutonMenuBasValidate("Insérer");
 
-	private JTextField texteTitre = new JTextField("Votre titre ici");
+	private TextFieldAutoSuppression texteTitre = new TextFieldAutoSuppression("Votre titre ici");
 
 	private RadioButtonMenuBas checkPartie = new RadioButtonMenuBas("Partie", true);
 	private RadioButtonMenuBas checkChapitre = new RadioButtonMenuBas("Chapitre");
@@ -76,10 +77,7 @@ public class MenuBasTitres extends JPanelDef{
 		// Traitement partie droite
 		partieDroite.setLayout(new GridLayout(3,1,20,20));
 		partieDroite.add(new JPanelDef());
-		texteTitre.setFont(Police.segoe);
-		texteTitre.setHorizontalAlignment(JTextField.CENTER);
 		partieDroite.add(texteTitre);
-//		partieDroite.add(boutInserer);
 
 		
 		// Traitement partie basse

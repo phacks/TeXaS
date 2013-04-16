@@ -4,13 +4,12 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 
 import javax.swing.ButtonGroup;
-import javax.swing.JComboBox;
 import javax.swing.JTextField;
 
 import menubas.BoutonMenuBasValidate;
 import menubas.PanelboutonStyle;
 import menubas.RadioButtonMenuBas;
-import briquesElementaires.Couleur;
+import menubas.TextFieldAutoSuppression;
 import briquesElementaires.JPanelDef;
 import briquesElementaires.Police;
 
@@ -32,7 +31,7 @@ public class MenuBasBlocMaths extends JPanelDef {
 			checkTheoreme,checkProposition,checkLemme,checkPropriete,checkCorollaire,checkDemonstration};
 	private ButtonGroup groupeBoutonGauche = new ButtonGroup();
 
-	private JTextField texteTitre = new JTextField("Titre du bloc mathématique"); 
+	private TextFieldAutoSuppression texteTitre = new TextFieldAutoSuppression("Titre du bloc mathématique"); 
 	
 	private BoutonMenuBasValidate boutonInserer = new BoutonMenuBasValidate("Insérer");
 
@@ -58,8 +57,6 @@ public class MenuBasBlocMaths extends JPanelDef {
 		partieCentrale.add(new JPanelDef());
 		
 		partieCentrale.add(new JPanelDef());
-		texteTitre.setFont(Police.segoe);
-		texteTitre.setHorizontalAlignment(JTextField.CENTER);
 		partieCentrale.add(texteTitre);
 		partieCentrale.add(new JPanelDef());
 		

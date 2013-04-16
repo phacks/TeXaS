@@ -13,8 +13,7 @@ import menubas.BoutonMenuBasValidate;
 import menubas.PanelboutonStyle;
 import menubas.RadioButtonMenuBas;
 import menubas.TextAligned;
-
-
+import menubas.TextFieldAutoSuppression;
 import briquesElementaires.JPanelDef;
 import briquesElementaires.Police;
 
@@ -36,10 +35,12 @@ public class MenuBasFigures extends JPanelDef {
 		private BoutonMenuBasValidate boutInserer = new BoutonMenuBasValidate("Insérer");
 		private BoutonMenuBasFigure boutImporter = new BoutonMenuBasFigure("Importer");
 
-		private JTextField texteLegende = new JTextField("Votre légende ici");
+		private TextFieldAutoSuppression texteLegende = new TextFieldAutoSuppression("Votre légende ici");
 
 		private RadioButtonMenuBas checkNumerotation = new RadioButtonMenuBas("Numérotation", true);
 		private RadioButtonMenuBas checkLegende = new RadioButtonMenuBas("Légende", true);
+		
+		JSlider slideTaille = new JSlider(0, 100, 30);
 			
 
 		public MenuBasFigures(){
@@ -71,7 +72,6 @@ public class MenuBasFigures extends JPanelDef {
 			
 			panSlide.add(new TextAligned("Taille :",false));
 			
-			JSlider slideTaille = new JSlider(0, 100, 30);
 			slideTaille.setFont(Police.segoe);
 			slideTaille.setBackground(Color.WHITE);
 			slideTaille.setPaintTicks(true);
@@ -85,8 +85,6 @@ public class MenuBasFigures extends JPanelDef {
 			// Traitement partie droite
 			partieDroite.setLayout(new GridLayout(3,1));
 			partieDroite.add(new JPanelDef());
-			texteLegende.setFont(Police.segoe);
-			texteLegende.setHorizontalAlignment(JTextField.CENTER);
 			partieDroite.add(texteLegende);
 			partieDroite.add(new JPanelDef());
 
@@ -122,5 +120,6 @@ public class MenuBasFigures extends JPanelDef {
 			checkNumerotation.setSelected(true);
 			checkLegende.setSelected(true);
 			texteLegende.setText("Votre légende ici");
+			slideTaille.setValue(50);
 		}
 }

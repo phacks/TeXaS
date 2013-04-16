@@ -3,12 +3,10 @@ package menubas.menubasBlocs;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 
-import javax.swing.JTextField;
-
 import menubas.BoutonMenuBasValidate;
 import menubas.PanelboutonStyle;
+import menubas.TextFieldAutoSuppression;
 import briquesElementaires.JPanelDef;
-import briquesElementaires.Police;
 
 
 public class MenuBasBlocNoteBasPage extends JPanelDef {
@@ -17,7 +15,7 @@ public class MenuBasBlocNoteBasPage extends JPanelDef {
 	private JPanelDef main1 = new JPanelDef();
 	private JPanelDef partieEast = new JPanelDef();
 
-	private JTextField texteTitre = new JTextField("Texte de la note de bas de page"); 
+	private TextFieldAutoSuppression texteTitre = new TextFieldAutoSuppression("Texte de la note de bas de page"); 
 	
 	private BoutonMenuBasValidate boutonInserer = new BoutonMenuBasValidate("Insérer");
 
@@ -31,8 +29,6 @@ public class MenuBasBlocNoteBasPage extends JPanelDef {
 		main.add(new JPanelDef());
 		
 		main.add(new JPanelDef());
-		texteTitre.setFont(Police.segoe);
-		texteTitre.setHorizontalAlignment(JTextField.CENTER);
 		main.add(texteTitre);
 		main.add(new JPanelDef());
 		
