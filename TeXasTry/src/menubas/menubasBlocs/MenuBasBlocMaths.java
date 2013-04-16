@@ -8,7 +8,7 @@ import javax.swing.JTextField;
 
 import menubas.BoutonMenuBasValidate;
 import menubas.PanelboutonStyle;
-import menubas.RadioButtonMenuBas;
+import menubas.RadioButtonDefaut;
 import menubas.TextFieldAutoSuppression;
 import briquesElementaires.JPanelDef;
 import briquesElementaires.Police;
@@ -21,17 +21,18 @@ public class MenuBasBlocMaths extends JPanelDef {
 	private JPanelDef partieCentrale = new JPanelDef();
 	private JPanelDef partieEast = new JPanelDef();
 	
-	private RadioButtonMenuBas checkTheoreme = new RadioButtonMenuBas("Théorême", true);
-	private RadioButtonMenuBas checkProposition = new RadioButtonMenuBas("Proposition", false);
-	private RadioButtonMenuBas checkLemme = new RadioButtonMenuBas("Lemme", false);
-	private RadioButtonMenuBas checkPropriete = new RadioButtonMenuBas("Propriété", false);
-	private RadioButtonMenuBas checkCorollaire = new RadioButtonMenuBas("Corollaire", false);
-	private RadioButtonMenuBas checkDemonstration = new RadioButtonMenuBas("Démonstration", false);
-	private RadioButtonMenuBas[] checkType={
+	private RadioButtonDefaut checkTheoreme = new RadioButtonDefaut("Théorême", true);
+	private RadioButtonDefaut checkProposition = new RadioButtonDefaut("Proposition", false);
+	private RadioButtonDefaut checkLemme = new RadioButtonDefaut("Lemme", false);
+	private RadioButtonDefaut checkPropriete = new RadioButtonDefaut("Propriété", false);
+	private RadioButtonDefaut checkCorollaire = new RadioButtonDefaut("Corollaire", false);
+	private RadioButtonDefaut checkDemonstration = new RadioButtonDefaut("Démonstration", false);
+	private RadioButtonDefaut[] checkType={
 			checkTheoreme,checkProposition,checkLemme,checkPropriete,checkCorollaire,checkDemonstration};
 	private ButtonGroup groupeBoutonGauche = new ButtonGroup();
 
-	private TextFieldAutoSuppression texteTitre = new TextFieldAutoSuppression("Titre du bloc mathématique"); 
+	private String titre = "Titre du bloc mathématique";
+	private TextFieldAutoSuppression texteTitre = new TextFieldAutoSuppression(titre); 
 	
 	private BoutonMenuBasValidate boutonInserer = new BoutonMenuBasValidate("Insérer");
 
@@ -80,5 +81,10 @@ public class MenuBasBlocMaths extends JPanelDef {
 		this.add(partieEast, BorderLayout.EAST);
 		this.revalidate();
 
+	}
+
+	public void reinstialisation() {
+		this.checkTheoreme.setSelected(true);
+		this.texteTitre.setText(titre);
 	}
 }

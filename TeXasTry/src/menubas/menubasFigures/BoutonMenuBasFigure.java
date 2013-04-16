@@ -45,18 +45,17 @@ public class BoutonMenuBasFigure extends JButton implements MouseListener{
 		// Choix de la couleur du background (obligatoire, sinon bug)
 		Shape.setColor(Couleur.white);
 		Shape.fillRect(0, 0, this.getWidth(), this.getHeight());
-
+		
 		// Si le bouton est survolé
 		if (this.survol){
 			Shape.setColor(Couleur.grisClair);
-			Shape.fillRect(this.getWidth()/2-img.getWidth(this), this.getHeight()-3*fm.getAscent()-img.getHeight(this), img.getWidth(this)*2, this.getHeight());
+			Shape.fillRect(this.getWidth()/2-(img.getWidth(this))*5/8, 0, img.getWidth(this)*5/4, this.getHeight());
 		}
 
 		// Si le bouton est pressé
 		if (this.pressed){
 			Shape.setColor(Couleur.bleuClairMenuGauche);
-			Shape.fillRect(this.getWidth()/2-img.getWidth(this), this.getHeight()-3*fm.getAscent()-img.getHeight(this), img.getWidth(this)*2, this.getHeight());
-
+			Shape.fillRect(this.getWidth()/2-(img.getWidth(this))*5/8, 0, img.getWidth(this)*5/4, this.getHeight());
 		}
 		// Dessin du texte en position centrée en bas
 		Shape.setFont(Police.segoe);
@@ -65,10 +64,12 @@ public class BoutonMenuBasFigure extends JButton implements MouseListener{
 			Shape.setColor(Couleur.white);
 		}
 		int x = (this.getWidth() - fm.stringWidth(this.name)) / 2;
-		int y = this.getHeight()-fm.getAscent();
+		int y = this.getHeight()-fm.getAscent()/2;
 		Shape.drawString(this.name, x, y);
 
 		Shape.drawImage(img, this.getWidth()/2-img.getWidth(this)/2, this.getHeight()-2*fm.getAscent()-img.getHeight(this), this);
+		Shape.setColor(Couleur.lightgray);
+		Shape.drawRect(this.getWidth()/2-(img.getWidth(this))*5/8, 0, img.getWidth(this)*5/4, this.getHeight()-1);
 	}
 
 

@@ -80,12 +80,13 @@ public class FormattedTextPositiveInteger extends JFormattedTextField implements
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
+		this.setBorder(BorderFactory.createLineBorder(Couleur.bleuClairMenuGauche));
 		this.repaint();
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
-		this.setBorder(BorderFactory.createLineBorder(Couleur.blue));
+		this.setBorder(BorderFactory.createLineBorder(Couleur.bleuMedianMenuGauche));
 		this.repaint();
 	}
 
@@ -97,7 +98,7 @@ public class FormattedTextPositiveInteger extends JFormattedTextField implements
 
 	@Override
 	public void mousePressed(MouseEvent arg0) {
-
+		this.repaint();
 	}
 
 	@Override

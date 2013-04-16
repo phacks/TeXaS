@@ -12,7 +12,7 @@ import javax.swing.SwingConstants;
 
 import menubas.BoutonMenuBasValidate;
 import menubas.PanelboutonStyle;
-import menubas.RadioButtonMenuBas;
+import menubas.RadioButtonDefaut;
 import briquesElementaires.Couleur;
 import briquesElementaires.JPanelDef;
 import briquesElementaires.Police;
@@ -25,9 +25,9 @@ public class MenuBasBlocCode extends JPanelDef {
 	private JPanelDef partieCentrale = new JPanelDef();
 	private JPanelDef partieEast = new JPanelDef();
 
-	private RadioButtonMenuBas ligneNumerotees = new RadioButtonMenuBas("Lignes numérotées", true);
-	private RadioButtonMenuBas legende = new RadioButtonMenuBas("Légende",true);
-	private RadioButtonMenuBas numerotation = new RadioButtonMenuBas("Numérotation",true);
+	private RadioButtonDefaut ligneNumerotees = new RadioButtonDefaut("Lignes numérotées", true);
+	private RadioButtonDefaut legende = new RadioButtonDefaut("Légende",true);
+	private RadioButtonDefaut numerotation = new RadioButtonDefaut("Numérotation",true);
 
 	/* tableau contenu de la jcomboBox, 
 	 * trié automatiquement par ordre alphabétique (pour éventuelle modif / ajout / suppression) */
@@ -40,8 +40,8 @@ public class MenuBasBlocCode extends JPanelDef {
 			"OCL","VBScript","Fortran","Octave","Verilog","GCL","Oz","VHDL","Gnuplot","Pascal","VRML","Haskell",
 			"Perl","XML","HTML","PHP","XSLT"};
 
-	private RadioButtonMenuBas listeSimple = new RadioButtonMenuBas("Liste simple",true);
-	private RadioButtonMenuBas listeComplete = new RadioButtonMenuBas("Liste complète", false);
+	private RadioButtonDefaut listeSimple = new RadioButtonDefaut("Liste simple",true);
+	private RadioButtonDefaut listeComplete = new RadioButtonDefaut("Liste complète", false);
 	private ButtonGroup groupeListe = new ButtonGroup();
 
 	private JComboBox comboBox = new JComboBox();
@@ -147,6 +147,17 @@ public class MenuBasBlocCode extends JPanelDef {
 			tab[i] = tab[min];
 			tab[min] = temp;
 		}
+	}
+
+	public void reinstialisation() {
+		this.ligneNumerotees.setSelected(true);
+		this.legende.setSelected(true);
+		this.numerotation.setSelected(true);
+		this.comboBox.removeAllItems();
+		for (int i = 0; i < this.contenuComboSimple.length; i++) {
+			this.comboBox.addItem(contenuComboSimple[i]);
+		}
+		this.listeSimple.setSelected(true);
 	}
 
 }

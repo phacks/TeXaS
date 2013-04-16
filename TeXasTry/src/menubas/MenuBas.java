@@ -10,8 +10,10 @@ import javax.swing.JPanel;
 
 import menubas.menubasBlocs.MenuBasBlocs;
 import menubas.menubasFigures.MenuBasFigures;
+import menubas.menubasMathematiques.MenuBasMathematiques;
 import menubas.menubasTitre.MenuBasTitres;
 import menubas.menubastableau.MenuBasTableaux;
+import briquesElementaires.JPanelDef;
 
 
 
@@ -19,23 +21,24 @@ public class MenuBas extends JPanel{
 
 	// Les JPanels
 
-	// général
-	private JPanel menuBas = new JPanel();
-
 	// Menu Bas partie basse
 
 	private MenuBasBase menuBasChoix = new MenuBasBase();
-	
+	private JPanelDef menuBasNorth = new JPanelDef();
+
 	// Menu Bas onglets
 
 	private MenuBasTitres menuBasTitres = new MenuBasTitres();
 	private MenuBasFigures menuBasFigures = new MenuBasFigures();
 	private MenuBasTableaux menuBasTableaux;
 	private MenuBasBlocs menuBasBlocs = new MenuBasBlocs();
+	private MenuBasMathematiques menuBasMathematiques = new MenuBasMathematiques();
 
 	//Les boutons
 
 	private BoutonMenuBas boutInserer = new BoutonMenuBas("Insérer");
+	private RadioButtonReinit boutReinistialisation = new RadioButtonReinit();
+
 
 	public MenuBas() {
 
@@ -49,7 +52,7 @@ public class MenuBas extends JPanel{
 
 		// Gestion des onglets
 		menuBasChoix.add("Titres", menuBasTitres);
-		menuBasChoix.add("Mathématiques", new JPanel());
+		menuBasChoix.add("Mathématiques", menuBasMathematiques);
 		menuBasChoix.add("Figures", menuBasFigures);
 		menuBasChoix.add("Tableaux", menuBasTableaux);
 		menuBasChoix.add("Blocs", menuBasBlocs);
@@ -57,47 +60,46 @@ public class MenuBas extends JPanel{
 
 
 		// Gestion du menu de base
-		menuBas.setLayout(new BorderLayout());
-		menuBas.add(boutInserer,BorderLayout.NORTH);
-		menuBas.revalidate();
+		this.setLayout(new BorderLayout());
+
+		menuBasNorth.setLayout(new BorderLayout());
+		menuBasNorth.add(boutInserer,BorderLayout.CENTER);
+		PanelDesignNorth panelReinit = new PanelDesignNorth();
+		panelReinit.add(boutReinistialisation);
+		menuBasNorth.add(panelReinit,BorderLayout.EAST);
+		this.add(menuBasNorth,BorderLayout.NORTH);
+		this.revalidate();
 
 		boutInserer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (!boutInserer.isCheck()){
-					menuBas.removeAll();
-
-					//FAUT IL OUI OU NON REINISTIALISER LE MENU LORS DE LA FERMETURE DU RUBAN ?
-					// SI NON COMMENTER CES LIGNES
-					menuBasTitres.reinistialisation();
-					menuBasFigures.reinistialisation();
-					menuBasTableaux.reinistialisation();
-					
-
-					menuBas.add(boutInserer,BorderLayout.NORTH);
-					menuBas.add(menuBasChoix, BorderLayout.SOUTH);
-					menuBas.revalidate();
-					boutInserer.check();
-				}
-				else{
-					menuBas.removeAll();
-					menuBas.add(boutInserer,BorderLayout.NORTH);
-					menuBas.revalidate();
-					boutInserer.uncheck();
-				}
+				ouvrirMenuBas();
 			}
 		});
-
 	}
 
+	private void ouvrirMenuBas() {
+		if (!boutInserer.isCheck()){
+			this.removeAll();
 
-	public MenuBasBase getMenuBasChoix() {
-		return menuBasChoix;
+			if(boutReinistialisation.isSelected()){
+				menuBasTitres.reinistialisation();
+				menuBasFigures.reinistialisation();
+				menuBasTableaux.reinistialisation();
+				menuBasBlocs.reinistialisation();
+			}
+
+
+			this.add(menuBasNorth,BorderLayout.NORTH);
+			this.add(menuBasChoix, BorderLayout.SOUTH);
+			this.revalidate();
+			boutInserer.check();
+		}
+		else{
+			this.removeAll();
+			this.add(menuBasNorth,BorderLayout.NORTH);
+			this.revalidate();
+			boutInserer.uncheck();
+		}
 	}
-
-
-	public JPanel getMenuBas() {
-		return this.menuBas;
-	}
-
 
 }

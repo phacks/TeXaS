@@ -1,4 +1,4 @@
-package menubas.menubasBlocs;
+package menubas.menubasMathematiques;
 
 import java.awt.AlphaComposite;
 import java.awt.Component;
@@ -11,30 +11,32 @@ import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import menubas.menubasBlocs.MenuBlocsDesignOngletsUI;
+
 import briquesElementaires.Couleur;
 import briquesElementaires.JPanelDef;
 import briquesElementaires.Police;
 
-public class MenuBasBlocs extends JTabbedPane implements ChangeListener, Runnable{
+public class MenuBasMathematiques extends JTabbedPane implements ChangeListener, Runnable{
 
 	// Element de design du jtabbedpan
 	private MenuBlocsDesignOngletsUI menuBlocsDesign;
 
 	// Les onglets
-	private MenuBasBlocCode menuBasBlocCode = new MenuBasBlocCode();
-	private MenuBasBlocCitation menuBasBlocCitation= new MenuBasBlocCitation();
-	private MenuBasBlocMaths menuBasBlocMaths = new MenuBasBlocMaths();
-	private MenuBasBlocNoteBasPage menuBasBlocNoteBasPage = new MenuBasBlocNoteBasPage();
+//	private MenuBasBlocCode menuBasBlocCode = new MenuBasBlocCode();
+//	private MenuBasBlocCitation menuBasBlocCitation= new MenuBasBlocCitation();
+//	private MenuBasBlocMaths menuBasBlocMaths = new MenuBasBlocMaths();
+//	private MenuBasBlocNoteBasPage menuBasBlocNoteBasPage = new MenuBasBlocNoteBasPage();
 	
-	public MenuBasBlocs(){
+	public MenuBasMathematiques(){
 		super(JTabbedPane.LEFT);
 		menuBlocsDesign = new MenuBlocsDesignOngletsUI();
 		this.setUI(menuBlocsDesign);
 		this.addChangeListener(this);
-		this.add("Code", menuBasBlocCode);
-		this.add("Citation", menuBasBlocCitation);
-		this.add("Mathématiques", menuBasBlocMaths);
-		this.add("Note de bas de page", menuBasBlocNoteBasPage);
+		this.add("Symboles", new JPanelDef());
+		this.add("Structure", new JPanelDef());
+		this.add("Accentuation", new JPanelDef());
+		this.add("Parenthèses", new JPanelDef());
 	}
 
 	private int step;
@@ -99,11 +101,4 @@ public class MenuBasBlocs extends JTabbedPane implements ChangeListener, Runnabl
 		}
 	}
 
-
-	public void reinistialisation() {
-		menuBasBlocCode.reinstialisation();
-		menuBasBlocCitation.reinstialisation();
-		menuBasBlocMaths.reinstialisation();
-		menuBasBlocNoteBasPage.reinstialisation();
-	}
 }

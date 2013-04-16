@@ -11,7 +11,7 @@ import javax.swing.JTextField;
 
 import menubas.BoutonMenuBasValidate;
 import menubas.PanelboutonStyle;
-import menubas.RadioButtonMenuBas;
+import menubas.RadioButtonDefaut;
 import menubas.TextAligned;
 import menubas.TextFieldAutoSuppression;
 import briquesElementaires.JPanelDef;
@@ -37,8 +37,8 @@ public class MenuBasFigures extends JPanelDef {
 
 		private TextFieldAutoSuppression texteLegende = new TextFieldAutoSuppression("Votre légende ici");
 
-		private RadioButtonMenuBas checkNumerotation = new RadioButtonMenuBas("Numérotation", true);
-		private RadioButtonMenuBas checkLegende = new RadioButtonMenuBas("Légende", true);
+		private RadioButtonDefaut checkNumerotation = new RadioButtonDefaut("Numérotation", true);
+		private RadioButtonDefaut checkLegende = new RadioButtonDefaut("Légende", true);
 		
 		JSlider slideTaille = new JSlider(0, 100, 30);
 			

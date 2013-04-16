@@ -18,7 +18,7 @@ import javax.swing.JTextField;
 import javax.swing.text.MaskFormatter;
 
 import menubas.BoutonMenuBasValidate;
-import menubas.RadioButtonMenuBas;
+import menubas.RadioButtonDefaut;
 import menubas.TextAligned;
 
 
@@ -41,9 +41,9 @@ public class MenuBasTableaux extends JPanelDef  {
 	private BoutonMenuBasValidate boutFusionner = new BoutonMenuBasValidate("Fusionner");
 	private BoutonMenuBasValidate boutReinistialiser = new BoutonMenuBasValidate("Réinistialiser");
 
-	private RadioButtonMenuBas checkBordures = new RadioButtonMenuBas("Bordure", true);
-	private RadioButtonMenuBas checkLegende = new RadioButtonMenuBas("Légende", true);
-	private RadioButtonMenuBas checkNumerotation = new RadioButtonMenuBas("Numérotation", true);
+	private RadioButtonDefaut checkBordures = new RadioButtonDefaut("Bordure", true);
+	private RadioButtonDefaut checkLegende = new RadioButtonDefaut("Légende", true);
+	private RadioButtonDefaut checkNumerotation = new RadioButtonDefaut("Numérotation", true);
 
 	private BoutonIconeUpAndDown up1 = new BoutonIconeUpAndDown("up");
 	private BoutonIconeUpAndDown down1 = new BoutonIconeUpAndDown("down");

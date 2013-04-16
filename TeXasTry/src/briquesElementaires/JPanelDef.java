@@ -1,6 +1,7 @@
 package briquesElementaires;
 
 import java.awt.Font;
+import java.awt.Graphics;
 import java.awt.LayoutManager;
 
 import javax.swing.JPanel;

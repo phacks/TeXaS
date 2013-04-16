@@ -128,30 +128,13 @@ public class MenuGauche extends JPanelDef{
 
 		// Gestion des boutons
 
-		boutMonProjet.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				ouvrirMenu(boutMonProjet);
-			}
-		});
-
-		boutPref.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				ouvrirMenu(boutPref);	
-			}
-		});
-
-		boutPerso.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				ouvrirMenu(boutPerso);	
-			}
-		});
-
-		boutAide.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				ouvrirMenu(boutAide);	
-			}
-		});
-
+		for (int i = 0; i < mesBoutonsBase.length; i++) {
+			mesBoutonsBase[i].addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					ouvrirMenu((BoutonMenuGaucheBase)arg0.getSource());
+				}
+			});
+		}
 	}
 
 

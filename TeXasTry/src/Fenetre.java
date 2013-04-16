@@ -46,7 +46,7 @@ public class Fenetre extends JFrame {
 
 		centre.add(menuHautPan.getMenuHaut(),BorderLayout.NORTH);
 
-		centre.add(menuBasPan.getMenuBas(),BorderLayout.SOUTH);
+		centre.add(menuBasPan,BorderLayout.SOUTH);
 
 		container.add(centre, BorderLayout.CENTER);
 

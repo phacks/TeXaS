@@ -15,7 +15,8 @@ public class MenuBasBlocNoteBasPage extends JPanelDef {
 	private JPanelDef main1 = new JPanelDef();
 	private JPanelDef partieEast = new JPanelDef();
 
-	private TextFieldAutoSuppression texteTitre = new TextFieldAutoSuppression("Texte de la note de bas de page"); 
+	private String titre = "Texte de la note de bas de page";
+	private TextFieldAutoSuppression texteTitre = new TextFieldAutoSuppression(titre); 
 	
 	private BoutonMenuBasValidate boutonInserer = new BoutonMenuBasValidate("Insérer");
 
@@ -49,6 +50,10 @@ public class MenuBasBlocNoteBasPage extends JPanelDef {
 		this.add(partieEast, BorderLayout.EAST);
 		this.revalidate();
 
+	}
+
+	public void reinstialisation() {
+		this.texteTitre.setText(titre);		
 	}
 
 }

@@ -13,7 +13,7 @@ import javax.swing.border.Border;
 
 import menubas.BoutonMenuBasValidate;
 import menubas.PanelboutonStyle;
-import menubas.RadioButtonMenuBas;
+import menubas.RadioButtonDefaut;
 import menubas.TextFieldAutoSuppression;
 import briquesElementaires.JPanelDef;
 import briquesElementaires.Police;
@@ -38,17 +38,17 @@ public class MenuBasTitres extends JPanelDef{
 
 	private TextFieldAutoSuppression texteTitre = new TextFieldAutoSuppression("Votre titre ici");
 
-	private RadioButtonMenuBas checkPartie = new RadioButtonMenuBas("Partie", true);
-	private RadioButtonMenuBas checkChapitre = new RadioButtonMenuBas("Chapitre");
-	private RadioButtonMenuBas checkSection = new RadioButtonMenuBas("Section");
-	private RadioButtonMenuBas checkSSection = new RadioButtonMenuBas("Sous-section");
-	private RadioButtonMenuBas checkSSSection = new RadioButtonMenuBas("Sous-sous-section");
-	private RadioButtonMenuBas[] checkCategories = {
+	private RadioButtonDefaut checkPartie = new RadioButtonDefaut("Partie", true);
+	private RadioButtonDefaut checkChapitre = new RadioButtonDefaut("Chapitre");
+	private RadioButtonDefaut checkSection = new RadioButtonDefaut("Section");
+	private RadioButtonDefaut checkSSection = new RadioButtonDefaut("Sous-section");
+	private RadioButtonDefaut checkSSSection = new RadioButtonDefaut("Sous-sous-section");
+	private RadioButtonDefaut[] checkCategories = {
 			checkPartie,checkChapitre,checkSection,checkSSection,checkSSSection	};
 	private ButtonGroup groupeBoutonGauche = new ButtonGroup();
 	
-	private RadioButtonMenuBas checkNumerotation = new RadioButtonMenuBas("Numérotation", true);
-	private RadioButtonMenuBas checkTdM = new RadioButtonMenuBas("Table des matières", true);
+	private RadioButtonDefaut checkNumerotation = new RadioButtonDefaut("Numérotation", true);
+	private RadioButtonDefaut checkTdM = new RadioButtonDefaut("Table des matières", true);
 		
 
 	public MenuBasTitres(){

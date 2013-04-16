@@ -9,7 +9,7 @@ import javax.swing.JComboBox;
 
 import menubas.BoutonMenuBasValidate;
 import menubas.PanelboutonStyle;
-import menubas.RadioButtonMenuBas;
+import menubas.RadioButtonDefaut;
 
 import briquesElementaires.Couleur;
 import briquesElementaires.JPanelDef;
@@ -21,8 +21,8 @@ public class MenuBasBlocCitation extends JPanelDef {
 	private JPanelDef main1 = new JPanelDef();
 	private JPanelDef partieEast = new JPanelDef();
 
-	private RadioButtonMenuBas citationCourte = new RadioButtonMenuBas("Citation courte", true);
-	private RadioButtonMenuBas citationLongue = new RadioButtonMenuBas("Citation longue",false);
+	private RadioButtonDefaut citationCourte = new RadioButtonDefaut("Citation courte", true);
+	private RadioButtonDefaut citationLongue = new RadioButtonDefaut("Citation longue",false);
 	private ButtonGroup groupeBoutonGauche = new ButtonGroup();
 	
 	private BoutonMenuBasValidate boutonInserer = new BoutonMenuBasValidate("Insérer");
@@ -57,6 +57,10 @@ public class MenuBasBlocCitation extends JPanelDef {
 		this.add(partieEast, BorderLayout.EAST);
 		this.revalidate();
 
+	}
+
+	public void reinstialisation() {
+		this.citationCourte.setSelected(true);
 	}
 
 }
