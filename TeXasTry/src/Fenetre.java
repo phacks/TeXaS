@@ -1,5 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.Color; 
+import java.awt.Frame;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -49,11 +50,11 @@ public class Fenetre extends JFrame {
 
 		container.add(centre, BorderLayout.CENTER);
 
-
+		
 		this.setContentPane(container); 
 		this.pack();
-		this.setDefaultLookAndFeelDecorated(true);
-		this.setExtendedState(this.MAXIMIZED_BOTH);
+		JFrame.setDefaultLookAndFeelDecorated(true);
+		this.setExtendedState(Frame.MAXIMIZED_BOTH);
 		this.setVisible(true);
 
 	}       

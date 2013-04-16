@@ -86,6 +86,9 @@ public class MenuGauche extends JPanelDef{
 	private BoutonMenuGaucheDroite[][] ensembleBoutonsDroites = {
 			mesBoutonsProjet,mesBoutonsPreferences,mesBoutonsPersonnaliser,mesBoutonsEditer,mesBoutonsExporter,mesBoutonsAide};
 
+	// Largeur menu droite
+	private int largeur = 0;
+
 	// Getters & Setters
 
 	public JPanel getMenuGauche() {
@@ -104,15 +107,22 @@ public class MenuGauche extends JPanelDef{
 		}
 
 		// Sous-menus droites
-
+		// Fonction de construction des menus de droite et de la largeur de base
+		int largeurMax = 0;
 		for (int i = 0; i < mesMenusDroite.length; i++) {
 			for (int j = 0; j < ensembleBoutonsDroites[i].length; j++) {
 				mesMenusDroite[i].add(ensembleBoutonsDroites[i][j]);
 			}
+			largeurMax = (int) Math.max(mesMenusDroite[i].getPreferredSize().getWidth(),largeurMax);
 		}
-
+		
+		for (int i = 0; i < mesMenusDroite.length; i++) {
+			mesMenusDroite[i].setPreferredSize(new Dimension(largeurMax,mesMenusDroite[i].getHeight()));
+		}
+		
 		// Finalisation du menu
 
+		this.removeAll();
 		this.add(base);
 		this.revalidate();
 
@@ -155,11 +165,13 @@ public class MenuGauche extends JPanelDef{
 			this.add(mesMenusDroite[i], BorderLayout.CENTER);
 			bouton.check();
 			this.revalidate();
+			this.repaint();
 		}
 		else{
 			this.removeAll();
 			this.add(base, BorderLayout.WEST);
 			this.revalidate();
+			this.repaint();
 			bouton.uncheck();
 		}
 	}
