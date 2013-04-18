@@ -6,12 +6,20 @@ import java.awt.FontMetrics;
 import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Insets;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.geom.Area;
 import java.awt.geom.Rectangle2D;
 
+import javax.swing.UIManager;
+import javax.swing.plaf.basic.BasicTabbedPaneUI;
 import javax.swing.plaf.metal.MetalTabbedPaneUI;
+import javax.swing.plaf.synth.Region;
+import javax.swing.plaf.synth.SynthConstants;
+import javax.swing.plaf.synth.SynthContext;
+import javax.swing.plaf.synth.SynthLookAndFeel;
+import javax.swing.plaf.synth.SynthStyle;
 
 import briquesElementaires.Couleur;
 import briquesElementaires.Police;
@@ -19,11 +27,11 @@ import briquesElementaires.Police;
 
 
 
-public class MenuBasDesignOngletsUI extends MetalTabbedPaneUI {
+public class MenuBasDesignOngletsUI extends BasicTabbedPaneUI {
 
 	private int maxWidth = 0;
 	private int maxHeight = 0;
-	
+
 	public int getMaxWidth() {
 		return maxWidth;
 	}
@@ -39,7 +47,6 @@ public class MenuBasDesignOngletsUI extends MetalTabbedPaneUI {
 	public MenuBasDesignOngletsUI(){
 		super();
 	}
-
 
 
 	protected int calculateTabWidth(int tabPlacement, int tabIndex,FontMetrics metrics) {
@@ -61,14 +68,14 @@ public class MenuBasDesignOngletsUI extends MetalTabbedPaneUI {
 	protected void paintTabBorder(Graphics g, int tabPlacement, int tabIndex, int x, int y, int w, int h, boolean isSelected)
 	{
 
-//		Graphics2D surface = (Graphics2D) g;
-//		surface.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-//
-//		surface.setColor(Couleur.bleuMedianMenuGauche);
-//		Area bordure = new Area();
-//		bordure.add(new Area(new Rectangle2D.Double(x,y,w,h)));
-//		surface.draw(bordure);	
-//		surface.setColor(Color.WHITE);
+		//		Graphics2D surface = (Graphics2D) g;
+		//		surface.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		//
+		//		surface.setColor(Couleur.bleuMedianMenuGauche);
+		//		Area bordure = new Area();
+		//		bordure.add(new Area(new Rectangle2D.Double(x,y,w,h)));
+		//		surface.draw(bordure);	
+		//		surface.setColor(Color.WHITE);
 
 	}
 
@@ -102,9 +109,9 @@ public class MenuBasDesignOngletsUI extends MetalTabbedPaneUI {
 		GradientPaint gp = new GradientPaint(0, tabPane.getBounds().height-this.maxTabHeight+1, Couleur.grisClair, 0, tabPane.getBounds().height-this.maxTabHeight-2, Couleur.grisFonce);
 		shape.setPaint(gp);
 		shape.fillRect(0, 0, tabPane.getBounds().width, tabPane.getBounds().height);
-		
+
 		super.paintTabArea(g, tabPlacement, selectedIndex);
-		
+
 	}
 
 	public void overrideContentBorderInsetsOfUI(){
@@ -123,27 +130,27 @@ public class MenuBasDesignOngletsUI extends MetalTabbedPaneUI {
 
 
 	protected void paintContentBorderBottomEdge(Graphics g, int tabPlacement,int selectedIndex, int x, int y, int w, int h) {
-		
+
 	}
 
 
 
 	protected void paintText(Graphics g, int tabPlacement, Font font, FontMetrics metrics, int tabIndex, String title, Rectangle textRect, boolean isSelected){
-		 if (isSelected) {
-	            g.setColor(Color.WHITE);
-	        } else {
-	            g.setColor(Color.BLACK);
-	        }
-	         
-	        Font tabFont = Police.segoe;
-	             
-	        g.setFont(tabFont);
-	        g.drawString(title, textRect.x, textRect.y + metrics.getAscent());
-	    }
+		if (isSelected) {
+			g.setColor(Color.WHITE);
+		} else {
+			g.setColor(Color.BLACK);
+		}
+
+		Font tabFont = Police.segoe;
+
+		g.setFont(tabFont);
+		g.drawString(title, textRect.x, textRect.y + metrics.getAscent());
+	}
 
 
 
-	
+
 
 }
 //

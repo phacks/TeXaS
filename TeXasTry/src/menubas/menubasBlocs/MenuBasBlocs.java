@@ -11,6 +11,8 @@ import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import menubas.MenuBasDesignOngletsInterneGaucheUI;
+
 import briquesElementaires.Couleur;
 import briquesElementaires.JPanelDef;
 import briquesElementaires.Police;
@@ -18,7 +20,7 @@ import briquesElementaires.Police;
 public class MenuBasBlocs extends JTabbedPane implements ChangeListener, Runnable{
 
 	// Element de design du jtabbedpan
-	private MenuBlocsDesignOngletsUI menuBlocsDesign;
+	private MenuBasDesignOngletsInterneGaucheUI menuBlocsDesign;
 
 	// Les onglets
 	private MenuBasBlocCode menuBasBlocCode = new MenuBasBlocCode();
@@ -28,7 +30,7 @@ public class MenuBasBlocs extends JTabbedPane implements ChangeListener, Runnabl
 	
 	public MenuBasBlocs(){
 		super(JTabbedPane.LEFT);
-		menuBlocsDesign = new MenuBlocsDesignOngletsUI();
+		menuBlocsDesign = new MenuBasDesignOngletsInterneGaucheUI();
 		this.setUI(menuBlocsDesign);
 		this.addChangeListener(this);
 		this.add("Code", menuBasBlocCode);

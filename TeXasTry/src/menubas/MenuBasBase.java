@@ -34,7 +34,7 @@ public class MenuBasBase extends JTabbedPane implements ChangeListener, Runnable
 	private BufferedImage buf = null;
 	private int previousTab = -1;
 	private int newTab = -1;
-	private int animationLongueur = 20;
+	private int animationLongueur = 15;
 
 	public void stateChanged(ChangeEvent evt) {
 		new Thread(this).start();

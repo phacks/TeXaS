@@ -11,39 +11,58 @@ import javax.swing.JTabbedPane;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import menubas.menubasBlocs.MenuBlocsDesignOngletsUI;
-
+import menubas.MenuBasDesignOngletsInterneGaucheUI;
 import briquesElementaires.Couleur;
 import briquesElementaires.JPanelDef;
-import briquesElementaires.Police;
 
 public class MenuBasMathematiques extends JTabbedPane implements ChangeListener, Runnable{
 
 	// Element de design du jtabbedpan
-	private MenuBlocsDesignOngletsUI menuBlocsDesign;
+	private MenuBasDesignOngletsInterneGaucheUI menuBlocsDesign;
 
 	// Les onglets
-//	private MenuBasBlocCode menuBasBlocCode = new MenuBasBlocCode();
-//	private MenuBasBlocCitation menuBasBlocCitation= new MenuBasBlocCitation();
-//	private MenuBasBlocMaths menuBasBlocMaths = new MenuBasBlocMaths();
-//	private MenuBasBlocNoteBasPage menuBasBlocNoteBasPage = new MenuBasBlocNoteBasPage();
+	private PanelMathematiquesAvecOnglets panelOngletsAlphabet ;
+	private PanelMathematiquesAvecOnglets panelOngletsOperateurs;
 	
 	public MenuBasMathematiques(){
 		super(JTabbedPane.LEFT);
-		menuBlocsDesign = new MenuBlocsDesignOngletsUI();
+		menuBlocsDesign = new MenuBasDesignOngletsInterneGaucheUI();
 		this.setUI(menuBlocsDesign);
 		this.addChangeListener(this);
-		this.add("Symboles", new JPanelDef());
-		this.add("Structure", new JPanelDef());
-		this.add("Accentuation", new JPanelDef());
-		this.add("Parenthèses", new JPanelDef());
+		
+		this.add("Favoris", new PanelMathematiquesFavoris());
+		
+		this.add("Structure", new PanelMathematiqueSansOngletGrand("Structure"));
+		
+		String[] ongletsAlphabet = {"LettresGrecques","PoliceMathematiques"};
+		panelOngletsAlphabet = new PanelMathematiquesAvecOnglets(ongletsAlphabet);
+		this.add("Alphabets", panelOngletsAlphabet);
+		
+		this.add("Accentuation", new PanelMathematiquesSansOnglet("Accents"));
+		
+		this.add("Parenthèses", new PanelMathematiqueSansOngletGrand("Parentheses"));
+		
+		this.add("Flèches", new PanelMathematiquesSansOnglet("Fleches"));
+		
+		this.add("Fonctions", new PanelMathematiquesSansOnglet("Fonctions"));
+		
+		String[] ongletsOperateurs = {"Operateur2","Operateur1","Operateur3","Operateur4","Divers"};
+		panelOngletsOperateurs = new PanelMathematiquesAvecOnglets(ongletsOperateurs);
+		this.add("Opérateurs", panelOngletsOperateurs);
+	}
+	
+	public void reinistialisation(){
+		this.setSelectedIndex(0);
+		panelOngletsAlphabet.setSelectedIndex(0);
+		panelOngletsOperateurs.setSelectedIndex(0);
+		
 	}
 
 	private int step;
 	private BufferedImage buf = null;
 	private int previousTab = -1;
 	private int newTab = -1;
-	private int animationLongueur = 20;
+	private int animationLongueur = 15;
 
 	public void stateChanged(ChangeEvent evt) {
 		new Thread(this).start();

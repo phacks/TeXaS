@@ -57,19 +57,13 @@ public class BoutonMenuGaucheBase extends JButton implements MouseListener{
 		// Dessin du texte en position centrée
 		g.setColor(Couleur.black);
 		FontMetrics fm = g.getFontMetrics();
-		int x = (this.getWidth() - fm.stringWidth(this.name)) / 2;
-		int y = (fm.getAscent() + (this.getHeight() - (fm.getAscent() + fm.getDescent())) / 2);
+		int x = 2*fm.getWidths()[0];
+		int y = fm.getAscent() + (this.getHeight() - (fm.getAscent() + fm.getDescent())) / 2;
 		g.drawString(this.name, x, y);
 
 		if (check){
 			g.setColor(Couleur.bleuClairMenuGauche);
 			g.fillRect(0, 0, this.getWidth(),this.getHeight());	
-//			GradientPaint gpCheck = new GradientPaint(0, this.getHeight(), Couleur.bleuFonce, this.getWidth()/2, this.getHeight(), Couleur.bleuClair,true);
-//			Shape.setPaint(gpCheck);
-//			g.fillRect(0, 0, this.getWidth(),this.getHeight());
-//			g.setColor(Couleur.bleuFonceBordure);
-//			g.drawLine(0, 0, this.getWidth(), 0);
-//			g.drawLine(0, this.getHeight()-1, this.getWidth(), this.getHeight()-1);
 			g.setColor(Couleur.white);
 			g.drawString(this.name, x, y);
 			//Dessin d'un triangle d'indicateur d'onglet

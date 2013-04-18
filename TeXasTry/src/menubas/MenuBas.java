@@ -86,6 +86,7 @@ public class MenuBas extends JPanel{
 				menuBasFigures.reinistialisation();
 				menuBasTableaux.reinistialisation();
 				menuBasBlocs.reinistialisation();
+				menuBasMathematiques.reinistialisation();
 			}
 
 
