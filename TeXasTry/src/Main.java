@@ -10,14 +10,12 @@ import briquesElementaires.Police;
 
 public class Main {
 
-	
+
 	public static void main(String[] args) {
-		File segoeFontFile = new File("segoe.ttf");
-		
 		Fenetre maFen = new Fenetre();
 
-		 maFen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
-	
+		maFen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+
 	}
 
 }
