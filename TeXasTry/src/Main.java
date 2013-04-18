@@ -1,11 +1,4 @@
-import java.awt.Font;
-import java.awt.FontFormatException;
-import java.io.File;
-import java.io.IOException;
-
 import javax.swing.JFrame;
-
-import briquesElementaires.Police;
 
 
 public class Main {

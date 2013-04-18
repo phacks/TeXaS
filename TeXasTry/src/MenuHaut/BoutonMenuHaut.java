@@ -10,6 +10,8 @@ import java.awt.RenderingHints;
 import javax.swing.JButton;
 import javax.swing.SwingConstants;
 
+import briquesElementaires.Police;
+
 
 
 public class BoutonMenuHaut extends JButton{
@@ -21,7 +23,7 @@ public class BoutonMenuHaut extends JButton{
 	public BoutonMenuHaut(String str){
 		super(str);
 		this.name = str;
-		this.setFont(new Font("Segoe UI Light", Font.PLAIN, 15));
+		this.setFont(Police.segoe);
 		this.setBackground(grisClair);
 		this.setHorizontalAlignment(SwingConstants.CENTER);
 		this.setBorderPainted(false);
