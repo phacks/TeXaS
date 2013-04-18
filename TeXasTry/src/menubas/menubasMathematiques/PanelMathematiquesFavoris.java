@@ -34,7 +34,7 @@ public class PanelMathematiquesFavoris extends JPanelDef {
 	public PanelMathematiquesFavoris() {
 		super();
 
-		this.cheminFichier = "SymbolesLaTex\\SymbolesLaTeXUsuels";
+		this.cheminFichier = "SymbolesLaTex/SymbolesLaTeXUsuels";
 		this.emplacementImage = new File(this.cheminFichier);
 
 		// Structure centrale

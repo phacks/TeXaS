@@ -32,7 +32,7 @@ public class PanelMathematiqueSansOngletGrand extends JPanelDef {
 		super();
 
 		this.nomType = string;
-		this.cheminFichier = "SymbolesLaTex\\SymbolesLaTeXSmall\\"+nomType;
+		this.cheminFichier = "SymbolesLaTex/SymbolesLaTeXSmall/"+nomType;
 		this.emplacementImage = new File(this.cheminFichier);
 
 		// Structure centrale

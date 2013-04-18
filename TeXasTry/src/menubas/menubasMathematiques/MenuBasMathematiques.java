@@ -26,6 +26,7 @@ public class MenuBasMathematiques extends JTabbedPane implements ChangeListener,
 	
 	public MenuBasMathematiques(){
 		super(JTabbedPane.LEFT);
+		
 		menuBlocsDesign = new MenuBasDesignOngletsInterneGaucheUI();
 		this.setUI(menuBlocsDesign);
 		this.addChangeListener(this);
