@@ -12,8 +12,10 @@ import briquesElementaires.JPanelDef;
 
 public class ContenuEditable extends JPanelDef {
 
-	private static List<Component> listeContenu = new LinkedList<Component>();
+	private static List<Editeur> listeContenu = new LinkedList<Editeur>();
 	private static Box conteneurGeneral = Box.createVerticalBox();
+
+	private static int[] coordHierarchieActuelle = { 0 , 0 , 0 , 0 , 0};
 
 	public ContenuEditable(){
 		super(new BorderLayout());
@@ -28,33 +30,59 @@ public class ContenuEditable extends JPanelDef {
 
 	public static void revalider(){
 		conteneurGeneral.removeAll();
-		ListIterator<Component> iterator = listeContenu.listIterator();
+		for (int i = 0; i < coordHierarchieActuelle.length; i++) {
+			coordHierarchieActuelle[i]=0;
+		}
+		ListIterator<Editeur> iterator = listeContenu.listIterator();
 		while(iterator.hasNext()){
-			conteneurGeneral.add(iterator.next());
-			conteneurGeneral.add(Box.createVerticalStrut(10));
+			Editeur tmp = iterator.next();
+			refocus(tmp);
+			if(tmp.getClass().toString().contains("EditeurTitre")){
+				EditeurTitre tmp2 = (EditeurTitre) tmp;
+				if(tmp2.isNumerote()){
+					coordHierarchieActuelle[tmp2.getNumeroHierarchie()]++;
+					tmp2.setCoordHierarchie(coordHierarchieActuelle);
+					tmp2.renumeroter();
+				}
+			}
+			conteneurGeneral.add(tmp);
+			conteneurGeneral.add(Box.createVerticalStrut(5));
 		}
 		conteneurGeneral.revalidate();
 	}
 
-	public static void addEditeurParagraphe(Component c){
+	public static void addEditeurParagraphe(Editeur c){
 		int indice = listeContenu.indexOf(c);
 		listeContenu.add(indice+1, new EditeurParagraphe());
 		revalider();
+		EditeurParagraphe tmp = (EditeurParagraphe) listeContenu.get(indice+1);
+		tmp.setSelected(true);
 	}
 
 
 
 	public static void addEditeurTitre(int i,boolean numerotation, String title ){
-		if(listeContenu.size()==1){
-			if(listeContenu.get(0).getClass().toString().contains("EditeurParagraphe")){
-				EditeurParagraphe tmp = (EditeurParagraphe) listeContenu.get(0);
-				if (tmp.getText().equals("Votre texte ici...") || tmp.getText().equals("")){
-					listeContenu.remove(0);
-				}
+		int indice=-1;
+		for (int j = 0; j < listeContenu.size(); j++) {
+			Editeur tmp = listeContenu.get(j);
+			if (tmp.isSelected()){
+				indice = j;
 			}
 		}
-		listeContenu.add(new EditeurTitre(i,numerotation, title));
+		if(indice==-1){
+			indice = listeContenu.size()-1;
+		}
+		if(indice >= 0 && listeContenu.get(indice).getClass().toString().contains("EditeurParagraphe")){
+			EditeurParagraphe tmp = (EditeurParagraphe) listeContenu.get(indice);
+			if (tmp.getText().equals("Votre texte ici...") || tmp.getText().equals("")){
+				listeContenu.remove(indice);
+				indice--;
+			}
+		}
+		listeContenu.add(indice+1, new EditeurTitre(i,numerotation, title));
 		revalider();
+		EditeurTitre tmp = (EditeurTitre) listeContenu.get(indice+1);
+		tmp.setSelected(true);
 	}
 
 	public static void detruire(Component c) {
@@ -65,5 +93,33 @@ public class ContenuEditable extends JPanelDef {
 		}
 		revalider();
 	}
+
+	public static void refocus(Component c) {
+		ListIterator<Editeur> iterator = listeContenu.listIterator();
+		while(iterator.hasNext()){
+			Editeur tmp = iterator.next();
+			if(!(tmp.equals(c))){
+				tmp.setSelected(false);
+			}
+		}
+	}
+
+	public static void focusNext(Component c) {
+		int indiceNext = listeContenu.indexOf(c)+1;
+		if(indiceNext != listeContenu.size()){
+			for (int i = 0; i < listeContenu.size(); i++) {
+				Editeur tmp = listeContenu.get(i);
+				if(i != indiceNext){
+					tmp.setSelected(false);
+				}
+				else{
+					tmp.setSelected(true);
+
+				}
+			}
+		}
+	}
+
+
 
 }
