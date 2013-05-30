@@ -7,6 +7,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
+import formule.ActionListenerFormule;
+
 import menubas.BoutonMenuBasValidate;
 import menubas.PanelboutonStyle;
 import briquesElementaires.JPanelDef;
@@ -83,6 +85,10 @@ public class PanelMathematiquesFavoris extends JPanelDef {
 				main.repaint();
 			}
 		});
+		
+		for (int i = 0; i < boutonMenu.length; i++) {
+			boutonMenu[i].addActionListener(new ActionListenerFormule("symbole"));
+		}
 
 	}
 

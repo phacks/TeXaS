@@ -17,11 +17,16 @@ public class ActionListenerFormule implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		
+		
 		if (this.type.equals("symbole")){
-			System.out.println(((BoutonMenuMathematiqueSymbole) arg0.getSource()).getFichierBouton().getName());
+			formuleEnCours.addImage(((BoutonMenuMathematiqueSymbole) arg0.getSource()).getFichierBouton());
 		}
 		
-		formuleEnCours.addImage(((BoutonMenuMathematiqueSymbole) arg0.getSource()).getFichierBouton());
+		if (this.type.equals("structure")){
+			formuleEnCours.addStructure(((BoutonMenuMathematiqueSymbole) arg0.getSource()).getFichierBouton().getName().split("\\.")[0]);
+		}
+		
+		
 		
 	}
 

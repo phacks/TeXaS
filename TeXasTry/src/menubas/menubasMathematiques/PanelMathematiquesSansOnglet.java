@@ -65,7 +65,9 @@ public class PanelMathematiquesSansOnglet extends JPanelDef {
 		boutonInserer.addActionListener(new ActionListenerFormule("inserer"));
 		
 		for (int i = 0; i < boutonMenu.length; i++) {
+			
 			boutonMenu[i].addActionListener(new ActionListenerFormule("symbole"));
+			
 			boutonMenu[i].addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					PanelMathematiquesFavoris.ajouter(((BoutonMenuMathematiqueSymbole) arg0.getSource()).getFichierBouton());
