@@ -1,11 +1,12 @@
 package formule;
+
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
 
 public class BoutonsAction{
-	private JButton split = new JButton("Split");
+	private JButton fraction = new JButton("Fraction");
 	private JButton indice = new JButton("Indice");
 	private JButton addImage = new JButton("Image");
 	
@@ -13,8 +14,8 @@ public class BoutonsAction{
 		
 	}
 
-	public JButton getBoutonSplit(){
-		return this.split;
+	public JButton getBoutonFraction(){
+		return this.fraction;
 	}
 	
 	public JButton getBoutonIndice(){
@@ -25,8 +26,12 @@ public class BoutonsAction{
 		return this.addImage;
 	}
 	
-	public void splitAddActionListener(ActionListener al){
-		split.addActionListener(al);
+	public void fractionAddActionListener(ActionListener al){
+		fraction.addActionListener(al);
+	}
+	
+	public void indiceAddActionListener(ActionListener al){
+		indice.addActionListener(al);
 	}
 	
 	public void addImageAddActionListener(ActionListener al){

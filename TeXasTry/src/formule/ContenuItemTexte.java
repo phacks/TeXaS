@@ -1,4 +1,6 @@
 package formule;
+
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Toolkit;
@@ -26,11 +28,13 @@ public class ContenuItemTexte extends JTextField{
 
 	public ContenuItemTexte(final ItemLayeredPane layeredPane){
 		
+		this.setHorizontalAlignment(JTextField.CENTER);
+		
 		fm = Toolkit.getDefaultToolkit().getFontMetrics(font);
 		
 		this.layeredPane = layeredPane;
 		this.document = this.getDocument();
-		this.setSize(this.layeredPane.getSize());
+		this.setBounds(1, 1, this.layeredPane.getWidth() - 2, this.layeredPane.getHeight() - 2);
 		this.getDocument().addDocumentListener(new DocumentListener(){
 
 			@Override
@@ -48,9 +52,9 @@ public class ContenuItemTexte extends JTextField{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				if (largeurTexte > layeredPane.getPreferredSize().width - 20){
+				//if (largeurTexte > layeredPane.getPreferredSize().width - 20){
 					agrandirTextField();
-				}
+				//}
 			}
 
 			@Override
@@ -62,10 +66,13 @@ public class ContenuItemTexte extends JTextField{
 	
 	protected void agrandirTextField() {
 				
-		layeredPane.setWidth(layeredPane.getPreferredSize().width + 30);
+		//layeredPane.setWidth(layeredPane.getPreferredSize().width + 30);
+		layeredPane.setWidth(largeurTexte + 30);
+		
+		
+		this.setBounds(1, 1, largeurTexte + 28, this.layeredPane.getHeight() - 2);
 		
 		layeredPane.redefinirApparence();
-		this.setSize(this.layeredPane.getPreferredSize());
 		((Item) this.layeredPane.getComponentsInLayer(0)[0]).redefinirApparence();
 		((BoutonInvisible) this.layeredPane.getComponentsInLayer(1)[0]).redefinirApparence();
 		layeredPane.getFormuleMere().repaintRevalidate();

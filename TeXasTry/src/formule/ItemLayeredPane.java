@@ -33,6 +33,7 @@ public class ItemLayeredPane extends JLayeredPane{
 		
 		
 		this.setPreferredSize(new Dimension(this.width,this.height));
+		
 	}
 	
 	public void setWidth(int w){
@@ -63,7 +64,7 @@ public class ItemLayeredPane extends JLayeredPane{
 		((Item) this.getComponentsInLayer(0)[0]).redefinirApparence();
 		((BoutonInvisible) this.getComponentsInLayer(1)[0]).redefinirApparence();
 		
-		if(this.getComponentsInLayer(2)[0].getClass().toString().equals("class ContenuItemSplit")){
+		if(this.getComponentsInLayer(2)[0].getClass().toString().equals("class formule.ContenuItemSplit")){
 			((ContenuItemSplit)this.getComponentsInLayer(2)[0]).redefinirApparence();
 		}
 		
@@ -83,7 +84,7 @@ public class ItemLayeredPane extends JLayeredPane{
 		((Item) this.getComponentsInLayer(0)[0]).redefinirApparence();
 		((BoutonInvisible) this.getComponentsInLayer(1)[0]).redefinirApparence();
 		
-		if(this.getComponentsInLayer(2)[0].getClass().toString().equals("class ContenuItemSplit")){
+		if(this.getComponentsInLayer(2)[0].getClass().toString().startsWith("class formule.ContenuItemSplit")){
 			((ContenuItemSplit)this.getComponentsInLayer(2)[0]).redefinirApparence();
 		}
 		

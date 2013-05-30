@@ -1,4 +1,6 @@
 package formule;
+
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -33,11 +35,16 @@ public class Formule implements ActionListener, KeyListener{
 	public Formule(BoutonsAction ba, JPanel c, int depth, ItemLayeredPane layeredPaneParent){
 
 		this.formuleContainer = c;
+		
 		this.boutonsAction = ba;
 		this.depth = depth;
 		this.layeredPaneParent = layeredPaneParent;
 
 		formuleContainer.add(formule);
+		
+
+		this.formule.setBackground(Color.WHITE);
+		this.formuleContainer.setBackground(Color.WHITE);
 
 		formule.setLayout(new FlowLayout(FlowLayout.LEFT, 0,0));
 
@@ -59,7 +66,8 @@ public class Formule implements ActionListener, KeyListener{
 		layeredpanes.get(0).add(boutonsInvisibles.get(0),new Integer(1));
 		layeredpanes.get(0).addKeyListener(this);
 
-		boutonsAction.splitAddActionListener(this);
+		boutonsAction.fractionAddActionListener(this);
+		boutonsAction.indiceAddActionListener(this);
 		boutonsAction.addImageAddActionListener(this);
 
 
@@ -213,6 +221,7 @@ public class Formule implements ActionListener, KeyListener{
 					contenuItems.set(i, new ContenuItemTexteIntermediaire(layeredpanes.get(i)));
 					layeredpanes.get(i).add(contenuItems.get(i).getCIT(), new Integer(2));
 				}
+				
 				else{
 					items.get(i).setSelected(true);
 					items.get(i).setToBeDeleted(false);
@@ -229,9 +238,13 @@ public class Formule implements ActionListener, KeyListener{
 			}
 		}
 
+		
+		if (arg0.getSource() != null){
+			System.out.println("Prout");
+		}
 
 
-		if (arg0.getSource() == boutonsAction.getBoutonSplit()){
+		if ((arg0.getSource() == boutonsAction.getBoutonFraction()) || (arg0.getSource() == boutonsAction.getBoutonIndice())){
 			for (int i=0; i< items.size(); i++){
 
 
@@ -259,7 +272,14 @@ public class Formule implements ActionListener, KeyListener{
 					items.get(i).redefinirApparence();
 					boutonsInvisibles.get(i).redefinirApparence();
 
-					contenuItems.set(i, new ContenuItemSplitIntermediaire(boutonsAction, layeredpanes.get(i)));
+					
+					if (arg0.getSource() == boutonsAction.getBoutonFraction()){
+					contenuItems.set(i, new ContenuItemSplitIntermediaire(boutonsAction, layeredpanes.get(i), "split-fraction"));
+					}
+					
+					if (arg0.getSource() == boutonsAction.getBoutonIndice()){
+						contenuItems.set(i, new ContenuItemSplitIntermediaire(boutonsAction, layeredpanes.get(i), "split-indice"));
+						}
 
 					layeredpanes.get(i).add(contenuItems.get(i).getCIS(), new Integer(2));
 
@@ -320,40 +340,50 @@ public class Formule implements ActionListener, KeyListener{
 					layeredpanes.get(k).setLayer(layeredpanes.get(k).getComponentsInLayer(2)[0], 1);
 					layeredpanes.get(k).setLayer(boutonsInvisibles.get(k), 2);
 				}
+				
+				
 
-				if (	(layeredpanes.get(k).highestLayer() == 2 && layeredpanes.get(k).getComponentsInLayer(1)[0].getClass().toString().equals("class ContenuItemSplit")
+				if (	(layeredpanes.get(k).highestLayer() == 2 && layeredpanes.get(k).getComponentsInLayer(1)[0].getClass().toString().startsWith("class formule.ContenuItemSplit")
 						 && layeredPaneParentArrayList == null)
-						 || (layeredpanes.get(k).highestLayer() == 2 && layeredpanes.get(k).getComponentsInLayer(1)[0].getClass().toString().equals("class ContenuItemSplit")
+						 || (layeredpanes.get(k).highestLayer() == 2 && layeredpanes.get(k).getComponentsInLayer(1)[0].getClass().toString().startsWith("class formule.ContenuItemSplit")
 								 && layeredPaneParentArrayList.size() == 0)
-						|| (layeredpanes.get(k).highestLayer() == 2 && layeredpanes.get(k).getComponentsInLayer(1)[0].getClass().toString().equals("class ContenuItemSplit")
+						|| (layeredpanes.get(k).highestLayer() == 2 && layeredpanes.get(k).getComponentsInLayer(1)[0].getClass().toString().startsWith("class formule.ContenuItemSplit")
 					 && layeredpanes.get(k) != layeredPaneParentArrayList.get(layeredPaneParentArrayList.size() - 1))
 					 ){
 					
 					ContenuItemSplit cis = (ContenuItemSplit) layeredpanes.get(k).getComponentsInLayer(1)[0];
 					
+					
 					if (layeredPaneParentArrayList != null && layeredPaneParentArrayList.size() != 0 && layeredpanes.get(k) == layeredPaneParentArrayList.get(layeredPaneParentArrayList.size() - 1)){
 					layeredPaneParentArrayList.remove(layeredPaneParentArrayList.size() - 1);
-					cis.getSplitHaut().deselectAllItems(true, layeredPaneParentArrayList, item);
-					cis.getSplitBas().deselectAllItems(true, layeredPaneParentArrayList, item);
+						
+						for (int i = 0; i < cis.getArraySplit().length; i++){
+							cis.getArraySplit()[i].deselectAllItems(true, layeredPaneParentArrayList, item);
+						}
+					
 					}
 					else{
-						cis.getSplitHaut().deselectAllItems(true, layeredPaneParentArrayList, item);
-						cis.getSplitBas().deselectAllItems(true, layeredPaneParentArrayList, item);
+						for (int i = 0; i < cis.getArraySplit().length; i++){
+							cis.getArraySplit()[i].deselectAllItems(true, layeredPaneParentArrayList, item);
+						}
 					}
 				}
 				
-				if ((layeredpanes.get(k).highestLayer() == 2 && layeredpanes.get(k).getComponentsInLayer(2)[0].getClass().toString().equals("class ContenuItemSplit"))
+				if ((layeredpanes.get(k).highestLayer() == 2 && layeredpanes.get(k).getComponentsInLayer(2)[0].getClass().toString().equals("class formule.ContenuItemSplit"))
 						 && layeredpanes.get(k) == layeredPaneParentArrayList.get(layeredPaneParentArrayList.size() - 1)){
 						ContenuItemSplit cis = (ContenuItemSplit) layeredpanes.get(k).getComponentsInLayer(2)[0];
 						
+						
 						if (layeredPaneParentArrayList != null && layeredPaneParentArrayList.size() != 0 && layeredpanes.get(k) == layeredPaneParentArrayList.get(layeredPaneParentArrayList.size() - 1)){
 						layeredPaneParentArrayList.remove(layeredPaneParentArrayList.size() - 1);
-						cis.getSplitHaut().deselectAllItems(true, layeredPaneParentArrayList, item);
-						cis.getSplitBas().deselectAllItems(true, layeredPaneParentArrayList, item);
+						for (int i = 0; i < cis.getArraySplit().length; i++){
+							cis.getArraySplit()[i].deselectAllItems(true, layeredPaneParentArrayList, item);
+						}
 						}
 						else{
-							cis.getSplitHaut().deselectAllItems(true, layeredPaneParentArrayList, item);
-							cis.getSplitBas().deselectAllItems(true, layeredPaneParentArrayList, item);
+							for (int i = 0; i < cis.getArraySplit().length; i++){
+								cis.getArraySplit()[i].deselectAllItems(true, layeredPaneParentArrayList, item);
+							}
 						}
 					}
 
@@ -367,69 +397,7 @@ public class Formule implements ActionListener, KeyListener{
 
 	}
 
-	//			for(int k = 0; k < items.size(); k++){
-	//				if(k != i){
-	//				items.get(k).setSelected(false);
-	//				items.get(k).setToBeDeleted(false);
-	//					
-	//					if (layeredpanes.get(k).highestLayer() == 2 && bool){
-	//						layeredpanes.get(k).setLayer(layeredpanes.get(k).getComponentsInLayer(2)[0], 1);
-	//						layeredpanes.get(k).setLayer(boutonsInvisibles.get(k), 2);
-	//					}
-	//					
-	//					if (layeredpanes.get(k).highestLayer() == 2 && layeredpanes.get(k).getComponentsInLayer(1)[0].getClass().toString().equals("class ContenuItemSplit")){
-	//						ContenuItemSplit cis = (ContenuItemSplit) layeredpanes.get(k).getComponentsInLayer(1)[0];
-	//						cis.getSplitHaut().deselectAllItems();
-	//						cis.getSplitBas().deselectAllItems();
-	//					}
-	//				}
-	//				
-	//			if(k == i && layeredpanes.get(k).highestLayer() == 2){
-	//				layeredpanes.get(k).setLayer(layeredpanes.get(k).getComponentsInLayer(1)[0], 2);
-	//				layeredpanes.get(k).setLayer(boutonsInvisibles.get(k), 1);
-	//			}
-	//				
-	//			}
-	//			
-	//			if(i > -1){
-	//			
-	//				if (layeredpanes.get(i).highestLayer() == 2 && layeredpanes.get(i).getComponentsInLayer(2)[0].getClass().toString().equals("class ContenuItemSplit")){
-	//					ContenuItemSplit cis = (ContenuItemSplit) layeredpanes.get(i).getComponentsInLayer(2)[0];
-	//					cis.getSplitHaut().deselectAllItems();
-	//					cis.getSplitBas().deselectAllItems();
-	//				}
-	//				
-	//				if (layeredpanes.get(i).getDepth() > 1){
-	//					((Item) this.layeredPaneParent.getComponentsInLayer(0)[0]).setSelected(false);
-	//					((Item) this.layeredPaneParent.getComponentsInLayer(0)[0]).redefinirApparence();
-	//				}
-	//				
-	//				if ( items.get(i).getSelected() && layeredpanes.get(i).highestLayer() == 1) {
-	//					
-	//					contenuItems.set(i, new ContenuItemTexteIntermediaire(layeredpanes.get(i)));
-	//					layeredpanes.get(i).add(contenuItems.get(i).getCIT(), new Integer(2));
-	//					
-	//				}
-	//				else{
-	//					items.get(i).setSelected(true);
-	//					items.get(i).setToBeDeleted(false);
-	//					layeredpanes.get(i).requestFocusInWindow();
-	//				}
-	//			
-	//			}
-	//			
-	//			for(int k = 0; k < items.size(); k++){
-	//				items.get(k).redefinirApparence();
-	//			}
-	//			formule.revalidate();
-	//			formule.repaint();
-	//			
-	//			if (this.layeredPaneParent != null){
-	//				this.layeredPaneParent.getFormuleMere().deselectAllItemsExcept(-1, false);
-	//			}
-
-
-
+	
 
 
 
@@ -439,6 +407,12 @@ public class Formule implements ActionListener, KeyListener{
 	public void keyPressed(KeyEvent arg0) {
 		if(arg0.getKeyCode() == 8){
 			for (int i=0; i< items.size(); i++){
+				
+				if(items.get(i).getToBeDeleted() && layeredpanes.get(i).highestLayer() == 2 && layeredpanes.get(i).getComponentsInLayer(1)[0].getClass().toString().startsWith("class formule.ContenuItemSplit")
+															&& ((ContenuItemSplit) layeredpanes.get(i).getComponentsInLayer(1)[0]).getType().equals("indice"))
+				{
+					
+				}
 
 				if (items.get(i).getToBeDeleted()){
 					items.remove(i);

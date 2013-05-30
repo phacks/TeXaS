@@ -1,4 +1,5 @@
 package formule;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -41,7 +42,7 @@ public class BoutonInsererItem extends JButton {
 
 	public void paintComponent (Graphics g){
 		
-		g.setColor(Color.white);
+		g.setColor(Color.lightGray);
 
 		g.fillRect(0, 0, this.width, this.height);
 		

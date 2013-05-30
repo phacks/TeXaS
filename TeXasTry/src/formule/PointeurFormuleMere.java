@@ -1,5 +1,6 @@
 package formule;
 
+
 public class PointeurFormuleMere {
 
 	private Formule formuleMere;
