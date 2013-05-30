@@ -23,7 +23,7 @@ public class Formule implements ActionListener, KeyListener{
 	private ArrayList<BoutonInvisible> boutonsInvisibles = new ArrayList<BoutonInvisible>();
 	private ArrayList<ItemLayeredPane> layeredpanes = new ArrayList<ItemLayeredPane>();
 	private ArrayList<ContenuItem> contenuItems = new ArrayList<ContenuItem>();
-	private BoutonsAction boutonsAction;
+//	private BoutonsAction boutonsAction;
 	private int depth;
 	private ItemLayeredPane layeredPaneParent;
 	private Formule[] formuleArray;
@@ -32,11 +32,11 @@ public class Formule implements ActionListener, KeyListener{
 	private Image image;
 
 
-	public Formule(BoutonsAction ba, JPanel c, int depth, ItemLayeredPane layeredPaneParent){
+	public Formule(JPanel c, int depth, ItemLayeredPane layeredPaneParent){
 
 		this.formuleContainer = c;
 		
-		this.boutonsAction = ba;
+//		this.boutonsAction = ba;
 		this.depth = depth;
 		this.layeredPaneParent = layeredPaneParent;
 
@@ -66,9 +66,9 @@ public class Formule implements ActionListener, KeyListener{
 		layeredpanes.get(0).add(boutonsInvisibles.get(0),new Integer(1));
 		layeredpanes.get(0).addKeyListener(this);
 
-		boutonsAction.fractionAddActionListener(this);
-		boutonsAction.indiceAddActionListener(this);
-		boutonsAction.addImageAddActionListener(this);
+//		boutonsAction.fractionAddActionListener(this);
+//		boutonsAction.indiceAddActionListener(this);
+//		boutonsAction.addImageAddActionListener(this);
 
 
 		gestionItems();
@@ -244,7 +244,7 @@ public class Formule implements ActionListener, KeyListener{
 		}
 
 
-		if ((arg0.getSource() == boutonsAction.getBoutonFraction()) || (arg0.getSource() == boutonsAction.getBoutonIndice())){
+//		if ((arg0.getSource() == boutonsAction.getBoutonFraction()) || (arg0.getSource() == boutonsAction.getBoutonIndice())){
 			for (int i=0; i< items.size(); i++){
 
 
@@ -273,13 +273,13 @@ public class Formule implements ActionListener, KeyListener{
 					boutonsInvisibles.get(i).redefinirApparence();
 
 					
-					if (arg0.getSource() == boutonsAction.getBoutonFraction()){
-					contenuItems.set(i, new ContenuItemSplitIntermediaire(boutonsAction, layeredpanes.get(i), "split-fraction"));
-					}
+//					if (arg0.getSource() == boutonsAction.getBoutonFraction()){
+//					contenuItems.set(i, new ContenuItemSplitIntermediaire(boutonsAction, layeredpanes.get(i), "split-fraction"));
+//					}
 					
-					if (arg0.getSource() == boutonsAction.getBoutonIndice()){
-						contenuItems.set(i, new ContenuItemSplitIntermediaire(boutonsAction, layeredpanes.get(i), "split-indice"));
-						}
+//					if (arg0.getSource() == boutonsAction.getBoutonIndice()){
+//						contenuItems.set(i, new ContenuItemSplitIntermediaire(boutonsAction, layeredpanes.get(i), "split-indice"));
+//						}
 
 					layeredpanes.get(i).add(contenuItems.get(i).getCIS(), new Integer(2));
 
@@ -289,9 +289,9 @@ public class Formule implements ActionListener, KeyListener{
 				}
 			}
 
-		}
+//		}
 
-		if (arg0.getSource() == boutonsAction.getBoutonAddImage()){
+//		if (arg0.getSource() == boutonsAction.getBoutonAddImage()){
 
 
 			try {
@@ -315,7 +315,7 @@ public class Formule implements ActionListener, KeyListener{
 
 
 		}
-	}
+//	}
 
 
 

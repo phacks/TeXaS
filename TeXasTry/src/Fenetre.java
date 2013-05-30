@@ -24,11 +24,11 @@ public class Fenetre extends JFrame {
 	JPanel centre = new JPanel();
 	
 //	// Ajouts de Nico
-//	private JPanel partieCentrale = new JPanel();
-//	private JPanel formuleContainer = new JPanel();
+	private JPanel partieCentrale = new JPanel();
+	private JPanel formuleContainer = new JPanel();
 //	private JPanel bottom = new JPanel();	
 //	private BoutonsAction boutonsAction = new BoutonsAction();
-//	private Formule formule = new Formule(boutonsAction, formuleContainer,1, null);
+	private Formule formule = new Formule(formuleContainer,1, null);
 
 	MenuGauche menuGauchePan = new MenuGauche();
 	MenuHaut menuHautPan = new MenuHaut();
@@ -64,20 +64,20 @@ public class Fenetre extends JFrame {
 
 		// Ajout de Nico pour tester les formules
 		
-//		partieCentrale.setBackground(Color.WHITE);
-//		formuleContainer.setBackground(Color.WHITE);
+		partieCentrale.setBackground(Color.WHITE);
+		formuleContainer.setBackground(Color.WHITE);
 //		bottom.setBackground(Color.WHITE);
 //		
-//		centre.add(partieCentrale, BorderLayout.CENTER);
+		centre.add(partieCentrale, BorderLayout.CENTER);
 //		
-//		partieCentrale.setLayout(new BorderLayout());
-//		
-//		partieCentrale.add(formuleContainer, BorderLayout.CENTER);
+		partieCentrale.setLayout(new BorderLayout());
+		
+		partieCentrale.add(formuleContainer, BorderLayout.CENTER);
 //		partieCentrale.add(bottom, BorderLayout.SOUTH);
 //		
-//		formuleContainer.setPreferredSize(new Dimension(600,450));
-//		formuleContainer.setBorder(BorderFactory.createLineBorder(Color.black));
-//		formuleContainer.setLayout(new FlowLayout(FlowLayout.CENTER, 0,0));
+		formuleContainer.setPreferredSize(new Dimension(600,450));
+		formuleContainer.setBorder(BorderFactory.createLineBorder(Color.black));
+		formuleContainer.setLayout(new FlowLayout(FlowLayout.CENTER, 0,0));
 //		
 //		bottom.add(boutonsAction.getBoutonFraction());
 //		bottom.add(boutonsAction.getBoutonIndice());

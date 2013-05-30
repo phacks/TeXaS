@@ -23,7 +23,7 @@ public class ContenuItemSplit extends JPanel{
 	private String type = "";
 	private Formule[] arraySplit;
 
-	public ContenuItemSplit(BoutonsAction ba, ItemLayeredPane layeredPane, String type){
+	public ContenuItemSplit(ItemLayeredPane layeredPane, String type){
 
 
 		this.setBackground(Color.WHITE);
@@ -41,7 +41,7 @@ public class ContenuItemSplit extends JPanel{
 				
 				panelBas.setLayout(new FlowLayout(FlowLayout.CENTER, 0,0));
 				
-				this.splitBas = new Formule(ba, this.panelBas,this.layeredPane.getDepth() +1, this.layeredPane);
+				this.splitBas = new Formule(this.panelBas,this.layeredPane.getDepth() +1, this.layeredPane);
 
 				this.arraySplit = new Formule[1];
 				arraySplit[0] = splitBas;
@@ -58,7 +58,7 @@ public class ContenuItemSplit extends JPanel{
 				
 				panelHaut.setLayout(new FlowLayout(FlowLayout.CENTER, 0,0));
 				
-				this.splitHaut = new Formule(ba, this.panelHaut,this.layeredPane.getDepth() +1, this.layeredPane);
+				this.splitHaut = new Formule(this.panelHaut,this.layeredPane.getDepth() +1, this.layeredPane);
 				
 				this.arraySplit = new Formule[1];
 				arraySplit[0] = splitHaut;
@@ -76,12 +76,12 @@ public class ContenuItemSplit extends JPanel{
 				panelBas.setLayout(new FlowLayout(FlowLayout.CENTER, 0,0));
 
 
-				this.splitHaut = new Formule(ba, this.panelHaut,this.layeredPane.getDepth() +1, this.layeredPane);
+				this.splitHaut = new Formule(this.panelHaut,this.layeredPane.getDepth() +1, this.layeredPane);
 
 				Formule[] arraySplitHaut = new Formule[1];
 				arraySplitHaut[0] = splitHaut;
 
-				this.splitBas = new Formule(ba, this.panelBas,this.layeredPane.getDepth() +1, this.layeredPane);
+				this.splitBas = new Formule(this.panelBas,this.layeredPane.getDepth() +1, this.layeredPane);
 
 				Formule[] arraySplitBas = new Formule[1];
 				arraySplitBas[0] = splitBas;
@@ -108,12 +108,12 @@ public class ContenuItemSplit extends JPanel{
 				panelBas.setLayout(new FlowLayout(FlowLayout.CENTER, 0,0));
 
 
-				this.splitHaut = new Formule(ba, this.panelHaut,this.layeredPane.getDepth() +1, this.layeredPane);
+				this.splitHaut = new Formule(this.panelHaut,this.layeredPane.getDepth() +1, this.layeredPane);
 
 				Formule[] arraySplitHaut = new Formule[1];
 				arraySplitHaut[0] = splitHaut;
 
-				this.splitBas = new Formule(ba, this.panelBas,this.layeredPane.getDepth() +1, this.layeredPane);
+				this.splitBas = new Formule(this.panelBas,this.layeredPane.getDepth() +1, this.layeredPane);
 
 				Formule[] arraySplitBas = new Formule[1];
 				arraySplitBas[0] = splitBas;
