@@ -1,63 +1,41 @@
 import java.awt.BorderLayout;
-import java.awt.Color; 
+import java.awt.CardLayout;
 import java.awt.Frame;
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
-import menubas.MenuBas;
-
-
+import GestionEcran.EcranCentral;
 import MenuGauche.MenuGauche;
-import MenuHaut.BoutonMenuHaut;
-import MenuHaut.MenuHaut;
+import briquesElementaires.JPanelDef;
 
 public class Fenetre extends JFrame {
-	
-	//Instanciation des objets JPanel
-	JPanel container = new JPanel();
-	JPanel centre = new JPanel();
 
+	//Instanciation des objets globaux
+	JPanelDef container = new JPanelDef();
 	MenuGauche menuGauchePan = new MenuGauche();
-	MenuHaut menuHautPan = new MenuHaut();
-	MenuBas menuBasPan = new MenuBas();
+	EcranCentral containerCentre = new EcranCentral();
 
 
 	public Fenetre(){             
+		// Mise en forme générale
 		this.setTitle("TeXaS");
 		this.setSize(600,600);
 		this.setLocationRelativeTo(null);
 		this.setIconImage(new ImageIcon("TeXaS2.png").getImage());;
 
-
-
-		//Définition de sa couleur de fond
-		centre.setBackground(Color.WHITE); 
-
-		// Gestion menu haut et bas
-
+		// Mise en place des Panels
 		container.setLayout(new BorderLayout());
-
 		container.add(menuGauchePan, BorderLayout.WEST);
-
-		centre.setLayout(new BorderLayout());
-
-		centre.add(menuHautPan.getMenuHaut(),BorderLayout.NORTH);
-
-		centre.add(menuBasPan,BorderLayout.SOUTH);
-
-		container.add(centre, BorderLayout.CENTER);
-
+		container.add(containerCentre,BorderLayout.CENTER);
+		
+		// Validation de la fenetre
 		
 		this.setContentPane(container); 
 		this.pack();
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		this.setExtendedState(Frame.MAXIMIZED_BOTH);
 		this.setVisible(true);
-
-	}       
-
+	}   
 
 }

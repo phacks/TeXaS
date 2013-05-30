@@ -15,6 +15,7 @@ import menubas.BoutonMenuBasValidate;
 import menubas.PanelboutonStyle;
 import menubas.RadioButtonDefaut;
 import menubas.TextFieldAutoSuppression;
+import EcranEditionCentral.ContenuEditable;
 import briquesElementaires.JPanelDef;
 import briquesElementaires.Police;
 
@@ -98,12 +99,8 @@ public class MenuBasTitres extends JPanelDef{
 			public void actionPerformed(ActionEvent arg0) {
 				for (int i = 0; i < checkCategories.length; i++) {
 					if (checkCategories[i].isSelected()){
-						System.out.println(checkCategories[i].getText() + " - " + texteTitre.getText()); 
-					}
-				}
-				checkCategories[0].setSelected(true);
-				for (int i = 1; i < checkCategories.length; i++) {
-					checkCategories[i].setSelected(false);
+						ContenuEditable.addEditeurTitre(i, checkNumerotation.isSelected(), texteTitre.getText());
+						}
 				}
 				checkNumerotation.setSelected(true);
 				checkTdM.setSelected(true);
