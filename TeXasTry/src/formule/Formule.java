@@ -30,6 +30,7 @@ public class Formule implements ActionListener, KeyListener{
 	private int width = 0;
 	private AdapteWidthItem adapteWidthItem;
 	private Image image;
+	private ActionListenerFormule actionListenerFormule = new ActionListenerFormule("");
 
 
 	public Formule(JPanel c, int depth, ItemLayeredPane layeredPaneParent){
@@ -70,6 +71,8 @@ public class Formule implements ActionListener, KeyListener{
 //		boutonsAction.indiceAddActionListener(this);
 //		boutonsAction.addImageAddActionListener(this);
 
+		
+		this.actionListenerFormule.setFormuleEnCours(this);
 
 		gestionItems();
 
@@ -239,85 +242,83 @@ public class Formule implements ActionListener, KeyListener{
 		}
 
 		
-		if (arg0.getSource() != null){
-			System.out.println("Prout");
-		}
+
 
 
 //		if ((arg0.getSource() == boutonsAction.getBoutonFraction()) || (arg0.getSource() == boutonsAction.getBoutonIndice())){
-			for (int i=0; i< items.size(); i++){
-
-
-				if (items.get(i).getSelected() && layeredpanes.get(i).highestLayer() == 1){
-
-					if (layeredPaneParent != null){
-
-						if (this.depth >= 3){
-							layeredPaneParent.agrandirEnCascade();
-						}
-						else{
-							layeredPaneParent.agrandirEnCascade(5, 4);
-						}
-
-					}
-
-					if (this.depth >= 3){
-						layeredpanes.get(i).setHeight(layeredpanes.get(i).getPreferredSize().height + 56);					
-					}
-					else{
-						layeredpanes.get(i).setHeight(layeredpanes.get(i).getPreferredSize().height * 3/2);
-					}
-
-					layeredpanes.get(i).redefinirApparence();
-					items.get(i).redefinirApparence();
-					boutonsInvisibles.get(i).redefinirApparence();
-
-					
-//					if (arg0.getSource() == boutonsAction.getBoutonFraction()){
-//					contenuItems.set(i, new ContenuItemSplitIntermediaire(boutonsAction, layeredpanes.get(i), "split-fraction"));
-//					}
-					
-//					if (arg0.getSource() == boutonsAction.getBoutonIndice()){
-//						contenuItems.set(i, new ContenuItemSplitIntermediaire(boutonsAction, layeredpanes.get(i), "split-indice"));
+//			for (int i=0; i< items.size(); i++){
+//
+//
+//				if (items.get(i).getSelected() && layeredpanes.get(i).highestLayer() == 1){
+//
+//					if (layeredPaneParent != null){
+//
+//						if (this.depth >= 3){
+//							layeredPaneParent.agrandirEnCascade();
 //						}
-
-					layeredpanes.get(i).add(contenuItems.get(i).getCIS(), new Integer(2));
-
-
-					formule.revalidate();
-					formule.repaint();
-				}
-			}
+//						else{
+//							layeredPaneParent.agrandirEnCascade(5, 4);
+//						}
+//
+//					}
+//
+//					if (this.depth >= 3){
+//						layeredpanes.get(i).setHeight(layeredpanes.get(i).getPreferredSize().height + 56);					
+//					}
+//					else{
+//						layeredpanes.get(i).setHeight(layeredpanes.get(i).getPreferredSize().height * 3/2);
+//					}
+//
+//					layeredpanes.get(i).redefinirApparence();
+//					items.get(i).redefinirApparence();
+//					boutonsInvisibles.get(i).redefinirApparence();
+//
+//					
+////					if (arg0.getSource() == boutonsAction.getBoutonFraction()){
+////					contenuItems.set(i, new ContenuItemSplitIntermediaire(boutonsAction, layeredpanes.get(i), "split-fraction"));
+////					}
+//					
+////					if (arg0.getSource() == boutonsAction.getBoutonIndice()){
+////						contenuItems.set(i, new ContenuItemSplitIntermediaire(boutonsAction, layeredpanes.get(i), "split-indice"));
+////						}
+//
+//					layeredpanes.get(i).add(contenuItems.get(i).getCIS(), new Integer(2));
+//
+//
+//					formule.revalidate();
+//					formule.repaint();
+//				}
+//			}
 
 //		}
 
 //		if (arg0.getSource() == boutonsAction.getBoutonAddImage()){
 
 
-			try {
-				image = ImageIO.read(new File("chattoutpetit.jpg"));
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			for(int i = 0; i < items.size(); i++){
-				if (items.get(i).getSelected() && layeredpanes.get(i).highestLayer() == 1){
-					contenuItems.set(i, new ContenuItemImageIntermediaire(layeredpanes.get(i)));
-					layeredpanes.get(i).add(contenuItems.get(i).getCII(), new Integer(2));
-					contenuItems.get(i).getCII().setText("Bonjour");
-					contenuItems.get(i).getCII().setImage(image);
-					contenuItems.get(i).getCII().repaint();
-					formule.revalidate();
-					formule.repaint();
-				}
-			}
-
-
-		}
+//			try {
+//				image = ImageIO.read(new File("chattoutpetit.jpg"));
+//			} catch (IOException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//
+//			for(int i = 0; i < items.size(); i++){
+//				if (items.get(i).getSelected() && layeredpanes.get(i).highestLayer() == 1){
+//					contenuItems.set(i, new ContenuItemImageIntermediaire(layeredpanes.get(i)));
+//					layeredpanes.get(i).add(contenuItems.get(i).getCII(), new Integer(2));
+//					contenuItems.get(i).getCII().setText("Bonjour");
+//					contenuItems.get(i).getCII().setImage(image);
+//					contenuItems.get(i).getCII().repaint();
+//					formule.revalidate();
+//					formule.repaint();
+//				}
+//			}
+//
+//
+//		}
 //	}
 
-
+	}
 
 	public void deselectAllItems(boolean aAtteintFormuleMere, ArrayList<ItemLayeredPane> layeredPaneParentArrayList, Item item) {
 
@@ -444,6 +445,33 @@ public class Formule implements ActionListener, KeyListener{
 		// TODO Auto-generated method stub
 
 	}
+
+
+
+	public void addImage(File fileImage) {
+		// TODO Auto-generated method stub
+		try {
+			image = ImageIO.read(fileImage);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		for(int i = 0; i < items.size(); i++){
+			if (items.get(i).getSelected() && layeredpanes.get(i).highestLayer() == 1){
+				contenuItems.set(i, new ContenuItemImageIntermediaire(layeredpanes.get(i)));
+				layeredpanes.get(i).add(contenuItems.get(i).getCII(), new Integer(2));
+				contenuItems.get(i).getCII().setText("Bonjour");
+				contenuItems.get(i).getCII().setImage(image);
+				contenuItems.get(i).getCII().repaint();
+				formule.revalidate();
+				formule.repaint();
+			}
+		
+		}
+	
+	}
+	
 }
 
 
