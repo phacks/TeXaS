@@ -40,7 +40,11 @@ public class ContenuEditable extends JPanelDef {
 			if(tmp.getClass().toString().contains("EditeurTitre")){
 				EditeurTitre tmp2 = (EditeurTitre) tmp;
 				if(tmp2.isNumerote()){
-					coordHierarchieActuelle[tmp2.getNumeroHierarchie()]++;
+					int numeroHierarchieTmp = tmp2.getNumeroHierarchie();
+					coordHierarchieActuelle[numeroHierarchieTmp]++;
+					for (int i = numeroHierarchieTmp+1; i < 5; i++) {
+						coordHierarchieActuelle[i]=0;
+					}
 					tmp2.setCoordHierarchie(coordHierarchieActuelle);
 				}
 				tmp2.renumeroter();
