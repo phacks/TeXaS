@@ -9,7 +9,7 @@ import briquesElementaires.JPanelDef;
 
 public class PannelBordure extends JPanelDef {
 
-	JButton monBoutonInvisible = new JButton("                                                   ");
+	JButton monBoutonInvisible = new JButton("                 ");
 
 	public PannelBordure(){
 		super(new BorderLayout());

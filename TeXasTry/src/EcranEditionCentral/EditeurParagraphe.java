@@ -16,13 +16,14 @@ import briquesElementaires.Police;
 
 public class EditeurParagraphe extends Editeur implements KeyListener, FocusListener{
 
-	private int nbEntreePresse = 1;
+	private int numeroHierarchie = 1;
+
+	//	private int nbEntreePresse = 1;
 	private boolean selected;
 	private int positionCarret;
 
-	private boolean shiftIsPressed = false;
-
 	private JTextArea textArea = new JTextArea();
+	private JTextArea decalageArea = new JTextArea();
 
 	public EditeurParagraphe(){
 		super(new BorderLayout());
@@ -35,6 +36,12 @@ public class EditeurParagraphe extends Editeur implements KeyListener, FocusList
 		textArea.addFocusListener(this);
 		textArea.setOpaque(false);
 		this.add(textArea, BorderLayout.CENTER);
+		decalageArea.setOpaque(true);
+		decalageArea.setEditable(false);
+		decalageArea.setForeground(Couleur.white);
+		decalageArea.setFocusable(false);
+		decalageArea.setText("coucou");
+		this.add(decalageArea,BorderLayout.WEST);
 	}
 
 	@Override
@@ -58,23 +65,8 @@ public class EditeurParagraphe extends Editeur implements KeyListener, FocusList
 			}
 		}
 		if(e.getKeyCode()==10){
-			if(textArea.getCaretPosition()==textArea.getText().length()){
-				if(nbEntreePresse == 1){
-					nbEntreePresse++;
-					positionCarret = textArea.getCaretPosition();
-				}
-				else{
-					if(textArea.getCaretPosition()==positionCarret+1){
-						nbEntreePresse=1;
-						ContenuEditable.addEditeurParagraphe(this);
-						e.consume();
-					}
-					else{
-						nbEntreePresse=2;
-						positionCarret = textArea.getCaretPosition();
-					}
-				}
-			}
+			ContenuEditable.addEditeurParagraphe(this);
+			e.consume();
 		}
 
 		// Appui sur tabulation
@@ -138,6 +130,21 @@ public class EditeurParagraphe extends Editeur implements KeyListener, FocusList
 	private void setText(String string) {
 		textArea.setText(string);
 
+	}
+
+	public int getNumeroHierarchie() {
+		return numeroHierarchie;
+	}
+
+	public void setNumeroHierarchie(int numeroHierarchie) {
+		this.numeroHierarchie = numeroHierarchie;
+	}
+
+	public void reindenter(){
+		decalageArea.setText("");
+		for (int i = -1; i < numeroHierarchie; i++) {
+			decalageArea.setText(decalageArea.getText()+"coucou");
+		}
 	}
 
 

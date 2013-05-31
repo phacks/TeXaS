@@ -13,6 +13,8 @@ import menubas.menubasFigures.MenuBasFigures;
 import menubas.menubasMathematiques.MenuBasMathematiques;
 import menubas.menubasTitre.MenuBasTitres;
 import menubas.menubastableau.MenuBasTableaux;
+import EcranEditionCentral.ContenuEditable;
+import EcranEditionCentral.EcranEditionCentral;
 import briquesElementaires.JPanelDef;
 
 
@@ -39,6 +41,9 @@ public class MenuBas extends JPanel{
 	private BoutonMenuBas boutInserer = new BoutonMenuBas("Insérer");
 	private RadioButtonReinit boutReinistialisation = new RadioButtonReinit();
 
+	// Le statut du ruban
+
+	private boolean rubanOuvert = false;
 
 	public MenuBas() {
 
@@ -72,6 +77,19 @@ public class MenuBas extends JPanel{
 
 		boutInserer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+//				if(rubanOuvert){
+//					ContenuEditable.revalider();
+//					ContenuEditable.setScrollPanePosition(ContenuEditable.getScrollPanePosition()+260);
+//					EcranEditionCentral.getScrollPane().getVerticalScrollBar().setValue(ContenuEditable.getScrollPanePosition()+260);
+//					ContenuEditable.revalider();
+//				}
+//				else{
+//					ContenuEditable.revalider();
+//					ContenuEditable.setScrollPanePosition(ContenuEditable.getScrollPanePosition()-260);
+//					EcranEditionCentral.getScrollPane().getVerticalScrollBar().setValue(ContenuEditable.getScrollPanePosition()-260);
+//
+//					ContenuEditable.revalider();	
+//				}
 				ouvrirMenuBas();
 			}
 		});

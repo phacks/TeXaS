@@ -17,6 +17,7 @@ public class ContenuEditable extends JPanelDef {
 
 	private static int[] coordHierarchieActuelle = { 0 , 0 , 0 , 0 , 0};
 
+
 	public ContenuEditable(){
 		super(new BorderLayout());
 
@@ -29,6 +30,7 @@ public class ContenuEditable extends JPanelDef {
 	}
 
 	public static void revalider(){
+//		scrollPanePosition = EcranEditionCentral.getScrollPane().getVerticalScrollBar().getValue();
 		conteneurGeneral.removeAll();
 		for (int i = 0; i < coordHierarchieActuelle.length; i++) {
 			coordHierarchieActuelle[i]=0;
@@ -36,7 +38,7 @@ public class ContenuEditable extends JPanelDef {
 		ListIterator<Editeur> iterator = listeContenu.listIterator();
 		while(iterator.hasNext()){
 			Editeur tmp = iterator.next();
-			refocus(tmp);
+			//refocus(tmp);
 			if(tmp.getClass().toString().contains("EditeurTitre")){
 				EditeurTitre tmp2 = (EditeurTitre) tmp;
 				if(tmp2.isNumerote()){
@@ -49,6 +51,15 @@ public class ContenuEditable extends JPanelDef {
 				}
 				tmp2.renumeroter();
 			}
+			if(tmp.getClass().toString().contains("EditeurParagraphe")){
+				EditeurParagraphe tmp2 = (EditeurParagraphe) tmp;
+				int numeroHierarchie = 4;
+				while (numeroHierarchie > 0 && coordHierarchieActuelle[numeroHierarchie]==0){
+					numeroHierarchie--;
+				}
+				tmp2.setNumeroHierarchie(numeroHierarchie);
+				tmp2.reindenter();
+			}
 			conteneurGeneral.add(tmp);
 			conteneurGeneral.add(Box.createVerticalStrut(5));
 		}
@@ -60,6 +71,7 @@ public class ContenuEditable extends JPanelDef {
 		listeContenu.add(indice+1, new EditeurParagraphe());
 		revalider();
 		EditeurParagraphe tmp = (EditeurParagraphe) listeContenu.get(indice+1);
+		revalider();
 		tmp.setSelected(true);
 	}
 
