@@ -1,6 +1,7 @@
 package formule;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
@@ -10,7 +11,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 
 
-public class BoutonInsererItem extends JButton {
+public class BoutonInsererItem extends JButton implements MouseListener {
 	
 	private boolean hover = false;
 	private int depth;
@@ -38,11 +39,14 @@ public class BoutonInsererItem extends JButton {
 		
 		this.setPreferredSize(new Dimension(this.width, this.height));
 		this.setBorder(BorderFactory.createEmptyBorder());
+		
+		this.addMouseListener(this);
+		
 	}
 
 	public void paintComponent (Graphics g){
 		
-		g.setColor(Color.lightGray);
+		g.setColor(Color.WHITE);
 
 		g.fillRect(0, 0, this.width, this.height);
 		
@@ -58,6 +62,37 @@ public class BoutonInsererItem extends JButton {
 	
 	public void redefinirApparence(){
 		this.setPreferredSize(new Dimension(this.width, this.height));
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		this.setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		this.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+	}
+
+	@Override
+	public void mousePressed(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

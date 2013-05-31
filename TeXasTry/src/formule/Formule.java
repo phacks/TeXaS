@@ -23,7 +23,7 @@ public class Formule implements ActionListener, KeyListener{
 	private ArrayList<BoutonInvisible> boutonsInvisibles = new ArrayList<BoutonInvisible>();
 	private ArrayList<ItemLayeredPane> layeredpanes = new ArrayList<ItemLayeredPane>();
 	private ArrayList<ContenuItem> contenuItems = new ArrayList<ContenuItem>();
-//	private BoutonsAction boutonsAction;
+	//	private BoutonsAction boutonsAction;
 	private int depth;
 	private ItemLayeredPane layeredPaneParent;
 	private Formule[] formuleArray;
@@ -34,15 +34,17 @@ public class Formule implements ActionListener, KeyListener{
 
 
 	public Formule(JPanel c, int depth, ItemLayeredPane layeredPaneParent){
+		
+		this.actionListenerFormule.setFormuleEnCours(this);
 
 		this.formuleContainer = c;
-		
-//		this.boutonsAction = ba;
+
+		//		this.boutonsAction = ba;
 		this.depth = depth;
 		this.layeredPaneParent = layeredPaneParent;
 
 		formuleContainer.add(formule);
-		
+
 
 		this.formule.setBackground(Color.WHITE);
 		this.formuleContainer.setBackground(Color.WHITE);
@@ -54,7 +56,7 @@ public class Formule implements ActionListener, KeyListener{
 		boutonsInvisibles.add(new BoutonInvisible(layeredpanes.get(0)));
 
 		items.add(new Item(this.depth, layeredpanes.get(0), boutonsInvisibles.get(0)));
-		
+
 		contenuItems.add(new ContenuItemVide());
 
 		layeredpanes.get(0).setFocusable(true);
@@ -63,16 +65,32 @@ public class Formule implements ActionListener, KeyListener{
 
 		layeredpanes.get(0).add(items.get(0),new Integer(0));
 		layeredpanes.get(0).add(boutonsInvisibles.get(0),new Integer(1));
-		layeredpanes.get(0).addKeyListener(this);
-
-//		boutonsAction.fractionAddActionListener(this);
-//		boutonsAction.indiceAddActionListener(this);
-//		boutonsAction.addImageAddActionListener(this);
-
 		
-		this.actionListenerFormule.setFormuleEnCours(this);
+		
+		
+		
 
-		gestionItems();
+		//		boutonsAction.fractionAddActionListener(this);
+		//		boutonsAction.indiceAddActionListener(this);
+		//		boutonsAction.addImageAddActionListener(this);
+
+
+
+
+		gestionItems(0);
+
+		layeredpanes.get(0).requestFocus();
+		
+		layeredpanes.get(0).addKeyListener(this);
+		
+		items.get(0).setSelected(true);
+		items.get(0).setToBeDeleted(false);
+		
+		
+		items.get(0).redefinirApparence();
+		
+		this.repaintRevalidate();
+		
 
 		//	if (formulesFreres != null){
 		//		this.formuleArray = new Formule[this.formulesFreres.length +1];
@@ -100,7 +118,7 @@ public class Formule implements ActionListener, KeyListener{
 		return this.formule;
 	}
 
-	private void gestionItems(){
+	private void gestionItems(int k){
 		creeBoutonsInsererItem();
 
 		afficheFormule();
@@ -108,6 +126,10 @@ public class Formule implements ActionListener, KeyListener{
 
 		for(int i = 0; i < items.size() +1; i++){
 			boutonsInsererItem.get(i).addActionListener(this);
+		}
+		
+		if (k != -1){
+		layeredpanes.get(k).requestFocus();
 		}
 	}
 
@@ -181,6 +203,8 @@ public class Formule implements ActionListener, KeyListener{
 
 			if(arg0.getSource() == boutonsInsererItem.get(i)){
 
+				this.actionListenerFormule.setFormuleEnCours(this);
+
 				contenuItems.add(i, new ContenuItemVide());
 				layeredpanes.add(i, new ItemLayeredPane(this.depth, this));
 				boutonsInvisibles.add(i, new BoutonInvisible(layeredpanes.get(i)));
@@ -193,95 +217,101 @@ public class Formule implements ActionListener, KeyListener{
 				layeredpanes.get(i).add(boutonsInvisibles.get(i),new Integer(1));
 				boutonsInvisibles.get(i).addActionListener(this);
 				layeredpanes.get(i).addKeyListener(this);
-				
+
 				if (layeredPaneParent != null){
 					ArrayList<ItemLayeredPane> layeredPaneParentArrayList = new ArrayList<ItemLayeredPane>();
-					
+
 					deselectAllItems(false, layeredPaneParentArrayList, items.get(i));
 				}
 				else{
 					deselectAllItems(true, null, items.get(i));
 				}
-				
+
 				items.get(i).setSelected(true);
+				items.get(i).requestFocus();
 				items.get(i).redefinirApparence();
 				
-				
-				gestionItems();
+				gestionItems(i);
 			}
 		}
 
 		for(int i = 0; i < items.size(); i++){
 
 			if(arg0.getSource() == boutonsInvisibles.get(i)){
-				
-				
+
+				this.actionListenerFormule.setFormuleEnCours(this);
+
+
+
+
 				if (layeredPaneParent != null){
 					ArrayList<ItemLayeredPane> layeredPaneParentArrayList = new ArrayList<ItemLayeredPane>();
-					
+
 					deselectAllItems(false, layeredPaneParentArrayList, items.get(i));
 				}
 				else{
 					deselectAllItems(true, null, items.get(i));
 				}
-				
+
 				if(layeredpanes.get(i).highestLayer() == 2){
 					layeredpanes.get(i).setLayer(layeredpanes.get(i).getComponentsInLayer(1)[0], 2);
 					layeredpanes.get(i).setLayer(boutonsInvisibles.get(i), 1);
 				}
 
 
-				if ( items.get(i).getSelected() && layeredpanes.get(i).highestLayer() == 1) {
+				//				if ( items.get(i).getSelected() && layeredpanes.get(i).highestLayer() == 1) {
+				//
+				//					contenuItems.set(i, new ContenuItemTexteIntermediaire(layeredpanes.get(i)));
+				//					layeredpanes.get(i).add(contenuItems.get(i).getCIT(), new Integer(2));
+				//					contenuItems.get(i).getCIT().setText("Caca");
+				//					contenuItems.get(i).getCIT().requestFocus();
+				//				}
 
-					contenuItems.set(i, new ContenuItemTexteIntermediaire(layeredpanes.get(i)));
-					layeredpanes.get(i).add(contenuItems.get(i).getCIT(), new Integer(2));
-				}
-				
-				else{
-					items.get(i).setSelected(true);
-					items.get(i).setToBeDeleted(false);
-					layeredpanes.get(i).requestFocusInWindow();
-				}
+
+				items.get(i).setSelected(true);
+				items.get(i).setToBeDeleted(false);
+				layeredpanes.get(i).requestFocus();
+
 
 				for(int k = 0; k < items.size(); k++){
 					items.get(k).redefinirApparence();
 				}
-				
+
 				formule.revalidate();
 				formule.repaint();
 
 			}
 		}
 
-		
 
 
 
-//		if (arg0.getSource() == boutonsAction.getBoutonAddImage()){
+
+		//		if (arg0.getSource() == boutonsAction.getBoutonAddImage()){
 
 
-//			try {
-//				image = ImageIO.read(new File("chattoutpetit.jpg"));
-//			} catch (IOException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//
-//			for(int i = 0; i < items.size(); i++){
-//				if (items.get(i).getSelected() && layeredpanes.get(i).highestLayer() == 1){
-//					contenuItems.set(i, new ContenuItemImageIntermediaire(layeredpanes.get(i)));
-//					layeredpanes.get(i).add(contenuItems.get(i).getCII(), new Integer(2));
-//					contenuItems.get(i).getCII().setText("Bonjour");
-//					contenuItems.get(i).getCII().setImage(image);
-//					contenuItems.get(i).getCII().repaint();
-//					formule.revalidate();
-//					formule.repaint();
-//				}
-//			}
-//
-//
-//		}
-//	}
+		//			try {
+		//				image = ImageIO.read(new File("chattoutpetit.jpg"));
+		//			} catch (IOException e) {
+		//				// TODO Auto-generated catch block
+		//				e.printStackTrace();
+		//			}
+		//
+		//			for(int i = 0; i < items.size(); i++){
+		//				if (items.get(i).getSelected() && layeredpanes.get(i).highestLayer() == 1){
+		//					contenuItems.set(i, new ContenuItemImageIntermediaire(layeredpanes.get(i)));
+		//					layeredpanes.get(i).add(contenuItems.get(i).getCII(), new Integer(2));
+		//					contenuItems.get(i).getCII().setText("Bonjour");
+		//					contenuItems.get(i).getCII().setImage(image);
+		//					contenuItems.get(i).getCII().repaint();
+		//					formule.revalidate();
+		//					formule.repaint();
+		//				}
+		//			}
+		//
+		//
+		//		}
+		//	}
 
 	}
 
@@ -296,37 +326,37 @@ public class Formule implements ActionListener, KeyListener{
 			for(int k = 0; k < items.size(); k++){
 
 				if (items.get(k) != item){
-				items.get(k).setSelected(false);
-				items.get(k).setToBeDeleted(false);
+					items.get(k).setSelected(false);
+					items.get(k).setToBeDeleted(false);
 				}
 
 				if ((layeredpanes.get(k).highestLayer() == 2 && layeredPaneParentArrayList == null) 
-					|| (layeredpanes.get(k).highestLayer() == 2 && layeredPaneParentArrayList.size() == 0)
-					|| (layeredpanes.get(k).highestLayer() == 2 && layeredpanes.get(k) != layeredPaneParentArrayList.get(layeredPaneParentArrayList.size() - 1))){
+						|| (layeredpanes.get(k).highestLayer() == 2 && layeredPaneParentArrayList.size() == 0)
+						|| (layeredpanes.get(k).highestLayer() == 2 && layeredpanes.get(k) != layeredPaneParentArrayList.get(layeredPaneParentArrayList.size() - 1))){
 					layeredpanes.get(k).setLayer(layeredpanes.get(k).getComponentsInLayer(2)[0], 1);
 					layeredpanes.get(k).setLayer(boutonsInvisibles.get(k), 2);
 				}
-				
-				
+
+
 
 				if (	(layeredpanes.get(k).highestLayer() == 2 && layeredpanes.get(k).getComponentsInLayer(1)[0].getClass().toString().startsWith("class formule.ContenuItemSplit")
-						 && layeredPaneParentArrayList == null)
-						 || (layeredpanes.get(k).highestLayer() == 2 && layeredpanes.get(k).getComponentsInLayer(1)[0].getClass().toString().startsWith("class formule.ContenuItemSplit")
-								 && layeredPaneParentArrayList.size() == 0)
+						&& layeredPaneParentArrayList == null)
 						|| (layeredpanes.get(k).highestLayer() == 2 && layeredpanes.get(k).getComponentsInLayer(1)[0].getClass().toString().startsWith("class formule.ContenuItemSplit")
-					 && layeredpanes.get(k) != layeredPaneParentArrayList.get(layeredPaneParentArrayList.size() - 1))
-					 ){
-					
+						&& layeredPaneParentArrayList.size() == 0)
+						|| (layeredpanes.get(k).highestLayer() == 2 && layeredpanes.get(k).getComponentsInLayer(1)[0].getClass().toString().startsWith("class formule.ContenuItemSplit")
+						&& layeredpanes.get(k) != layeredPaneParentArrayList.get(layeredPaneParentArrayList.size() - 1))
+						){
+
 					ContenuItemSplit cis = (ContenuItemSplit) layeredpanes.get(k).getComponentsInLayer(1)[0];
-					
-					
+
+
 					if (layeredPaneParentArrayList != null && layeredPaneParentArrayList.size() != 0 && layeredpanes.get(k) == layeredPaneParentArrayList.get(layeredPaneParentArrayList.size() - 1)){
-					layeredPaneParentArrayList.remove(layeredPaneParentArrayList.size() - 1);
-						
+						layeredPaneParentArrayList.remove(layeredPaneParentArrayList.size() - 1);
+
 						for (int i = 0; i < cis.getArraySplit().length; i++){
 							cis.getArraySplit()[i].deselectAllItems(true, layeredPaneParentArrayList, item);
 						}
-					
+
 					}
 					else{
 						for (int i = 0; i < cis.getArraySplit().length; i++){
@@ -334,24 +364,24 @@ public class Formule implements ActionListener, KeyListener{
 						}
 					}
 				}
-				
+
 				if ((layeredpanes.get(k).highestLayer() == 2 && layeredpanes.get(k).getComponentsInLayer(2)[0].getClass().toString().equals("class formule.ContenuItemSplit"))
-						 && layeredpanes.get(k) == layeredPaneParentArrayList.get(layeredPaneParentArrayList.size() - 1)){
-						ContenuItemSplit cis = (ContenuItemSplit) layeredpanes.get(k).getComponentsInLayer(2)[0];
-						
-						
-						if (layeredPaneParentArrayList != null && layeredPaneParentArrayList.size() != 0 && layeredpanes.get(k) == layeredPaneParentArrayList.get(layeredPaneParentArrayList.size() - 1)){
+						&& layeredpanes.get(k) == layeredPaneParentArrayList.get(layeredPaneParentArrayList.size() - 1)){
+					ContenuItemSplit cis = (ContenuItemSplit) layeredpanes.get(k).getComponentsInLayer(2)[0];
+
+
+					if (layeredPaneParentArrayList != null && layeredPaneParentArrayList.size() != 0 && layeredpanes.get(k) == layeredPaneParentArrayList.get(layeredPaneParentArrayList.size() - 1)){
 						layeredPaneParentArrayList.remove(layeredPaneParentArrayList.size() - 1);
 						for (int i = 0; i < cis.getArraySplit().length; i++){
 							cis.getArraySplit()[i].deselectAllItems(true, layeredPaneParentArrayList, item);
 						}
-						}
-						else{
-							for (int i = 0; i < cis.getArraySplit().length; i++){
-								cis.getArraySplit()[i].deselectAllItems(true, layeredPaneParentArrayList, item);
-							}
+					}
+					else{
+						for (int i = 0; i < cis.getArraySplit().length; i++){
+							cis.getArraySplit()[i].deselectAllItems(true, layeredPaneParentArrayList, item);
 						}
 					}
+				}
 
 				items.get(k).redefinirApparence();
 			}
@@ -363,7 +393,7 @@ public class Formule implements ActionListener, KeyListener{
 
 	}
 
-	
+
 
 
 
@@ -373,18 +403,18 @@ public class Formule implements ActionListener, KeyListener{
 	public void keyPressed(KeyEvent arg0) {
 		if(arg0.getKeyCode() == 8){
 			for (int i=0; i< items.size(); i++){
-				
+
 				if(items.get(i).getToBeDeleted() && layeredpanes.get(i).highestLayer() == 2 && layeredpanes.get(i).getComponentsInLayer(1)[0].getClass().toString().startsWith("class formule.ContenuItemSplit")
-															&& ((ContenuItemSplit) layeredpanes.get(i).getComponentsInLayer(1)[0]).getType().equals("indice"))
+						&& ((ContenuItemSplit) layeredpanes.get(i).getComponentsInLayer(1)[0]).getType().equals("indice"))
 				{
-					
+
 				}
 
 				if (items.get(i).getToBeDeleted()){
 					items.remove(i);
 					boutonsInvisibles.remove(i);
 					layeredpanes.remove(i);
-					gestionItems();
+					gestionItems(-1);
 					return;
 				}
 
@@ -408,6 +438,23 @@ public class Formule implements ActionListener, KeyListener{
 	@Override
 	public void keyTyped(KeyEvent arg0) {
 		// TODO Auto-generated method stub
+		if(! arg0.isActionKey()){
+			for (int i=0; i< items.size(); i++){
+				System.out.println(layeredpanes.get(i).hasFocus());
+				
+				if (items.get(i).getSelected() && layeredpanes.get(i).highestLayer() == 1){
+					contenuItems.set(i, new ContenuItemTexteIntermediaire(layeredpanes.get(i)));
+					layeredpanes.get(i).add(contenuItems.get(i).getCIT(), new Integer(2));
+					contenuItems.get(i).getCIT().setText(Character.toString(arg0.getKeyChar()));
+					contenuItems.get(i).getCIT().requestFocus();
+
+					items.get(i).redefinirApparence();
+
+					formule.revalidate();
+					formule.repaint();
+				}
+			}
+		}
 
 	}
 
@@ -432,9 +479,9 @@ public class Formule implements ActionListener, KeyListener{
 				formule.revalidate();
 				formule.repaint();
 			}
-		
+
 		}
-	
+
 	}
 
 
@@ -471,10 +518,10 @@ public class Formule implements ActionListener, KeyListener{
 					items.get(i).redefinirApparence();
 					boutonsInvisibles.get(i).redefinirApparence();
 
-					
-				
+
+
 					contenuItems.set(i, new ContenuItemSplitIntermediaire(layeredpanes.get(i), "split-fraction"));
-					
+
 					layeredpanes.get(i).add(contenuItems.get(i).getCIS(), new Integer(2));
 
 
@@ -485,7 +532,7 @@ public class Formule implements ActionListener, KeyListener{
 
 		}
 	}
-	
+
 }
 
 
