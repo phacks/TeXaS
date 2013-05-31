@@ -38,7 +38,7 @@ public class EditeurTitre extends Editeur implements KeyListener, FocusListener{
 	private int[] coordHierarchie = {0,0,0,0,0};
 
 	private JTextArea titreArea = new JTextArea();
-//	private JTextArea typeArea = new JTextArea();
+	//	private JTextArea typeArea = new JTextArea();
 	private JTextArea numArea = new JTextArea();
 
 	public EditeurTitre(int numeroHierarchie, boolean numerotation, String title){
@@ -46,35 +46,39 @@ public class EditeurTitre extends Editeur implements KeyListener, FocusListener{
 		this.numeroHierarchie = numeroHierarchie;
 		if(!numerotation){
 			numerote = false;
-			titreArea.setFont(fontTitreSansNumerotation[numeroHierarchie]);
 		}
-		else{
-			titreArea.setFont(fontTitre[numeroHierarchie]);
-			numArea.setFont(fontTitre[numeroHierarchie]);
-		}
-//		typeArea.setFont(Police.segoeItal);		
+		titreArea.setFont(fontTitre[numeroHierarchie]);
+		numArea.setFont(fontTitre[numeroHierarchie]);
+
+		//		typeArea.setFont(Police.segoeItal);		
 		titreArea.setText(title);
-//		typeArea.setText(nomType[numeroHierarchie]);
+		//		typeArea.setText(nomType[numeroHierarchie]);
 		titreArea.setLineWrap(true);
 		titreArea.setWrapStyleWord(true);
 		titreArea.setOpaque(false);
-//		typeArea.setOpaque(false);
+		//		typeArea.setOpaque(false);
 		numArea.setOpaque(false);
 		numArea.setEditable(false);
 		titreArea.addKeyListener(this);
 		titreArea.addFocusListener(this);
 		this.add(numArea, BorderLayout.WEST);
 		this.add(titreArea, BorderLayout.CENTER);
-//		this.add(typeArea, BorderLayout.EAST);
+		//		this.add(typeArea, BorderLayout.EAST);
 	}
 
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		if(selected){
+			if(!numerote){
+				numArea.setForeground(Couleur.bleuTexte);
+			}
 			this.setBackground(Couleur.bleuTexte);
 		}
 		else{
+			if(!numerote){
+				numArea.setForeground(Couleur.white);
+			}
 			this.setBackground(Couleur.white);
 		}
 	}
@@ -99,6 +103,12 @@ public class EditeurTitre extends Editeur implements KeyListener, FocusListener{
 		// Appui sur tabulation
 		if(e.getKeyCode()==9){
 			ContenuEditable.focusNext(this);
+			e.consume();
+		}
+
+		//Appui sur PageUp
+		if(e.getKeyCode()==33){
+			ContenuEditable.focusPrevious(this);
 			e.consume();
 		}
 	}
@@ -134,7 +144,8 @@ public class EditeurTitre extends Editeur implements KeyListener, FocusListener{
 		this.selected = b;
 		this.repaint();
 		if(b){
-			this.requestFocusInWindow();
+			titreArea.requestFocusInWindow();
+			titreArea.grabFocus();
 		}
 	}
 
@@ -149,7 +160,7 @@ public class EditeurTitre extends Editeur implements KeyListener, FocusListener{
 	public void setCoordHierarchie(int[] coordHierarchie) {
 		this.coordHierarchie = coordHierarchie;
 	}
-	
+
 
 	public boolean isNumerote() {
 		return numerote;
@@ -157,13 +168,14 @@ public class EditeurTitre extends Editeur implements KeyListener, FocusListener{
 
 
 	public void renumeroter() {
-		if(numerote){
-			numArea.setText("");
-			for (int i = 0; i <= numeroHierarchie; i++) {
-				numArea.setText(numArea.getText()+coordHierarchie[i]+".");
-			}
-			numArea.setText(numArea.getText()+" ");
+		numArea.setText("");
+		if(!numerote){
+			numArea.setForeground(Couleur.white);
 		}
+		for (int i = 0; i <= numeroHierarchie; i++) {
+			numArea.setText(numArea.getText()+coordHierarchie[i]+".");
+		}
+		numArea.setText(numArea.getText()+" ");
 	}
 
 

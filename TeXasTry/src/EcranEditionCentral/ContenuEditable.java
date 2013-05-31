@@ -42,8 +42,8 @@ public class ContenuEditable extends JPanelDef {
 				if(tmp2.isNumerote()){
 					coordHierarchieActuelle[tmp2.getNumeroHierarchie()]++;
 					tmp2.setCoordHierarchie(coordHierarchieActuelle);
-					tmp2.renumeroter();
 				}
+				tmp2.renumeroter();
 			}
 			conteneurGeneral.add(tmp);
 			conteneurGeneral.add(Box.createVerticalStrut(5));
@@ -85,13 +85,19 @@ public class ContenuEditable extends JPanelDef {
 		tmp.setSelected(true);
 	}
 
-	public static void detruire(Component c) {
+	public static void detruire(Editeur c) {
 		int indice = listeContenu.indexOf(c);
 		listeContenu.remove(indice);
 		if(listeContenu.size()==0){
 			listeContenu.add(new EditeurParagraphe());
 		}
 		revalider();
+		if(indice>0){
+			refocus(listeContenu.get(indice-1));
+		}
+		else{
+			refocus(listeContenu.get(0));
+		}
 	}
 
 	public static void refocus(Component c) {
@@ -101,12 +107,31 @@ public class ContenuEditable extends JPanelDef {
 			if(!(tmp.equals(c))){
 				tmp.setSelected(false);
 			}
+			else{
+				tmp.setSelected(true);
+			}
 		}
 	}
 
 	public static void focusNext(Component c) {
 		int indiceNext = listeContenu.indexOf(c)+1;
 		if(indiceNext != listeContenu.size()){
+			for (int i = 0; i < listeContenu.size(); i++) {
+				Editeur tmp = listeContenu.get(i);
+				if(i != indiceNext){
+					tmp.setSelected(false);
+				}
+				else{
+					tmp.setSelected(true);
+
+				}
+			}
+		}
+	}
+
+	public static void focusPrevious(Editeur c) {
+		int indiceNext = listeContenu.indexOf(c)-1;
+		if(indiceNext != -1){
 			for (int i = 0; i < listeContenu.size(); i++) {
 				Editeur tmp = listeContenu.get(i);
 				if(i != indiceNext){
