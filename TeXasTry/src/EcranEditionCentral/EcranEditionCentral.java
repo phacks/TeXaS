@@ -33,10 +33,10 @@ public class EcranEditionCentral extends JPanelDef {
 		scrollPane.setBorder(null);
 		scrollPane.setHorizontalScrollBar(null);
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
-		center.add(new JPanelDef(),BorderLayout.EAST);
+		center.add(new PannelBordure(),BorderLayout.EAST);
 		center.add(new JPanelDef(), BorderLayout.NORTH);
 		center.add(new JPanelDef(), BorderLayout.SOUTH);
-		center.add(new JPanelDef(), BorderLayout.WEST);
+		center.add(new PannelBordure(), BorderLayout.WEST);
 		center.add(scrollPane,BorderLayout.CENTER);
 		
 		this.add(center, BorderLayout.CENTER);

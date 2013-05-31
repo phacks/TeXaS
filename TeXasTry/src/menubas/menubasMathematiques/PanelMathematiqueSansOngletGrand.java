@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.io.File;
 
+import formule.ActionListenerFormule;
+
 import menubas.BoutonMenuBasValidate;
 import menubas.PanelboutonStyle;
 import briquesElementaires.JPanelDef;
@@ -51,7 +53,16 @@ public class PanelMathematiqueSansOngletGrand extends JPanelDef {
 			main.add(new JPanelDef());		
 		}
 
-
+		
+		for (int i = 0; i < boutonMenuTous.length; i++) {
+			if (boutonMenuTous[i].getFichierBouton().getName().startsWith("structure")){
+				boutonMenuTous[i].addActionListener(new ActionListenerFormule("structure"));
+			}
+			
+			else if (boutonMenuTous[i].getFichierBouton().getName().startsWith("parentheses")){
+				boutonMenuTous[i].addActionListener(new ActionListenerFormule("parentheses"));
+			}
+		}
 
 		// Gestion favoris
 

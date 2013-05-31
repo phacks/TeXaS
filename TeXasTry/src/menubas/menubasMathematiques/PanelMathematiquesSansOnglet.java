@@ -8,6 +8,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
+import formule.ActionListenerFormule;
+
 import menubas.BoutonMenuBasValidate;
 import menubas.PanelboutonStyle;
 import briquesElementaires.Couleur;
@@ -60,7 +62,12 @@ public class PanelMathematiquesSansOnglet extends JPanelDef {
 
 		// Gestion favoris
 		
+		boutonInserer.addActionListener(new ActionListenerFormule("inserer"));
+		
 		for (int i = 0; i < boutonMenu.length; i++) {
+			
+			boutonMenu[i].addActionListener(new ActionListenerFormule("symbole"));
+			
 			boutonMenu[i].addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					PanelMathematiquesFavoris.ajouter(((BoutonMenuMathematiqueSymbole) arg0.getSource()).getFichierBouton());

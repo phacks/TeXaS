@@ -38,7 +38,7 @@ public class EditeurTitre extends Editeur implements KeyListener, FocusListener{
 	private int[] coordHierarchie = {0,0,0,0,0};
 
 	private JTextArea titreArea = new JTextArea();
-	private JTextArea typeArea = new JTextArea();
+//	private JTextArea typeArea = new JTextArea();
 	private JTextArea numArea = new JTextArea();
 
 	public EditeurTitre(int numeroHierarchie, boolean numerotation, String title){
@@ -52,20 +52,20 @@ public class EditeurTitre extends Editeur implements KeyListener, FocusListener{
 			titreArea.setFont(fontTitre[numeroHierarchie]);
 			numArea.setFont(fontTitre[numeroHierarchie]);
 		}
-		typeArea.setFont(Police.segoeItal);		
+//		typeArea.setFont(Police.segoeItal);		
 		titreArea.setText(title);
-		typeArea.setText(nomType[numeroHierarchie]);
+//		typeArea.setText(nomType[numeroHierarchie]);
 		titreArea.setLineWrap(true);
 		titreArea.setWrapStyleWord(true);
 		titreArea.setOpaque(false);
-		typeArea.setOpaque(false);
+//		typeArea.setOpaque(false);
 		numArea.setOpaque(false);
 		numArea.setEditable(false);
 		titreArea.addKeyListener(this);
 		titreArea.addFocusListener(this);
 		this.add(numArea, BorderLayout.WEST);
 		this.add(titreArea, BorderLayout.CENTER);
-		this.add(typeArea, BorderLayout.EAST);
+//		this.add(typeArea, BorderLayout.EAST);
 	}
 
 	@Override
