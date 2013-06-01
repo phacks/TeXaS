@@ -79,6 +79,30 @@ public class ContenuEditable extends JPanelDef {
 		refocus(tmp);
 		tmp.reindenter();
 	}
+	
+	public static void addEditeurFormule(){
+		int indice=-1;
+		for (int j = 0; j < listeContenu.size(); j++) {
+			Editeur tmp = listeContenu.get(j);
+			if (tmp.isSelected()){
+				indice = j;
+			}
+		}
+		if(indice==-1){
+			indice = listeContenu.size()-1;
+		}
+		if(indice >= 0 && listeContenu.get(indice).getClass().toString().contains("EditeurParagraphe")){
+			EditeurParagraphe tmp = (EditeurParagraphe) listeContenu.get(indice);
+			if (tmp.getText().equals("Votre texte ici...") || tmp.getText().equals("")){
+				listeContenu.remove(indice);
+				indice--;
+			}
+		}
+		listeContenu.add(indice+1, new EditeurFormule());
+		revalider();
+		EditeurFormule tmp = (EditeurFormule) listeContenu.get(indice+1);
+		tmp.setSelected(true);
+	}
 
 
 

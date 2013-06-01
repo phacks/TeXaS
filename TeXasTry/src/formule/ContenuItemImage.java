@@ -33,13 +33,13 @@ package formule;
 //}
 
 
-import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.Serializable;
 
 import javax.swing.JPanel;
+
+import briquesElementaires.Couleur;
 public class ContenuItemImage extends JPanel implements Serializable {
     private Image image = null;
     private String text = "";
@@ -61,9 +61,9 @@ public class ContenuItemImage extends JPanel implements Serializable {
     public void setImage(Image image){
         this.image = image;
         
-        this.setBounds(1, (this.layeredPane.getPreferredSize().height - 2 - image.getHeight(null)) / 2 + 1, image.getWidth(null), image.getHeight(null));
+        this.setBounds(1, (this.layeredPane.getPreferredSize().height - 2 - image.getHeight(null)) / 2 + 1, image.getWidth(null) + 10, image.getHeight(null));
         
-		this.layeredPane.setWidth(image.getWidth(null) + 2);
+		this.layeredPane.setWidth(image.getWidth(null) + 12);
 		
 		this.layeredPane.redefinirApparence();
 		((Item) this.layeredPane.getComponentsInLayer(0)[0]).redefinirApparence();
@@ -74,10 +74,12 @@ public class ContenuItemImage extends JPanel implements Serializable {
     }
     public void paintComponent(Graphics g) {
         super.paintComponent(g); //paint background
+        g.setColor(Couleur.white);
+        g.fillRect(0,0,this.getWidth(), this.getHeight());
         if (image != null) { //there is a picture: draw it
 //            int height = image.getHeight(null);;
 //            int width = image.getWidth(null);;
-              g.drawImage(image, 0, 0, this); //use image size          
+              g.drawImage(image, 5, 0, this); //use image size          
 //            g.drawImage(image,0,0, width, height, this);
         }
     }

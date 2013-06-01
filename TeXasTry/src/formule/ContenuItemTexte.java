@@ -28,6 +28,8 @@ public class ContenuItemTexte extends JTextField{
 
 	public ContenuItemTexte(final ItemLayeredPane layeredPane){
 		
+		this.setBorder(null);
+		
 		this.setHorizontalAlignment(JTextField.CENTER);
 		
 		fm = Toolkit.getDefaultToolkit().getFontMetrics(font);

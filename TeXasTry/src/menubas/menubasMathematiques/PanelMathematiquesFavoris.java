@@ -11,6 +11,7 @@ import formule.ActionListenerFormule;
 
 import menubas.BoutonMenuBasValidate;
 import menubas.PanelboutonStyle;
+import EcranEditionCentral.ContenuEditable;
 import briquesElementaires.JPanelDef;
 
 public class PanelMathematiquesFavoris extends JPanelDef {
@@ -70,6 +71,14 @@ public class PanelMathematiquesFavoris extends JPanelDef {
 		this.revalidate();
 
 		// Gestion des actions sur les boutons
+		
+		boutonInserer.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+			ContenuEditable.addEditeurFormule();
+			}
+		});
+		
+		
 		boutonReinistialiser.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				creerTableauImage();

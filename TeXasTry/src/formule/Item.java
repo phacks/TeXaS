@@ -1,10 +1,12 @@
 package formule;
 
 import java.awt.Color;
-import java.awt.Dimension;
 
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
+
+import briquesElementaires.Couleur;
+import briquesElementaires.DashedBorder;
 
 
 public class Item extends JPanel{
@@ -26,7 +28,7 @@ public class Item extends JPanel{
 		
 		this.setSize(this.layeredPane.getPreferredSize().width, this.layeredPane.getPreferredSize().height);		
 		
-		this.setBorder(BorderFactory.createLineBorder(Color.black));
+		this.setBorder(new DashedBorder(Couleur.lightgray));
 
 
 		this.setBackground(Color.white);
@@ -61,13 +63,13 @@ public class Item extends JPanel{
 		this.setSize(this.layeredPane.getPreferredSize().width, this.layeredPane.getPreferredSize().height);	
 		
 		if (toBeDeleted){
-			this.setBorder(BorderFactory.createLineBorder(Color.red));
+			this.setBorder(new DashedBorder(Couleur.red));
 		}
 		else if (!isSelected){
-			this.setBorder(BorderFactory.createLineBorder(Color.black));
+			this.setBorder(new DashedBorder(Couleur.lightgray));
 		}
 		else{
-			this.setBorder(BorderFactory.createLineBorder(Color.green));
+			this.setBorder(new DashedBorder(Couleur.bleuClair));
 		}
 	}
 
