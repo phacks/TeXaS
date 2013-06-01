@@ -18,6 +18,27 @@ import briquesElementaires.Couleur;
 
 import EcranEditionCentral.EditeurFormule;
 
+
+/**
+ * Classe de base de la gestion des formules. Tous les éléments qui participent à la création et
+ * à la gestion des formules y sont rattachés. Elle fait aussi la gestion avec la classe EditeurFormule, qui gère la partie affichage.
+ * @author nicolasgoutay
+ *
+ * @param formuleContainer JPanel qui contient la formule
+ * @param depth Entier désignant la profondeur hiérarchique de la formule
+ * @param layeredPaneParent Dans le cas d'une formule de profondeur au moins 2, désigne le LayeredPane dans lequel est contenue la formule
+ *
+ *
+ * @see LayeredPane
+ * @see Item
+ * @see BoutonInsererItem
+ * @see BoutonInvisible
+ * @see ContenuItem
+ * @see ContenuItemTexte
+ * @see ContenuItemImage
+ * @see ContenuItemSplit
+ * @see EditeurFormule
+ */
 public class Formule implements ActionListener, KeyListener{
 
 	private JPanel formuleContainer = new JPanel();
@@ -110,6 +131,10 @@ public class Formule implements ActionListener, KeyListener{
 		return this.formule;
 	}
 
+	/**
+	 * Permet de mettre en place l'affichage de la formule en créant et en insérant le bon nombre de BoutonInsererItem
+	 * @param k permet de donner le focus à l'item d'indice k
+	 */
 	private void gestionItems(int k){
 		creeBoutonsInsererItem();
 
@@ -208,6 +233,14 @@ public class Formule implements ActionListener, KeyListener{
 
 			if(arg0.getSource() == boutonsInvisibles.get(i)){
 
+				/* Si l'on clique sur un "bouton invisible", l'item correspondant va devenir 
+				 * sélectionné (changement de couleur de bordure), et les autres items 
+				 * sont déselectionnés .
+				 * De plus, si l'item n'est pas vide, le contenu de l'item va passer sur le 
+				 * layer supérieur et le bouton invisible sur le layer inférieur. 
+				 */
+				
+				// Sélection de la formule en cours en cas d'intéraction avec les boutons du ruban
 				this.actionListenerFormule.setFormuleEnCours(this);
 
 
@@ -227,16 +260,6 @@ public class Formule implements ActionListener, KeyListener{
 					layeredpanes.get(i).setLayer(boutonsInvisibles.get(i), 1);
 				}
 
-
-				//				if ( items.get(i).getSelected() && layeredpanes.get(i).highestLayer() == 1) {
-				//
-				//					contenuItems.set(i, new ContenuItemTexteIntermediaire(layeredpanes.get(i)));
-				//					layeredpanes.get(i).add(contenuItems.get(i).getCIT(), new Integer(2));
-				//					contenuItems.get(i).getCIT().setText("Caca");
-				//					contenuItems.get(i).getCIT().requestFocus();
-				//				}
-
-
 				items.get(i).setSelected(true);
 				items.get(i).setToBeDeleted(false);
 				layeredpanes.get(i).requestFocus();
@@ -252,38 +275,13 @@ public class Formule implements ActionListener, KeyListener{
 			}
 		}
 
-
-
-
-
-		//		if (arg0.getSource() == boutonsAction.getBoutonAddImage()){
-
-
-		//			try {
-		//				image = ImageIO.read(new File("chattoutpetit.jpg"));
-		//			} catch (IOException e) {
-		//				// TODO Auto-generated catch block
-		//				e.printStackTrace();
-		//			}
-		//
-		//			for(int i = 0; i < items.size(); i++){
-		//				if (items.get(i).getSelected() && layeredpanes.get(i).highestLayer() == 1){
-		//					contenuItems.set(i, new ContenuItemImageIntermediaire(layeredpanes.get(i)));
-		//					layeredpanes.get(i).add(contenuItems.get(i).getCII(), new Integer(2));
-		//					contenuItems.get(i).getCII().setText("Bonjour");
-		//					contenuItems.get(i).getCII().setImage(image);
-		//					contenuItems.get(i).getCII().repaint();
-		//					formule.revalidate();
-		//					formule.repaint();
-		//				}
-		//			}
-		//
-		//
-		//		}
-		//	}
-
 	}
 
+	/**
+	 * Lors d'un clic sur un bouton insérer item, un bouton du ruban ou une saisie clavier, 
+	 * un item est inséré (sous certaines conditions).
+	 * @param i Indice d'iinsertion de l'item
+	 */
 	private void insererItem(int i) {
 		// TODO Auto-generated method stub
 		this.actionListenerFormule.setFormuleEnCours(this);
@@ -406,15 +404,12 @@ public class Formule implements ActionListener, KeyListener{
 	public void keyPressed(KeyEvent arg0) {
 		long lastPressProcessed = 0;
 				
+		/* 
+		 * Sur pression de la touche backspace, l'item sélectionné devient rouge.
+		 * Sur une deuxième pression, l'item est supprimé
+		 */
 		if(arg0.getKeyCode() == 8){
 			for (int i=0; i< items.size(); i++){
-
-//				if(items.get(i).getToBeDeleted() && layeredpanes.get(i).highestLayer() == 2 && layeredpanes.get(i).getComponentsInLayer(1)[0].getClass().toString().startsWith("class formule.ContenuItemSplit")
-//						&& ((ContenuItemSplit) layeredpanes.get(i).getComponentsInLayer(1)[0]).getType().equals("indice"))
-//				{
-//
-//				}
-
 				
 				if (items.get(i).getToBeDeleted()){
 					items.remove(i);
@@ -435,9 +430,13 @@ public class Formule implements ActionListener, KeyListener{
 			}
 		}
 		
+		/*
+		 * Sur une pression d'une touche alphanumérique, il y a création d'un nouvel item et / ou 
+		 * remplissage de l'item sélectionné 
+		 */
 		if((! arg0.isActionKey()) && (arg0.getKeyCode() != KeyEvent.VK_ENTER) && (arg0.getKeyCode() != 16)){
 			
-			// Le timer est là pour éviter de saisir deux évènements KeyPressed
+			// Le timer est là pour éviter de saisir deux évènements KeyPressed sur une pression prolongée
 			if(System.currentTimeMillis() - lastPressProcessed > 500) {
 	            
 				for (int i=0; i< items.size(); i++){
@@ -475,13 +474,17 @@ public class Formule implements ActionListener, KeyListener{
 			
 		}
 		
+		/*
+		 * Sur pression de la touche Entrée, on sort de l'édition de la formule et 
+		 * on crée un nouveau paragraphe en dessous
+		 */
 		if(arg0.getKeyCode() == KeyEvent.VK_ENTER){
 		
 			this.editeur.addEditeurParagraphe();
 			
 		}
 	}
-
+	
 	@Override
 	public void keyReleased(KeyEvent arg0) {
 		// TODO Auto-generated method stub
@@ -494,9 +497,11 @@ public class Formule implements ActionListener, KeyListener{
 		
 
 	}
-
-
-
+	
+	/**
+	 * Assigner une image à l'item sélectionné
+	 * @param fileImage L'image à assigner
+	 */
 	public void addImage(File fileImage) {
 		// TODO Auto-generated method stub
 		try {
@@ -532,9 +537,11 @@ public class Formule implements ActionListener, KeyListener{
 		}
 
 	}
-
-
-
+	
+	/**
+	 * Assigner une structure à l'item sélectionné
+	 * @param string Le type de structure à insérer (pour l'instant, seules les fractions sont disponibles)
+	 */
 	public void addStructure(String string) {
 		// TODO Auto-generated method stub
 
@@ -545,10 +552,10 @@ public class Formule implements ActionListener, KeyListener{
 
 				if ((items.get(i).getSelected()) && (layeredpanes.get(i).highestLayer() == 1) ){
 
-					
-					
+
+
 					if (layeredPaneParent != null  && (this.layeredPaneParent.getDepth() > 1 || ! this.layeredPaneParent.getAgrandi())){
-						
+
 						this.layeredPaneParent.setAgrandi(true);
 						if (this.depth >= 3){
 							layeredPaneParent.agrandirEnCascade();
@@ -580,11 +587,11 @@ public class Formule implements ActionListener, KeyListener{
 					formule.revalidate();
 					formule.repaint();
 				}
-				
+
 				else if (items.get(i).getSelected() && layeredpanes.get(i).highestLayer() == 2){
 
 					insererItem(i+1);
-					
+
 					if (layeredPaneParent != null){
 
 						if (this.depth >= 3){
@@ -622,6 +629,8 @@ public class Formule implements ActionListener, KeyListener{
 
 		}
 	}
+
+	
 
 }
 
