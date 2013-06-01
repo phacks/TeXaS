@@ -11,7 +11,6 @@ import javax.swing.JPanel;
 
 public class ContenuItemSplit extends JPanel{
 
-	private BoutonsAction ba;
 	private JPanel panelHaut = new JPanel();
 	private Formule splitHaut;
 	private JPanel panelBas = new JPanel();

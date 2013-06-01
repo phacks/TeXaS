@@ -5,6 +5,11 @@ import java.awt.event.ActionListener;
 
 import menubas.menubasMathematiques.BoutonMenuMathematiqueSymbole;
 
+/**
+ * ActionListener qui permet de faire communiquer les boutons du ruban avec la formule en cours d'édition
+ * @author nicolasgoutay
+ *
+ */
 public class ActionListenerFormule implements ActionListener{
 	
 	static Formule formuleEnCours; 
