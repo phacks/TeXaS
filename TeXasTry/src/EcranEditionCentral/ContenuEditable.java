@@ -179,7 +179,6 @@ public class ContenuEditable extends JPanelDef {
 				}
 				else{
 					tmp.setSelected(true);
-
 				}
 			}
 		}
