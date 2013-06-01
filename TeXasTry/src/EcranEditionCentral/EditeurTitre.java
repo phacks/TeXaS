@@ -66,9 +66,33 @@ public class EditeurTitre extends Editeur implements KeyListener, FocusListener{
 
 		titreArea.addKeyListener(this);
 		titreArea.addFocusListener(this);
-		this.renumeroter();
+
 
 		partieCentrale.setOpaque(false);
+
+		if(!numerote){
+			numArea.setForeground(Couleur.white);
+		}
+		if(numeroHierarchie<2){
+			if(numeroHierarchie==0){
+				numArea.setText("Partie "+coordHierarchie[0]);
+			}
+			else{
+				numArea.setText("Chapitre "+ coordHierarchie[0]);
+			}
+			partieCentrale.add(numArea, BorderLayout.NORTH);
+			partieCentrale.add(titreArea, BorderLayout.SOUTH);
+			partieGauche.add(decalageArea, BorderLayout.WEST);
+		}
+		else{
+			for (int i = 1; i <= numeroHierarchie; i++) {
+				numArea.setText(numArea.getText()+coordHierarchie[i]+".");
+			}
+			partieGauche.add(numArea, BorderLayout.EAST);
+			partieCentrale.add(titreArea, BorderLayout.SOUTH);
+			partieGauche.add(decalageArea, BorderLayout.WEST);
+		}
+
 		this.add(partieGauche,BorderLayout.WEST);
 		this.add(partieCentrale,BorderLayout.CENTER);
 	}
@@ -165,8 +189,15 @@ public class EditeurTitre extends Editeur implements KeyListener, FocusListener{
 	}
 
 	public void setCoordHierarchie(int[] coordHierarchie) {
-		this.coordHierarchie = coordHierarchie;
+		for (int i = 0; i < coordHierarchie.length; i++) {
+			this.coordHierarchie[i] = coordHierarchie[i];
+		}
 	}
+
+	public int[] getCoordHierarchie() {
+		return this.coordHierarchie;
+	}
+
 
 
 	public boolean isNumerote() {
@@ -175,43 +206,22 @@ public class EditeurTitre extends Editeur implements KeyListener, FocusListener{
 
 
 	public void renumeroter() {
-		partieGauche.add(numArea, BorderLayout.EAST);
-		partieGauche.add(decalageArea,BorderLayout.WEST);
-		partieGauche.setOpaque(false);
-		if(!numerote){
-			numArea.setForeground(Couleur.white);
-		}
 		numArea.setText("");
-		switch (numeroHierarchie) {
-		case 0:
-			numArea.setText("Partie "+coordHierarchie[0]);
-			partieCentrale.removeAll();
-			partieCentrale.add(numArea, BorderLayout.NORTH);
-			partieCentrale.add(titreArea, BorderLayout.CENTER);
-			partieCentrale.revalidate();
-			break;
-		case 1:
-			numArea.setText("Chapitre "+coordHierarchie[1]);
-			partieCentrale.removeAll();
-			partieCentrale.add(numArea, BorderLayout.NORTH);
-			partieCentrale.add(titreArea, BorderLayout.CENTER);
-			partieCentrale.revalidate();
-			break;
-		default:
-			for (int i = 1; i <= numeroHierarchie; i++) {
-				numArea.setText(numArea.getText()+coordHierarchie[i]+".");
+		if(numeroHierarchie<2){
+			if(numeroHierarchie==1){
+				numArea.setText("Chapitre "+coordHierarchie[1]);
 			}
-			numArea.setText(numArea.getText()+" ");
-			partieCentrale.removeAll();
-			partieCentrale.add(titreArea, BorderLayout.CENTER);
-			partieCentrale.revalidate();
-			partieGauche.removeAll();
-			partieGauche.add(decalageArea, BorderLayout.WEST);
-			partieGauche.add(numArea, BorderLayout.EAST);
-			partieGauche.revalidate();
-			break;
+			else{
+				numArea.setText("Partie "+coordHierarchie[0]);
+			}
+		}
+		else{
+			for (int j = 1; j <= numeroHierarchie; j++) {
+				numArea.setText(numArea.getText()+coordHierarchie[j]+".");
+			}
 		}
 	}
+
 
 
 
