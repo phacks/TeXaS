@@ -79,8 +79,11 @@ public class ConversionXMLversLaTeX {
 			fop.write(contentInBytes);
 			fop.flush();
 			fop.close();
-
-			RunExternal.launch("pdflatex "+file.getAbsolutePath());
+			
+			//String[] cmd = {"/usr/local/texlive/2011/bin/x86_64-darwin//pdflatex", file.getAbsolutePath()};
+			String[] cmd = {"pdflatex", file.getAbsolutePath()};
+			
+			RunExternal.launch(cmd);
 			java.awt.Desktop.getDesktop().open(new File("Document.pdf"));
 		} catch (IOException e) {
 			e.printStackTrace();
