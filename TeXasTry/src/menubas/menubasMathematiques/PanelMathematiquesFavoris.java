@@ -71,14 +71,14 @@ public class PanelMathematiquesFavoris extends JPanelDef {
 		this.revalidate();
 
 		// Gestion des actions sur les boutons
-		
+
 		boutonInserer.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e) {
-			ContenuEditable.addEditeurFormule();
+				ContenuEditable.addEditeurFormule();
 			}
 		});
-		
-		
+
+
 		boutonReinistialiser.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				creerTableauImage();
@@ -94,7 +94,7 @@ public class PanelMathematiquesFavoris extends JPanelDef {
 				main.repaint();
 			}
 		});
-		
+
 		for (int i = 0; i < boutonMenu.length; i++) {
 			boutonMenu[i].addActionListener(new ActionListenerFormule("symbole"));
 		}
@@ -181,6 +181,9 @@ public class PanelMathematiquesFavoris extends JPanelDef {
 				main.add(new JPanelDef());		
 			}
 			main.revalidate();
+		}
+		for (int i = 0; i < boutonMenu.length; i++) {
+			boutonMenu[i].addActionListener(new ActionListenerFormule("symbole"));
 		}
 	}
 
