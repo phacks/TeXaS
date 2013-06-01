@@ -14,6 +14,7 @@ import javax.swing.JPanel;
  * Il y a création de deux nouvelles formules, pour les parties supérieures et inférieures de la fraction
  * @author nicolasgoutay
  *
+ * @see AdapteWidthItem
  */
 public class ContenuItemSplit extends JPanel{
 
