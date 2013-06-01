@@ -1,6 +1,7 @@
 package MenuGauche;
 
 
+
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -8,6 +9,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JPanel;
 
+import GestionEcran.boutonMenuGaucheListener;
 import briquesElementaires.JPanelDef;
 
 public class MenuGauche extends JPanelDef{
@@ -85,9 +87,7 @@ public class MenuGauche extends JPanelDef{
 	// Ensemble boutons droite
 	private BoutonMenuGaucheDroite[][] ensembleBoutonsDroites = {
 			mesBoutonsProjet,mesBoutonsPreferences,mesBoutonsPersonnaliser,mesBoutonsEditer,mesBoutonsExporter,mesBoutonsAide};
-
-	// Largeur menu droite
-	private int largeur = 0;
+	
 
 	// Getters & Setters
 
@@ -108,16 +108,10 @@ public class MenuGauche extends JPanelDef{
 
 		// Sous-menus droites
 		// Fonction de construction des menus de droite et de la largeur de base
-		int largeurMax = 0;
 		for (int i = 0; i < mesMenusDroite.length; i++) {
 			for (int j = 0; j < ensembleBoutonsDroites[i].length; j++) {
 				mesMenusDroite[i].add(ensembleBoutonsDroites[i][j]);
 			}
-			largeurMax = (int) Math.max(mesMenusDroite[i].getPreferredSize().getWidth(),largeurMax);
-		}
-		
-		for (int i = 0; i < mesMenusDroite.length; i++) {
-			mesMenusDroite[i].setPreferredSize(new Dimension(largeurMax,mesMenusDroite[i].getHeight()));
 		}
 		
 		// Finalisation du menu
@@ -129,6 +123,7 @@ public class MenuGauche extends JPanelDef{
 		// Gestion des boutons
 
 		for (int i = 0; i < mesBoutonsBase.length; i++) {
+			mesBoutonsBase[i].addActionListener(new boutonMenuGaucheListener());
 			mesBoutonsBase[i].addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					ouvrirMenu((BoutonMenuGaucheBase)arg0.getSource());
@@ -137,7 +132,7 @@ public class MenuGauche extends JPanelDef{
 		}
 	}
 
-
+	
 	// Methode de gestion de l'ouverture d'un menu lors d'un clic sur un bouton du menu de base
 	protected void ouvrirMenu(BoutonMenuGaucheBase bouton) {
 		if (!bouton.isCheck()){

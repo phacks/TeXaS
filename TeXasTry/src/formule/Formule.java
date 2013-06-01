@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
+import EcranEditionCentral.EditeurFormule;
+
 public class Formule implements ActionListener, KeyListener{
 
 	private JPanel formuleContainer = new JPanel();
@@ -30,14 +32,18 @@ public class Formule implements ActionListener, KeyListener{
 	private int width = 0;
 	private AdapteWidthItem adapteWidthItem;
 	private Image image;
+	private EditeurFormule editeur;
 	private ActionListenerFormule actionListenerFormule = new ActionListenerFormule("");
 
 
-	public Formule(JPanel c, int depth, ItemLayeredPane layeredPaneParent){
+	public Formule(JPanel jPanel, int depth, ItemLayeredPane layeredPaneParent){
 		
 		this.actionListenerFormule.setFormuleEnCours(this);
+		
+		
+		formule.addKeyListener(this);
 
-		this.formuleContainer = c;
+		this.formuleContainer = jPanel;
 
 		//		this.boutonsAction = ba;
 		this.depth = depth;
@@ -66,24 +72,16 @@ public class Formule implements ActionListener, KeyListener{
 		layeredpanes.get(0).add(items.get(0),new Integer(0));
 		layeredpanes.get(0).add(boutonsInvisibles.get(0),new Integer(1));
 		
-		
-		
-		
-
-		//		boutonsAction.fractionAddActionListener(this);
-		//		boutonsAction.indiceAddActionListener(this);
-		//		boutonsAction.addImageAddActionListener(this);
-
-
-
 
 		gestionItems(0);
 
-		layeredpanes.get(0).requestFocus();
+		layeredpanes.get(0).requestFocusInWindow();
+		layeredpanes.get(0).grabFocus();
+
 		
 		layeredpanes.get(0).addKeyListener(this);
 		
-		items.get(0).setSelected(true);
+		items.get(0).setSelected(false);
 		items.get(0).setToBeDeleted(false);
 		
 		
@@ -92,26 +90,17 @@ public class Formule implements ActionListener, KeyListener{
 		this.repaintRevalidate();
 		
 
-		//	if (formulesFreres != null){
-		//		this.formuleArray = new Formule[this.formulesFreres.length +1];
-		//	
-		//	for(int i = 0; i < this.formulesFreres.length; i++){
-		//		this.formuleArray[i] = this.formulesFreres[i];
-		//	}
-		//	
-		//	formuleArray[this.formuleArray.length - 1] = this;
-		//	}
-		//	else{
-		//		this.formuleArray = new Formule[1];
-		//		this.formuleArray[0] = this;
-		//	}
-		//	
-		//	if (this.layeredPaneParent != null){
-		//		this.adapteWidthItem = new AdapteWidthItem(this.formuleArray, this.layeredPaneParent);
-		//	}
 
 	}
-
+	
+	
+	public Formule(EditeurFormule editeur, JPanel jPanel, int depth, ItemLayeredPane layeredPaneParent){
+		
+		this(jPanel,depth,layeredPaneParent);
+		this.editeur = editeur;
+		
+	}
+	
 
 
 	public JPanel getFormuleContainer(){
@@ -415,7 +404,9 @@ public class Formule implements ActionListener, KeyListener{
 					boutonsInvisibles.remove(i);
 					layeredpanes.remove(i);
 					gestionItems(-1);
-					return;
+					if (this.items.size() == 0){
+					this.editeur.deleteFormule();
+					}
 				}
 
 				if (items.get(i).getSelected()){
@@ -437,10 +428,10 @@ public class Formule implements ActionListener, KeyListener{
 
 	@Override
 	public void keyTyped(KeyEvent arg0) {
-		// TODO Auto-generated method stub
-		if(! arg0.isActionKey()){
+		// TODO Auto-generated method stub		
+		
+		if((! arg0.isActionKey())){
 			for (int i=0; i< items.size(); i++){
-				System.out.println(layeredpanes.get(i).hasFocus());
 				
 				if (items.get(i).getSelected() && layeredpanes.get(i).highestLayer() == 1){
 					contenuItems.set(i, new ContenuItemTexteIntermediaire(layeredpanes.get(i)));
@@ -532,6 +523,55 @@ public class Formule implements ActionListener, KeyListener{
 
 		}
 	}
+
+
+
+	public KeyListener[] getKeyListeners() {
+		// TODO Auto-generated method stub
+		int l = this.items.size();
+		KeyListener[] keyListenerArray = new KeyListener[l];
+		
+		for (int i = 0; i < l; i++){
+			keyListenerArray[i] = this.layeredpanes.get(i).getKeyListeners()[0];
+		}
+		
+		return keyListenerArray;
+	}
+
+
+//	public void layeredPaneHasLostFocus() {
+//		// TODO Auto-generated method stub
+//		
+//		try {
+//			Thread.sleep(50);
+//		} catch (InterruptedException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		
+//		int compteur = 0;
+//		for(int i = 0; i < this.layeredpanes.size(); i++){
+//			if (! this.layeredpanes.get(i).hasFocus()){
+//				compteur++;
+//			}
+//		}
+//		
+//		if (compteur == this.layeredpanes.size()){
+//			
+//			for(int i = 0; i < this.layeredpanes.size(); i++){
+//				if (items.get(i).getSelected()){
+//					items.get(i).setSelected(false);
+//					System.out.println(items.get(i).getSelected());
+//					items.get(i).redefinirApparence();
+//				}
+//			}
+//			this.repaintRevalidate();
+//			
+//		}
+//		
+//		
+//		
+//	}
 
 }
 

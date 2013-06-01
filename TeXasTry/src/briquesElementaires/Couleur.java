@@ -29,5 +29,7 @@ public class Couleur {
 	public static Color bleuFonceMenuGauche = new Color(25,71,138);
 	public static Color grisClair = new Color(234,237,239);
 	public static Color grisFonce = new Color(200,201,202);
+	
+	public static Color bleuTexte = new Color(232,242,254);
 
 }

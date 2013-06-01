@@ -27,7 +27,7 @@ public class MenuGaucheBase extends JPanel {
 		Shape.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
 		// Choix de la couleur du background (obligatoire, sinon bug)
-		GradientPaint gp = new GradientPaint(this.getWidth()-4, this.getHeight(), Couleur.grisClair, this.getWidth(), this.getHeight(), Couleur.grisFonce);
+		GradientPaint gp = new GradientPaint(this.getWidth()-3, this.getHeight(), Couleur.grisClair, this.getWidth(), this.getHeight(), Couleur.grisFonce);
 		Shape.setPaint(gp);
 		Shape.fillRect(0, 0, this.getWidth(), this.getHeight());
 		

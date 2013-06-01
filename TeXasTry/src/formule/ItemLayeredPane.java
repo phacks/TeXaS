@@ -1,7 +1,8 @@
 package formule;
 
-import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 import javax.swing.JLayeredPane;
 
@@ -33,6 +34,8 @@ public class ItemLayeredPane extends JLayeredPane{
 		
 		
 		this.setPreferredSize(new Dimension(this.width,this.height));
+		
+//		this.addFocusListener(this);
 		
 	}
 	
@@ -95,5 +98,19 @@ public class ItemLayeredPane extends JLayeredPane{
 		this.getFormuleMere().repaintRevalidate();
 		
 	}
-	
+//	
+//	@Override
+//	public void focusGained(FocusEvent arg0) {
+//		// TODO Auto-generated method stub
+//		
+//	}
+//
+//
+//
+//	@Override
+//	public void focusLost(FocusEvent arg0) {
+//		// TODO Auto-generated method stub
+//		System.out.println("FocusLost");
+//		this.formuleMere.layeredPaneHasLostFocus();
+//	}
 }
