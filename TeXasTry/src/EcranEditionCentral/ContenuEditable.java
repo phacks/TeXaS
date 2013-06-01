@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.ListIterator;
 
 import javax.swing.Box;
-import javax.swing.JComponent;
 
 import briquesElementaires.JPanelDef;
 
@@ -17,8 +16,15 @@ public class ContenuEditable extends JPanelDef {
 	private static Box conteneurGeneral = Box.createVerticalBox();
 
 	private static int[] coordHierarchieActuelle = { 0 , 0 , 0 , 0 , 0};
-	private static int scrollPanePosition;
 
+
+	public static List<Editeur> getListeContenu() {
+		return listeContenu;
+	}
+
+	public static void setListeContenu(List<Editeur> listeContenu) {
+		ContenuEditable.listeContenu = listeContenu;
+	}
 
 	public ContenuEditable(){
 		super(new BorderLayout());

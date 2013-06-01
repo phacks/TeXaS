@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JPanel;
 
 import GestionEcran.boutonMenuGaucheListener;
+import XML.ConversionInterfaceVersXML;
 import briquesElementaires.JPanelDef;
 
 public class MenuGauche extends JPanelDef{
@@ -87,7 +88,7 @@ public class MenuGauche extends JPanelDef{
 	// Ensemble boutons droite
 	private BoutonMenuGaucheDroite[][] ensembleBoutonsDroites = {
 			mesBoutonsProjet,mesBoutonsPreferences,mesBoutonsPersonnaliser,mesBoutonsEditer,mesBoutonsExporter,mesBoutonsAide};
-	
+
 
 	// Getters & Setters
 
@@ -113,7 +114,7 @@ public class MenuGauche extends JPanelDef{
 				mesMenusDroite[i].add(ensembleBoutonsDroites[i][j]);
 			}
 		}
-		
+
 		// Finalisation du menu
 
 		this.removeAll();
@@ -123,16 +124,26 @@ public class MenuGauche extends JPanelDef{
 		// Gestion des boutons
 
 		for (int i = 0; i < mesBoutonsBase.length; i++) {
-			mesBoutonsBase[i].addActionListener(new boutonMenuGaucheListener());
-			mesBoutonsBase[i].addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-					ouvrirMenu((BoutonMenuGaucheBase)arg0.getSource());
-				}
-			});
+			if(i!=4){
+				mesBoutonsBase[i].addActionListener(new boutonMenuGaucheListener());
+				mesBoutonsBase[i].addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						ouvrirMenu((BoutonMenuGaucheBase)arg0.getSource());
+					}
+				});
+			}
 		}
+
+		boutExport.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				ConversionInterfaceVersXML.toXML();
+			}
+		});
 	}
 
-	
+
 	// Methode de gestion de l'ouverture d'un menu lors d'un clic sur un bouton du menu de base
 	protected void ouvrirMenu(BoutonMenuGaucheBase bouton) {
 		if (!bouton.isCheck()){
