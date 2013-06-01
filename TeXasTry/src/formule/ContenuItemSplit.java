@@ -9,6 +9,12 @@ import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
 
+/**
+ * Classe qui crée et stocke le contenu d'un item dans le cas d'une structure de type fraction
+ * Il y a création de deux nouvelles formules, pour les parties supérieures et inférieures de la fraction
+ * @author nicolasgoutay
+ *
+ */
 public class ContenuItemSplit extends JPanel{
 
 	private JPanel panelHaut = new JPanel();
@@ -79,7 +85,8 @@ public class ContenuItemSplit extends JPanel{
 				
 
 			}
-
+			
+			// Création d'un thread AdapteWidthItem afin d'adapter la largeur de l'item en fonction de la largeur des formules supérieures et inférieures
 			AdapteWidthItem adapteWidthItem = new AdapteWidthItem(this.arraySplit, this.layeredPane);
 			
 
