@@ -13,7 +13,16 @@ public class ItemLayeredPane extends JLayeredPane{
 	private int width;
 	private int height;
 	private Formule formuleMere;
+	private boolean agrandi = false;
 	
+	public boolean getAgrandi() {
+		return agrandi;
+	}
+
+	public void setAgrandi(boolean agrandi) {
+		this.agrandi = agrandi;
+	}
+
 	public ItemLayeredPane(int depth, Formule formuleMere){
 		
 		

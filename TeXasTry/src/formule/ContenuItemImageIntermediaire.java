@@ -12,6 +12,10 @@ public class ContenuItemImageIntermediaire extends ContenuItem{
 		return this.cii.getText();
 	}
 	
+	public String getType(){
+		return this.cii.getType();
+	}
+	
 	public ContenuItemImage getCII(){
 		return this.cii;
 	}

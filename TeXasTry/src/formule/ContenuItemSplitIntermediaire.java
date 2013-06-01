@@ -15,8 +15,16 @@ public class ContenuItemSplitIntermediaire extends ContenuItem{
 		return this.cis.getText();
 	}
 	
+	public String getType(){
+		return this.cis.getType();
+	}
+	
 	public ContenuItemSplit getCIS(){
 		return this.cis;
+	}
+	
+	public Formule[] getArraySplit(){
+		return this.cis.getArraySplit();
 	}
 
 }

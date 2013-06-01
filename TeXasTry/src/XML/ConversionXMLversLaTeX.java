@@ -56,10 +56,22 @@ public class ConversionXMLversLaTeX {
 			if(courant.getName().equals("p")){
 				codeLaTeX = codeLaTeX + " " +courant.getText()+ "\n \n";
 			}
-		}
+			if(courant.getName().equals("formule")){
+				codeLaTeX = codeLaTeX + "$$" + " ";
+				
+				parseFormule(courant);
+				
+				codeLaTeX = codeLaTeX + "$$ \n \n";
+				
+				}
+				
+			}
+		
 		
 		codeLaTeX = codeLaTeX + "\\end{document}";
 		
+	
+
 		FileOutputStream fop = null;
 		File file;
  
@@ -100,4 +112,34 @@ public class ConversionXMLversLaTeX {
 		
 		
 	}
+	private static void parseFormule(Element courant) {
+		// TODO Auto-generated method stub
+			List<Element> listFormuleElement = courant.getChildren();
+			Iterator<Element> iteratorFormule = listFormuleElement.iterator();
+			
+			while(iteratorFormule.hasNext()){
+				Element courantFormule = iteratorFormule.next();
+				if(courantFormule.getName().equals("symbole")){
+					codeLaTeX = codeLaTeX + "\\" + courantFormule.getText() + " ";
+				}
+				if(courantFormule.getName().equals("texte")){
+					codeLaTeX = codeLaTeX + courantFormule.getText() + " ";
+				}
+				if (courantFormule.getName().equals("fraction")){
+					List<Element> listFractionElement = courantFormule.getChildren();
+					Iterator<Element> iteratorFraction = listFractionElement.iterator();
+					
+					Element courantFraction = iteratorFraction.next();
+					codeLaTeX = codeLaTeX + "\\frac{";
+					parseFormule(courantFraction);
+					courantFraction = iteratorFraction.next();
+					codeLaTeX = codeLaTeX + "}{";
+					parseFormule(courantFraction);
+					codeLaTeX = codeLaTeX + "}" + " ";
+					
+					}
+				}
+
+		}
+	
 }

@@ -1,4 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document>
-  <part>coucou</part>
+  <formule>
+    <fraction>
+      <fractionHaut>
+        <texte>0</texte>
+      </fractionHaut>
+      <fractionBas>
+        <fraction>
+          <fractionHaut>
+            <fraction>
+              <fractionHaut>
+                <texte>1</texte>
+              </fractionHaut>
+              <fractionBas>
+                <texte>2</texte>
+              </fractionBas>
+            </fraction>
+          </fractionHaut>
+          <fractionBas>
+            <texte>3</texte>
+          </fractionBas>
+        </fraction>
+      </fractionBas>
+    </fraction>
+  </formule>
 </document>

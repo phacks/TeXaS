@@ -19,4 +19,8 @@ public class ContenuItemTexteIntermediaire extends ContenuItem{
 		return this.cit;
 	}
 	
+	public String getType(){
+		return this.cit.getType();
+	}
+	
 }
