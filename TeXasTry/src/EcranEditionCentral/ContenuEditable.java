@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.ListIterator;
 
 import javax.swing.Box;
+import javax.swing.JComponent;
 
 import briquesElementaires.JPanelDef;
 
@@ -16,6 +17,7 @@ public class ContenuEditable extends JPanelDef {
 	private static Box conteneurGeneral = Box.createVerticalBox();
 
 	private static int[] coordHierarchieActuelle = { 0 , 0 , 0 , 0 , 0};
+	private static int scrollPanePosition;
 
 
 	public ContenuEditable(){
@@ -30,15 +32,16 @@ public class ContenuEditable extends JPanelDef {
 	}
 
 	public static void revalider(){
-//		scrollPanePosition = EcranEditionCentral.getScrollPane().getVerticalScrollBar().getValue();
 		conteneurGeneral.removeAll();
+		// Recalcul de la numérotation
 		for (int i = 0; i < coordHierarchieActuelle.length; i++) {
 			coordHierarchieActuelle[i]=0;
 		}
+		// Parcours de la liste des composants, ajout et gestion de leur numérotation
 		ListIterator<Editeur> iterator = listeContenu.listIterator();
 		while(iterator.hasNext()){
 			Editeur tmp = iterator.next();
-			//refocus(tmp);
+			// Gestion numérotation composant
 			if(tmp.getClass().toString().contains("EditeurTitre")){
 				EditeurTitre tmp2 = (EditeurTitre) tmp;
 				if(tmp2.isNumerote()){
@@ -51,6 +54,7 @@ public class ContenuEditable extends JPanelDef {
 				}
 				tmp2.renumeroter();
 			}
+			// Gestion indentation bloc paragraphe
 			if(tmp.getClass().toString().contains("EditeurParagraphe")){
 				EditeurParagraphe tmp2 = (EditeurParagraphe) tmp;
 				int numeroHierarchie = 4;
@@ -60,6 +64,7 @@ public class ContenuEditable extends JPanelDef {
 				tmp2.setNumeroHierarchie(numeroHierarchie);
 				tmp2.reindenter();
 			}
+			// Ajout de l'élement
 			conteneurGeneral.add(tmp);
 			conteneurGeneral.add(Box.createVerticalStrut(5));
 		}
@@ -71,34 +76,34 @@ public class ContenuEditable extends JPanelDef {
 		listeContenu.add(indice+1, new EditeurParagraphe());
 		revalider();
 		EditeurParagraphe tmp = (EditeurParagraphe) listeContenu.get(indice+1);
-		revalider();
-		tmp.setSelected(true);
+		refocus(tmp);
+		tmp.reindenter();
 	}
 
 
 
+
 	public static void addEditeurTitre(int i,boolean numerotation, String title ){
-		int indice=-1;
+		int indice=listeContenu.size()-1;
 		for (int j = 0; j < listeContenu.size(); j++) {
 			Editeur tmp = listeContenu.get(j);
 			if (tmp.isSelected()){
 				indice = j;
 			}
 		}
-		if(indice==-1){
-			indice = listeContenu.size()-1;
-		}
-		if(indice >= 0 && listeContenu.get(indice).getClass().toString().contains("EditeurParagraphe")){
+		if(listeContenu.get(indice).getClass().toString().contains("EditeurParagraphe")){
 			EditeurParagraphe tmp = (EditeurParagraphe) listeContenu.get(indice);
 			if (tmp.getText().equals("Votre texte ici...") || tmp.getText().equals("")){
 				listeContenu.remove(indice);
 				indice--;
 			}
 		}
-		listeContenu.add(indice+1, new EditeurTitre(i,numerotation, title));
+		EditeurTitre nouveauTitre = new EditeurTitre(i, numerotation, title);
+		listeContenu.add(indice+1, nouveauTitre);
 		revalider();
-		EditeurTitre tmp = (EditeurTitre) listeContenu.get(indice+1);
-		tmp.setSelected(true);
+		refocus(nouveauTitre);
+		nouveauTitre.renumeroter();
+
 	}
 
 	public static void detruire(Editeur c) {
@@ -139,7 +144,6 @@ public class ContenuEditable extends JPanelDef {
 				}
 				else{
 					tmp.setSelected(true);
-
 				}
 			}
 		}
@@ -159,7 +163,5 @@ public class ContenuEditable extends JPanelDef {
 			}
 		}
 	}
-
-
 
 }
