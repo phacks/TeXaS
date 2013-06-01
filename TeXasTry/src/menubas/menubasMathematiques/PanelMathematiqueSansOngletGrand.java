@@ -2,12 +2,15 @@ package menubas.menubasMathematiques;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 
 import formule.ActionListenerFormule;
 
 import menubas.BoutonMenuBasValidate;
 import menubas.PanelboutonStyle;
+import EcranEditionCentral.ContenuEditable;
 import briquesElementaires.JPanelDef;
 
 public class PanelMathematiqueSansOngletGrand extends JPanelDef {
@@ -52,7 +55,12 @@ public class PanelMathematiqueSansOngletGrand extends JPanelDef {
 		for (int i = nbImage; i < nbColonnes*nbLigne; i++) {
 			main.add(new JPanelDef());		
 		}
-
+		
+		boutonInserer.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+			ContenuEditable.addEditeurFormule();
+			}
+		});
 		
 		for (int i = 0; i < boutonMenuTous.length; i++) {
 			if (boutonMenuTous[i].getFichierBouton().getName().startsWith("structure")){

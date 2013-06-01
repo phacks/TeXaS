@@ -52,10 +52,10 @@ public class Formule implements ActionListener, KeyListener{
 		formuleContainer.add(formule);
 
 
-		this.formule.setBackground(Color.WHITE);
-		this.formuleContainer.setBackground(Color.WHITE);
+		// this.formule.setBackground(Color.WHITE);
+		this.formuleContainer.setBackground(Color.YELLOW);
 
-		formule.setLayout(new FlowLayout(FlowLayout.LEFT, 0,0));
+		formule.setLayout(new FlowLayout(FlowLayout.LEFT));
 
 
 		layeredpanes.add(new ItemLayeredPane(this.depth, this));
@@ -191,36 +191,10 @@ public class Formule implements ActionListener, KeyListener{
 		for(int i = 0; i < items.size() +1; i++){
 
 			if(arg0.getSource() == boutonsInsererItem.get(i)){
-
-				this.actionListenerFormule.setFormuleEnCours(this);
-
-				contenuItems.add(i, new ContenuItemVide());
-				layeredpanes.add(i, new ItemLayeredPane(this.depth, this));
-				boutonsInvisibles.add(i, new BoutonInvisible(layeredpanes.get(i)));
-
-				items.add(i, new Item(this.depth, layeredpanes.get(i), boutonsInvisibles.get(i)));
-
-
-
-				layeredpanes.get(i).add(items.get(i),new Integer(0));
-				layeredpanes.get(i).add(boutonsInvisibles.get(i),new Integer(1));
-				boutonsInvisibles.get(i).addActionListener(this);
-				layeredpanes.get(i).addKeyListener(this);
-
-				if (layeredPaneParent != null){
-					ArrayList<ItemLayeredPane> layeredPaneParentArrayList = new ArrayList<ItemLayeredPane>();
-
-					deselectAllItems(false, layeredPaneParentArrayList, items.get(i));
-				}
-				else{
-					deselectAllItems(true, null, items.get(i));
-				}
-
-				items.get(i).setSelected(true);
-				items.get(i).requestFocus();
-				items.get(i).redefinirApparence();
 				
-				gestionItems(i);
+				insererItem(i);
+
+				
 			}
 		}
 
@@ -303,6 +277,40 @@ public class Formule implements ActionListener, KeyListener{
 		//	}
 
 	}
+
+	private void insererItem(int i) {
+		// TODO Auto-generated method stub
+		this.actionListenerFormule.setFormuleEnCours(this);
+
+		contenuItems.add(i, new ContenuItemVide());
+		layeredpanes.add(i, new ItemLayeredPane(this.depth, this));
+		boutonsInvisibles.add(i, new BoutonInvisible(layeredpanes.get(i)));
+
+		items.add(i, new Item(this.depth, layeredpanes.get(i), boutonsInvisibles.get(i)));
+
+
+
+		layeredpanes.get(i).add(items.get(i),new Integer(0));
+		layeredpanes.get(i).add(boutonsInvisibles.get(i),new Integer(1));
+		boutonsInvisibles.get(i).addActionListener(this);
+		layeredpanes.get(i).addKeyListener(this);
+
+		if (layeredPaneParent != null){
+			ArrayList<ItemLayeredPane> layeredPaneParentArrayList = new ArrayList<ItemLayeredPane>();
+
+			deselectAllItems(false, layeredPaneParentArrayList, items.get(i));
+		}
+		else{
+			deselectAllItems(true, null, items.get(i));
+		}
+
+		items.get(i).setSelected(true);
+		items.get(i).requestFocus();
+		items.get(i).redefinirApparence();
+		
+		gestionItems(i);
+	}
+
 
 	public void deselectAllItems(boolean aAtteintFormuleMere, ArrayList<ItemLayeredPane> layeredPaneParentArrayList, Item item) {
 
@@ -390,15 +398,20 @@ public class Formule implements ActionListener, KeyListener{
 
 	@Override
 	public void keyPressed(KeyEvent arg0) {
+		long lastPressProcessed = 0;
+		
+		System.out.println(arg0.getKeyCode());
+		
 		if(arg0.getKeyCode() == 8){
 			for (int i=0; i< items.size(); i++){
 
-				if(items.get(i).getToBeDeleted() && layeredpanes.get(i).highestLayer() == 2 && layeredpanes.get(i).getComponentsInLayer(1)[0].getClass().toString().startsWith("class formule.ContenuItemSplit")
-						&& ((ContenuItemSplit) layeredpanes.get(i).getComponentsInLayer(1)[0]).getType().equals("indice"))
-				{
+//				if(items.get(i).getToBeDeleted() && layeredpanes.get(i).highestLayer() == 2 && layeredpanes.get(i).getComponentsInLayer(1)[0].getClass().toString().startsWith("class formule.ContenuItemSplit")
+//						&& ((ContenuItemSplit) layeredpanes.get(i).getComponentsInLayer(1)[0]).getType().equals("indice"))
+//				{
+//
+//				}
 
-				}
-
+				
 				if (items.get(i).getToBeDeleted()){
 					items.remove(i);
 					boutonsInvisibles.remove(i);
@@ -408,8 +421,8 @@ public class Formule implements ActionListener, KeyListener{
 					this.editeur.deleteFormule();
 					}
 				}
-
-				if (items.get(i).getSelected()){
+				
+				else if (items.get(i).getSelected()){
 					items.get(i).setToBeDeleted(true);
 					items.get(i).setSelected(false);
 					items.get(i).redefinirApparence();
@@ -417,7 +430,52 @@ public class Formule implements ActionListener, KeyListener{
 
 			}
 		}
+		
+		if((! arg0.isActionKey()) && (arg0.getKeyCode() != KeyEvent.VK_ENTER) && (arg0.getKeyCode() != 16)){
+			
+			// Le timer est là pour éviter de saisir deux évènements KeyPressed
+			if(System.currentTimeMillis() - lastPressProcessed > 500) {
+	            
+				for (int i=0; i< items.size(); i++){
+					
+					if (items.get(i).getSelected() && layeredpanes.get(i).highestLayer() == 1){
+						contenuItems.set(i, new ContenuItemTexteIntermediaire(layeredpanes.get(i)));
+						layeredpanes.get(i).add(contenuItems.get(i).getCIT(), new Integer(2));
+						contenuItems.get(i).getCIT().setText(Character.toString(arg0.getKeyChar()));
+						contenuItems.get(i).getCIT().requestFocus();
 
+						items.get(i).redefinirApparence();
+
+						formule.revalidate();
+						formule.repaint();
+					}
+					
+					else if (items.get(i).getSelected() && layeredpanes.get(i).highestLayer() == 2){
+						insererItem(i+1);
+						contenuItems.set(i+1, new ContenuItemTexteIntermediaire(layeredpanes.get(i+1)));
+						layeredpanes.get(i+1).add(contenuItems.get(i+1).getCIT(), new Integer(2));
+						contenuItems.get(i+1).getCIT().setText(Character.toString(arg0.getKeyChar()));
+						contenuItems.get(i+1).getCIT().requestFocus();
+
+						items.get(i+1).redefinirApparence();
+
+						formule.revalidate();
+						formule.repaint();
+						break;
+					}
+				}
+				
+	            lastPressProcessed = System.currentTimeMillis();
+	        }   
+			
+			
+		}
+		
+		if(arg0.getKeyCode() == KeyEvent.VK_ENTER){
+		
+			this.editeur.addEditeurParagraphe();
+			
+		}
 	}
 
 	@Override
@@ -430,22 +488,6 @@ public class Formule implements ActionListener, KeyListener{
 	public void keyTyped(KeyEvent arg0) {
 		// TODO Auto-generated method stub		
 		
-		if((! arg0.isActionKey())){
-			for (int i=0; i< items.size(); i++){
-				
-				if (items.get(i).getSelected() && layeredpanes.get(i).highestLayer() == 1){
-					contenuItems.set(i, new ContenuItemTexteIntermediaire(layeredpanes.get(i)));
-					layeredpanes.get(i).add(contenuItems.get(i).getCIT(), new Integer(2));
-					contenuItems.get(i).getCIT().setText(Character.toString(arg0.getKeyChar()));
-					contenuItems.get(i).getCIT().requestFocus();
-
-					items.get(i).redefinirApparence();
-
-					formule.revalidate();
-					formule.repaint();
-				}
-			}
-		}
 
 	}
 
@@ -469,6 +511,18 @@ public class Formule implements ActionListener, KeyListener{
 				contenuItems.get(i).getCII().repaint();
 				formule.revalidate();
 				formule.repaint();
+			}
+			
+			else if (items.get(i).getSelected() && layeredpanes.get(i).highestLayer() == 2){
+				insererItem(i + 1);
+				contenuItems.set(i+1, new ContenuItemImageIntermediaire(layeredpanes.get(i+1)));
+				layeredpanes.get(i+1).add(contenuItems.get(i+1).getCII(), new Integer(2));
+				contenuItems.get(i+1).getCII().setText("Bonjour");
+				contenuItems.get(i+1).getCII().setImage(image);
+				contenuItems.get(i+1).getCII().repaint();
+				formule.revalidate();
+				formule.repaint();
+				break;
 			}
 
 		}
@@ -499,10 +553,10 @@ public class Formule implements ActionListener, KeyListener{
 					}
 
 					if (this.depth >= 3){
-						layeredpanes.get(i).setHeight(layeredpanes.get(i).getPreferredSize().height + 56);					
+						layeredpanes.get(i).setHeight(layeredpanes.get(i).getPreferredSize().height + 28);					
 					}
 					else{
-						layeredpanes.get(i).setHeight(layeredpanes.get(i).getPreferredSize().height * 3/2);
+						layeredpanes.get(i).setHeight(layeredpanes.get(i).getPreferredSize().height * 2);
 					}
 
 					layeredpanes.get(i).redefinirApparence();
@@ -519,59 +573,48 @@ public class Formule implements ActionListener, KeyListener{
 					formule.revalidate();
 					formule.repaint();
 				}
+				
+				else if (items.get(i).getSelected() && layeredpanes.get(i).highestLayer() == 2){
+
+					insererItem(i+1);
+					
+					if (layeredPaneParent != null){
+
+						if (this.depth >= 3){
+							layeredPaneParent.agrandirEnCascade();
+						}
+						else{
+							layeredPaneParent.agrandirEnCascade(5, 4);
+						}
+
+					}
+
+					if (this.depth >= 3){
+						layeredpanes.get(i+1).setHeight(layeredpanes.get(i+1).getPreferredSize().height + 28);					
+					}
+					else{
+						layeredpanes.get(i+1).setHeight(layeredpanes.get(i+1).getPreferredSize().height * 3/2);
+					}
+
+					layeredpanes.get(i+1).redefinirApparence();
+					items.get(i+1).redefinirApparence();
+					boutonsInvisibles.get(i+1).redefinirApparence();
+
+
+
+					contenuItems.set(i+1, new ContenuItemSplitIntermediaire(layeredpanes.get(i+1), "split-fraction"));
+
+					layeredpanes.get(i+1).add(contenuItems.get(i+1).getCIS(), new Integer(2));
+
+
+					formule.revalidate();
+					formule.repaint();
+					break;
+				}
 			}
 
 		}
 	}
-
-
-
-	public KeyListener[] getKeyListeners() {
-		// TODO Auto-generated method stub
-		int l = this.items.size();
-		KeyListener[] keyListenerArray = new KeyListener[l];
-		
-		for (int i = 0; i < l; i++){
-			keyListenerArray[i] = this.layeredpanes.get(i).getKeyListeners()[0];
-		}
-		
-		return keyListenerArray;
-	}
-
-
-//	public void layeredPaneHasLostFocus() {
-//		// TODO Auto-generated method stub
-//		
-//		try {
-//			Thread.sleep(50);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//		int compteur = 0;
-//		for(int i = 0; i < this.layeredpanes.size(); i++){
-//			if (! this.layeredpanes.get(i).hasFocus()){
-//				compteur++;
-//			}
-//		}
-//		
-//		if (compteur == this.layeredpanes.size()){
-//			
-//			for(int i = 0; i < this.layeredpanes.size(); i++){
-//				if (items.get(i).getSelected()){
-//					items.get(i).setSelected(false);
-//					System.out.println(items.get(i).getSelected());
-//					items.get(i).redefinirApparence();
-//				}
-//			}
-//			this.repaintRevalidate();
-//			
-//		}
-//		
-//		
-//		
-//	}
 
 }
 

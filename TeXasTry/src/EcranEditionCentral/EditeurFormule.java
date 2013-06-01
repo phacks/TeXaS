@@ -56,6 +56,11 @@ public class EditeurFormule extends Editeur implements KeyListener {
 		// TODO Auto-generated method stub
 		ContenuEditable.detruire(this);
 	}
+
+	public void addEditeurParagraphe() {
+		// TODO Auto-generated method stub
+		ContenuEditable.addEditeurParagraphe(this);
+	}
 	
 	
 	

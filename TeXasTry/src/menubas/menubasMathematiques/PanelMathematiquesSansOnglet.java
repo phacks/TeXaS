@@ -12,6 +12,7 @@ import formule.ActionListenerFormule;
 
 import menubas.BoutonMenuBasValidate;
 import menubas.PanelboutonStyle;
+import EcranEditionCentral.ContenuEditable;
 import briquesElementaires.Couleur;
 import briquesElementaires.JPanelDef;
 
@@ -62,7 +63,11 @@ public class PanelMathematiquesSansOnglet extends JPanelDef {
 
 		// Gestion favoris
 		
-		boutonInserer.addActionListener(new ActionListenerFormule("inserer"));
+		boutonInserer.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+			ContenuEditable.addEditeurFormule();
+			}
+		});
 		
 		for (int i = 0; i < boutonMenu.length; i++) {
 			

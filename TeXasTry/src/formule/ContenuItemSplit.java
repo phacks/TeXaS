@@ -26,86 +26,29 @@ public class ContenuItemSplit extends JPanel{
 	public ContenuItemSplit(ItemLayeredPane layeredPane, String type){
 
 
-		this.setBackground(Color.WHITE);
 		this.famille = type.split("-")[0];
 		this.type = type.split("-")[1];
 		
 		this.layeredPane = layeredPane;
 
 		this.setBounds(5, 2, this.layeredPane.getPreferredSize().width - 10, this.layeredPane.getPreferredSize().height-3);
-		this.ba = ba;
 
 		if (famille.equals("split")){
 
-			if (this.type.equals("indice")){
-				
-				panelBas.setLayout(new FlowLayout(FlowLayout.CENTER, 0,0));
-				
-				this.splitBas = new Formule(this.panelBas,this.layeredPane.getDepth() +1, this.layeredPane);
-
-				this.arraySplit = new Formule[1];
-				arraySplit[0] = splitBas;
-				
-				this.setLayout(new BorderLayout());
-				
-				this.add(panelBas, BorderLayout.SOUTH);
-				
-				
-
-			}
-
-			if (this.type.equals("exposant")){
-				
-				panelHaut.setLayout(new FlowLayout(FlowLayout.CENTER, 0,0));
-				
-				this.splitHaut = new Formule(this.panelHaut,this.layeredPane.getDepth() +1, this.layeredPane);
-				
-				this.arraySplit = new Formule[1];
-				arraySplit[0] = splitHaut;
-				
-				this.setLayout(new BorderLayout());
-				
-				this.add(panelHaut, BorderLayout.NORTH);
-			
-
-			}
-
-			if (this.type.equals("indiceexposant")){
-				
-				panelHaut.setLayout(new FlowLayout(FlowLayout.CENTER, 0,0));
-				panelBas.setLayout(new FlowLayout(FlowLayout.CENTER, 0,0));
-
-
-				this.splitHaut = new Formule(this.panelHaut,this.layeredPane.getDepth() +1, this.layeredPane);
-
-				Formule[] arraySplitHaut = new Formule[1];
-				arraySplitHaut[0] = splitHaut;
-
-				this.splitBas = new Formule(this.panelBas,this.layeredPane.getDepth() +1, this.layeredPane);
-
-				Formule[] arraySplitBas = new Formule[1];
-				arraySplitBas[0] = splitBas;
-
-
-				this.setLayout(new BorderLayout());
-				
-				this.add(panelHaut, BorderLayout.NORTH);
-				this.add(panelBas, BorderLayout.SOUTH);
-
-
-				this.arraySplit = new Formule[2];
-				arraySplit[0] = splitHaut;
-				arraySplit[1] = splitBas;
-				
-
-			}
 
 			if (this.type.equals("fraction")){
 				
+				int heightPanel = 50;
+				
+				for(int i = 0; i< this.layeredPane.getDepth() ; i++){
+					heightPanel = (int) heightPanel *3/4 - 2;
+				}
+				
 				split.setPreferredSize(new Dimension(this.layeredPane.getPreferredSize().width - 10, 5));
-
-				panelHaut.setLayout(new FlowLayout(FlowLayout.CENTER, 0,0));
-				panelBas.setLayout(new FlowLayout(FlowLayout.CENTER, 0,0));
+				
+				this.panelHaut.setPreferredSize(new Dimension(this.layeredPane.getPreferredSize().width - 10, 0));
+				
+				this.panelBas.setPreferredSize(new Dimension(this.layeredPane.getPreferredSize().width - 10, 0));
 
 
 				this.splitHaut = new Formule(this.panelHaut,this.layeredPane.getDepth() +1, this.layeredPane);
@@ -120,7 +63,7 @@ public class ContenuItemSplit extends JPanel{
 
 
 				this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-
+								
 				this.panelHaut.setAlignmentX((float) 0.5);
 				this.panelBas.setAlignmentX((float) 0.5);
 

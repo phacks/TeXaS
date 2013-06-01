@@ -16,6 +16,8 @@ public class ItemLayeredPane extends JLayeredPane{
 	
 	public ItemLayeredPane(int depth, Formule formuleMere){
 		
+		
+		
 		if (depth <= 3){
 			this.depth = depth;
 			}
@@ -24,12 +26,12 @@ public class ItemLayeredPane extends JLayeredPane{
 			}
 		this.formuleMere = formuleMere;
 		
-		this.width = 100;
-		this.height = 100;
+		this.width = 50;
+		this.height = 50;
 		
 		for(int i = 0; i< this.depth - 1; i++){
-			this.width = this.width *3/4 - 5;
-			this.height = this.height *3/4 - 5;
+			this.width = (int) this.width *3/4 - 2;
+			this.height = (int) this.height *3/4 - 2;
 		}
 		
 		
@@ -45,6 +47,14 @@ public class ItemLayeredPane extends JLayeredPane{
 	
 	public void setHeight(int h){
 		this.height = h;
+	}
+	
+	public int getWidth(){
+		return this.width;
+	}
+	
+	public int getHeight(){
+		return this.height;
 	}
 	
 	public void redefinirApparence(){
@@ -82,7 +92,7 @@ public class ItemLayeredPane extends JLayeredPane{
 	public void agrandirEnCascade() {
 		
 
-		this.setHeight((int) this.getPreferredSize().height + 56);
+		this.setHeight((int) this.getPreferredSize().height + 28);
 		this.redefinirApparence();
 		((Item) this.getComponentsInLayer(0)[0]).redefinirApparence();
 		((BoutonInvisible) this.getComponentsInLayer(1)[0]).redefinirApparence();
