@@ -39,6 +39,10 @@ public class EditeurFormule extends Editeur implements KeyListener {
 			e.consume();
 		}
 	}
+	
+	public Formule getFormule(){
+		return this.formule;
+	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {

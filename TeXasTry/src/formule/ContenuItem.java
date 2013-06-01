@@ -5,7 +5,11 @@ import javax.swing.JPanel;
 
 public abstract class ContenuItem {
 	
-	String getText(){
+	public String getText(){
+		return "";
+	}
+	
+	public String getType(){
 		return "";
 	}
 	
@@ -18,6 +22,10 @@ public abstract class ContenuItem {
 	}
 	
 	ContenuItemSplit getCIS(){
+		return null;
+	}
+	
+	public Formule[] getArraySplit(){
 		return null;
 	}
 	

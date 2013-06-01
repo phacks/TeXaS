@@ -38,8 +38,17 @@ public class ConversionXMLversInterface {
 			if(courant.getName().equals("p")){
 				gestionParagraphe(courant);
 			}
+			
+			if(courant.getName().equals("formule")){
+				gestionFormule(courant);
+			}
 		}
 
+	}
+
+	private static void gestionFormule(Element courant) {
+		// POUR NICOLAS
+		
 	}
 
 	private static void gestionParagraphe(Element courant) {

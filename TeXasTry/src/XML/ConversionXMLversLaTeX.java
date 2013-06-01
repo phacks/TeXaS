@@ -44,33 +44,45 @@ public class ConversionXMLversLaTeX {
 			if(courant.getName().equals("p")){
 				gestionParagraphe(courant);
 			}
+			if(courant.getName().equals("formule")){
+				codeLaTeX = codeLaTeX + "$$" + " ";
+
+				parseFormule(courant);
+
+				codeLaTeX = codeLaTeX + "$$ \n \n";
+
+			}
+
 		}
-		
+
+
 		codeLaTeX = codeLaTeX + "\\end{document}";
-		
+
+
+
 		FileOutputStream fop = null;
 		File file;
- 
+
 		try {
- 
+
 			file = new File("Document.tex");
 			fop = new FileOutputStream(file);
- 
+
 			// if file doesnt exists, then create it
 			if (!file.exists()) {
 				file.createNewFile();
 			}
- 
+
 			// get the content in bytes
 			byte[] contentInBytes = codeLaTeX.getBytes();
- 
+
 			fop.write(contentInBytes);
 			fop.flush();
 			fop.close();
-			
+
 			//String[] cmd = {"/usr/local/texlive/2011/bin/x86_64-darwin//pdflatex", file.getAbsolutePath()};
 			String[] cmd = {"pdflatex", file.getAbsolutePath()};
-			
+
 			RunExternal.launch(cmd);
 			java.awt.Desktop.getDesktop().open(new File("Document.pdf"));
 		} catch (IOException e) {
@@ -84,9 +96,39 @@ public class ConversionXMLversLaTeX {
 				e.printStackTrace();
 			}
 		}
-		
-		
-		
+
+
+
+	}
+	
+	private static void parseFormule(Element courant) {
+		// TODO Auto-generated method stub
+		List<Element> listFormuleElement = courant.getChildren();
+		Iterator<Element> iteratorFormule = listFormuleElement.iterator();
+
+		while(iteratorFormule.hasNext()){
+			Element courantFormule = iteratorFormule.next();
+			if(courantFormule.getName().equals("symbole")){
+				codeLaTeX = codeLaTeX + "\\" + courantFormule.getText() + " ";
+			}
+			if(courantFormule.getName().equals("texte")){
+				codeLaTeX = codeLaTeX + courantFormule.getText() + " ";
+			}
+			if (courantFormule.getName().equals("fraction")){
+				List<Element> listFractionElement = courantFormule.getChildren();
+				Iterator<Element> iteratorFraction = listFractionElement.iterator();
+
+				Element courantFraction = iteratorFraction.next();
+				codeLaTeX = codeLaTeX + "\\frac{";
+				parseFormule(courantFraction);
+				courantFraction = iteratorFraction.next();
+				codeLaTeX = codeLaTeX + "}{";
+				parseFormule(courantFraction);
+				codeLaTeX = codeLaTeX + "}" + " ";
+
+			}
+		}
+
 	}
 
 	private static void gestionParagraphe(Element courant) {

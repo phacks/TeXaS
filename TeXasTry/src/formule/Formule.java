@@ -36,6 +36,7 @@ public class Formule implements ActionListener, KeyListener{
 	private Image image;
 	private EditeurFormule editeur = null;
 	private ActionListenerFormule actionListenerFormule = new ActionListenerFormule("");
+	private boolean layeredPaneParentAgrandi = false;
 
 
 	public Formule(JPanel jPanel, int depth, ItemLayeredPane layeredPaneParent){
@@ -169,6 +170,9 @@ public class Formule implements ActionListener, KeyListener{
 		formule.revalidate();
 	}
 
+	public ArrayList<ContenuItem> getContenuItemArrayList(){
+		return this.contenuItems;
+	}
 
 
 	public ItemLayeredPane getlayeredPaneParent(){
@@ -506,7 +510,7 @@ public class Formule implements ActionListener, KeyListener{
 			if (items.get(i).getSelected() && layeredpanes.get(i).highestLayer() == 1){
 				contenuItems.set(i, new ContenuItemImageIntermediaire(layeredpanes.get(i)));
 				layeredpanes.get(i).add(contenuItems.get(i).getCII(), new Integer(2));
-				contenuItems.get(i).getCII().setText("Bonjour");
+				contenuItems.get(i).getCII().setText(fileImage.getName().split("\\.")[0]);
 				contenuItems.get(i).getCII().setImage(image);
 				contenuItems.get(i).getCII().repaint();
 				formule.revalidate();
@@ -517,7 +521,7 @@ public class Formule implements ActionListener, KeyListener{
 				insererItem(i + 1);
 				contenuItems.set(i+1, new ContenuItemImageIntermediaire(layeredpanes.get(i+1)));
 				layeredpanes.get(i+1).add(contenuItems.get(i+1).getCII(), new Integer(2));
-				contenuItems.get(i+1).getCII().setText("Bonjour");
+				contenuItems.get(i+1).getCII().setText(fileImage.getName().split("\\.")[0]);
 				contenuItems.get(i+1).getCII().setImage(image);
 				contenuItems.get(i+1).getCII().repaint();
 				formule.revalidate();
@@ -539,15 +543,18 @@ public class Formule implements ActionListener, KeyListener{
 			for (int i=0; i< items.size(); i++){
 
 
-				if (items.get(i).getSelected() && layeredpanes.get(i).highestLayer() == 1){
+				if ((items.get(i).getSelected()) && (layeredpanes.get(i).highestLayer() == 1) ){
 
-					if (layeredPaneParent != null){
-
+					
+					
+					if (layeredPaneParent != null  && (this.layeredPaneParent.getDepth() > 1 || ! this.layeredPaneParent.getAgrandi())){
+						
+						this.layeredPaneParent.setAgrandi(true);
 						if (this.depth >= 3){
 							layeredPaneParent.agrandirEnCascade();
 						}
 						else{
-							layeredPaneParent.agrandirEnCascade(5, 4);
+							layeredPaneParent.agrandirEnCascade(3, 2);
 						}
 
 					}
@@ -556,7 +563,7 @@ public class Formule implements ActionListener, KeyListener{
 						layeredpanes.get(i).setHeight(layeredpanes.get(i).getPreferredSize().height + 28);					
 					}
 					else{
-						layeredpanes.get(i).setHeight(layeredpanes.get(i).getPreferredSize().height * 3/2);
+						layeredpanes.get(i).setHeight(layeredpanes.get(i).getPreferredSize().height * 3/2 + 5);
 					}
 
 					layeredpanes.get(i).redefinirApparence();
@@ -584,7 +591,7 @@ public class Formule implements ActionListener, KeyListener{
 							layeredPaneParent.agrandirEnCascade();
 						}
 						else{
-							layeredPaneParent.agrandirEnCascade(5, 4);
+							layeredPaneParent.agrandirEnCascade(3, 2);
 						}
 
 					}
@@ -593,7 +600,7 @@ public class Formule implements ActionListener, KeyListener{
 						layeredpanes.get(i+1).setHeight(layeredpanes.get(i+1).getPreferredSize().height + 28);					
 					}
 					else{
-						layeredpanes.get(i+1).setHeight(layeredpanes.get(i+1).getPreferredSize().height * 3/2);
+						layeredpanes.get(i+1).setHeight(layeredpanes.get(i+1).getPreferredSize().height * 3/2 + 5);
 					}
 
 					layeredpanes.get(i+1).redefinirApparence();

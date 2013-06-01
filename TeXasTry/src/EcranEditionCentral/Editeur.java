@@ -3,6 +3,8 @@ package EcranEditionCentral;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 
+import formule.Formule;
+
 import briquesElementaires.JPanelDef;
 
 public abstract class Editeur extends JPanelDef {
@@ -23,6 +25,11 @@ public abstract class Editeur extends JPanelDef {
 
 	public void setSelected(boolean selected) {
 		this.selected = selected;
+	}
+
+	public Formule getFormule() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	

@@ -19,8 +19,8 @@ public class ContenuItemSplit extends JPanel{
 	private Item itemParent;
 	private PanelLigneHorizontale split = new PanelLigneHorizontale();
 	private ItemLayeredPane layeredPane;
-	private String famille = ""; 
-	private String type = "";
+	private String famille = "";
+	private String type = "fraction";
 	private Formule[] arraySplit;
 
 	public ContenuItemSplit(ItemLayeredPane layeredPane, String type){
@@ -44,12 +44,12 @@ public class ContenuItemSplit extends JPanel{
 					heightPanel = (int) heightPanel *3/4 - 2;
 				}
 				
-				split.setPreferredSize(new Dimension(this.layeredPane.getPreferredSize().width - 10, 5));
+				split.setMaximumSize(new Dimension(this.layeredPane.getPreferredSize().width - 10, 5));
 				
-				this.panelHaut.setPreferredSize(new Dimension(this.layeredPane.getPreferredSize().width - 10, heightPanel));
+				this.panelHaut.setMinimumSize(new Dimension(this.layeredPane.getPreferredSize().width - 10, heightPanel));
 				this.panelHaut.setLayout(new FlowLayout(FlowLayout.CENTER, 0,0));
 				
-				this.panelBas.setPreferredSize(new Dimension(this.layeredPane.getPreferredSize().width - 10, heightPanel));
+				this.panelBas.setMinimumSize(new Dimension(this.layeredPane.getPreferredSize().width - 10, heightPanel));
 				this.panelBas.setLayout(new FlowLayout(FlowLayout.CENTER, 0,0));
 
 
@@ -64,14 +64,15 @@ public class ContenuItemSplit extends JPanel{
 				arraySplitBas[0] = splitBas;
 
 
-				this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+				this.setLayout(new BorderLayout());
 
 				this.panelHaut.setAlignmentX((float) 0.5);
 				this.panelBas.setAlignmentX((float) 0.5);
+				
 
-				this.add(panelHaut);
-				this.add(split);
-				this.add(panelBas);
+				this.add(panelHaut, BorderLayout.NORTH);
+				this.add(split, BorderLayout.CENTER);
+				this.add(panelBas, BorderLayout.SOUTH);
 
 				this.arraySplit = new Formule[2];
 				arraySplit[0] = splitHaut;

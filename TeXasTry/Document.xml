@@ -1,24 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document>
-  <Titre Type="part">Fonctionnalités</Titre>
-  <Titre Type="chapter">TeXaS : vue d'ensemble des fonctionnalités</Titre>
-  <Titre Type="section">Création de document</Titre>
-  <Titre Type="section">Rédaction de document</Titre>
-  <Titre Type="section">Visualisation de document</Titre>
-  <Titre Type="chapter">Création du document</Titre>
-  <Titre Type="section">Gabarits proposés</Titre>
-  <Titre Type="subsection">Rapport de stage</Titre>
-  <Titre Type="subsection">Rapport de projet</Titre>
-  <Titre Type="subsection">Lettre formelle</Titre>
-  <Titre Type="subsection">Cours</Titre>
-  <Titre Type="subsection">Fiche de révision</Titre>
-  <Titre Type="subsection">Article court</Titre>
-  <Titre Type="section">Mode personnalisé / Par défaut</Titre>
-  <Titre Type="subsection">Mode personnalisé</Titre>
-  <Titre Type="subsection">Mode par défaut</Titre>
-  <Titre Type="section">Informations document</Titre>
-  <Titre Type="subsection">En tête et pied de page</Titre>
-  <Titre Type="subsection">Page de garde</Titre>
-  <Titre Type="part">Ergonomie</Titre>
-  <Titre Type="part">Algorithmes</Titre>
+  <p>\begin{flushright} Mon adresse \end{flushright}</p>
+  <p>Adresse destinataire</p>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eget lectus eget nulla commodo auctor non sollicitudin mauris. Proin in semper leo. Nunc ac neque nisi, sed cursus tortor. Cras sed nulla dui, at fermentum velit. Sed turpis orci, cursus vitae hendrerit non, pellentesque et ligula. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Curabitur placerat viverra metus eget fringilla. Integer diam enim, laoreet quis accumsan nec, accumsan et magna.
+
+Integer at sem euismod nisl bibendum porta iaculis eu sem. Duis auctor ipsum et orci porta volutpat. Proin aliquam molestie ligula, ut varius ante interdum nec. Nam gravida neque quis turpis porta ut viverra arcu auctor. Curabitur iaculis, massa ut ornare dignissim, urna augue suscipit enim, id porttitor urna lectus at neque. Mauris a turpis tortor, ut rhoncus nulla. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam consequat, diam eu suscipit egestas, risus augue molestie leo, ac facilisis felis dolor eget dui. Mauris blandit egestas dui, sit amet feugiat nisi auctor at. Aenean mauris justo, fermentum eu eleifend sit amet, consectetur eu metus. Vestibulum ornare metus justo. In sit amet eros id metus scelerisque lacinia sit amet non ante. Fusce sollicitudin justo vitae purus euismod egestas. Integer diam metus, rhoncus vel lacinia at, interdum sit amet libero. In faucibus augue luctus quam pharetra pulvinar et vitae velit.</p>
+  <p>\begin{center} Kilian Demeulemeester \end{center}</p>
 </document>

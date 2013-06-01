@@ -43,7 +43,7 @@ import briquesElementaires.Couleur;
 public class ContenuItemImage extends JPanel implements Serializable {
     private Image image = null;
     private String text = "";
-    private String type = "image";
+    private String type = "symbole";
     private ItemLayeredPane layeredPane;
     
     public ContenuItemImage(Image image, ItemLayeredPane layeredPane) {
