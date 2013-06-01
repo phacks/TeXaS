@@ -401,9 +401,7 @@ public class Formule implements ActionListener, KeyListener{
 	@Override
 	public void keyPressed(KeyEvent arg0) {
 		long lastPressProcessed = 0;
-		
-		System.out.println(arg0.getKeyCode());
-		
+				
 		if(arg0.getKeyCode() == 8){
 			for (int i=0; i< items.size(); i++){
 
