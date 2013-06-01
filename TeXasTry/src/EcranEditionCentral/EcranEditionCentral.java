@@ -25,11 +25,16 @@ public class EcranEditionCentral extends JPanelDef {
 	
 	private JPanelDef center = new JPanelDef();
 
+	private static JScrollPane scrollPane = new JScrollPane(contenuEditable);
+	
+	public static JScrollPane getScrollPane() {
+		return scrollPane;
+	}
+
 	public EcranEditionCentral(){
 		super(new BorderLayout());
 		
 		center.setLayout(new BorderLayout());
-		JScrollPane scrollPane = new JScrollPane(contenuEditable);
 		scrollPane.setBorder(null);
 		scrollPane.setHorizontalScrollBar(null);
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);

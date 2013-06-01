@@ -11,6 +11,7 @@ import java.awt.event.KeyListener;
 import javax.swing.JTextArea;
 
 import briquesElementaires.Couleur;
+import briquesElementaires.JPanelDef;
 import briquesElementaires.Police;
 
 public class EditeurTitre extends Editeur implements KeyListener, FocusListener{
@@ -22,24 +23,18 @@ public class EditeurTitre extends Editeur implements KeyListener, FocusListener{
 	private boolean numerote = true;
 
 
-	private String[] nomType = {
-			"Partie", "Chapitre", "Section", "Sous-section", "Sous-sous-section"
-	};
-
 	private Font[] fontTitre = {
 			Police.segoePartie, Police.segoeChapitre, Police.segoeSection, Police.segoeSousSection, Police.segoeSousSousSection
 	};
 
-	private Font[] fontTitreSansNumerotation = {
-			Police.segoePartieItal, Police.segoeChapitreItal, Police.segoeSectionItal, Police.segoeSousSectionItal, 
-			Police.segoeSousSousSectionItal
-	};
-
 	private int[] coordHierarchie = {0,0,0,0,0};
 
+	private JTextArea decalageArea = new JTextArea();
 	private JTextArea titreArea = new JTextArea();
-	//	private JTextArea typeArea = new JTextArea();
 	private JTextArea numArea = new JTextArea();
+
+	private JPanelDef partieGauche = new JPanelDef(new BorderLayout());
+	private JPanelDef partieCentrale = new JPanelDef(new BorderLayout());
 
 	public EditeurTitre(int numeroHierarchie, boolean numerotation, String title){
 		super(new BorderLayout());
@@ -50,20 +45,32 @@ public class EditeurTitre extends Editeur implements KeyListener, FocusListener{
 		titreArea.setFont(fontTitre[numeroHierarchie]);
 		numArea.setFont(fontTitre[numeroHierarchie]);
 
-		//		typeArea.setFont(Police.segoeItal);		
-		titreArea.setText(title);
-		//		typeArea.setText(nomType[numeroHierarchie]);
+		if(!title.equals("Votre titre ici")){
+			titreArea.setText(title);
+		}
 		titreArea.setLineWrap(true);
 		titreArea.setWrapStyleWord(true);
 		titreArea.setOpaque(false);
-		//		typeArea.setOpaque(false);
 		numArea.setOpaque(false);
 		numArea.setEditable(false);
+		numArea.setFocusable(false);
+		numArea.setForeground(Couleur.gray.brighter());
+
+		decalageArea.setEditable(false);
+		decalageArea.setForeground(Couleur.white);
+		decalageArea.setBackground(Couleur.white);
+		decalageArea.setFocusable(false);
+		for (int i = 0; i < numeroHierarchie; i++) {
+			decalageArea.setText(decalageArea.getText()+"coucou");
+		}
+
 		titreArea.addKeyListener(this);
 		titreArea.addFocusListener(this);
-		this.add(numArea, BorderLayout.WEST);
-		this.add(titreArea, BorderLayout.CENTER);
-		//		this.add(typeArea, BorderLayout.EAST);
+		this.renumeroter();
+
+		partieCentrale.setOpaque(false);
+		this.add(partieGauche,BorderLayout.WEST);
+		this.add(partieCentrale,BorderLayout.CENTER);
 	}
 
 	@Override
@@ -168,14 +175,42 @@ public class EditeurTitre extends Editeur implements KeyListener, FocusListener{
 
 
 	public void renumeroter() {
-		numArea.setText("");
+		partieGauche.add(numArea, BorderLayout.EAST);
+		partieGauche.add(decalageArea,BorderLayout.WEST);
+		partieGauche.setOpaque(false);
 		if(!numerote){
 			numArea.setForeground(Couleur.white);
 		}
-		for (int i = 0; i <= numeroHierarchie; i++) {
-			numArea.setText(numArea.getText()+coordHierarchie[i]+".");
+		numArea.setText("");
+		switch (numeroHierarchie) {
+		case 0:
+			numArea.setText("Partie "+coordHierarchie[0]);
+			partieCentrale.removeAll();
+			partieCentrale.add(numArea, BorderLayout.NORTH);
+			partieCentrale.add(titreArea, BorderLayout.CENTER);
+			partieCentrale.revalidate();
+			break;
+		case 1:
+			numArea.setText("Chapitre "+coordHierarchie[1]);
+			partieCentrale.removeAll();
+			partieCentrale.add(numArea, BorderLayout.NORTH);
+			partieCentrale.add(titreArea, BorderLayout.CENTER);
+			partieCentrale.revalidate();
+			break;
+		default:
+			for (int i = 1; i <= numeroHierarchie; i++) {
+				numArea.setText(numArea.getText()+coordHierarchie[i]+".");
+			}
+			numArea.setText(numArea.getText()+" ");
+			partieCentrale.removeAll();
+			partieCentrale.add(titreArea, BorderLayout.CENTER);
+			partieCentrale.revalidate();
+			partieGauche.removeAll();
+			partieGauche.add(decalageArea, BorderLayout.WEST);
+			partieGauche.add(numArea, BorderLayout.EAST);
+			partieGauche.revalidate();
+			break;
 		}
-		numArea.setText(numArea.getText()+" ");
 	}
 
 
