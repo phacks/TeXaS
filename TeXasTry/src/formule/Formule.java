@@ -32,7 +32,7 @@ public class Formule implements ActionListener, KeyListener{
 	private int width = 0;
 	private AdapteWidthItem adapteWidthItem;
 	private Image image;
-	private EditeurFormule editeur;
+	private EditeurFormule editeur = null;
 	private ActionListenerFormule actionListenerFormule = new ActionListenerFormule("");
 
 
@@ -404,7 +404,7 @@ public class Formule implements ActionListener, KeyListener{
 					boutonsInvisibles.remove(i);
 					layeredpanes.remove(i);
 					gestionItems(-1);
-					if (this.items.size() == 0){
+					if (this.items.size() == 0 && this.editeur != null){
 					this.editeur.deleteFormule();
 					}
 				}
