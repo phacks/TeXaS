@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document>
-  <p>document = new Document(racine);</p>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sit amet metus massa, non viverra dui. Cras magna massa, cursus ut venenatis dapibus, ultricies a orci. Aliquam scelerisque vehicula justo in tempor. Etiam ullamcorper accumsan nulla, sit amet elementum felis consectetur sed. Vestibulum auctor convallis vestibulum. Nullam pulvinar ipsum quam. Etiam pulvinar, mauris quis ultricies lacinia, dui sem lacinia enim, nec suscipit nisi quam vel mauris. Sed libero nibh, consectetur congue lacinia quis, venenatis et enim. Etiam est diam, dignissim et ultrices quis, convallis et nulla. Pellentesque in accumsan risus. Duis a enim bibendum ante lacinia laoreet.
+
+Aliquam eros lorem, blandit ac congue eu, lacinia quis arcu. Nullam porttitor, nibh et molestie mattis, tortor dolor elementum eros, ac ultrices dui leo at ipsum. Donec consequat gravida tortor non cursus. Curabitur in risus ut nibh faucibus mattis eu non mi. Sed eu dolor mauris. Sed nisl leo, consectetur quis dignissim pretium, facilisis quis urna. Donec ornare, nulla ut pulvinar ornare, eros orci imperdiet dolor, et eleifend mauris libero vel sem. Cras eu lobortis arcu. Suspendisse porta libero et libero facilisis in scelerisque tortor viverra. Duis quis leo ligula. Praesent eros odio, accumsan quis tristique sed, eleifend a sem.</p>
 </document>

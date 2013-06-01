@@ -80,7 +80,7 @@ public class ConversionXMLversLaTeX {
 			fop.flush();
 			fop.close();
 
-			RunExternal.launch("cmd /c pdflatex "+file.getAbsolutePath());
+			RunExternal.launch("pdflatex "+file.getAbsolutePath());
 			java.awt.Desktop.getDesktop().open(new File("Document.pdf"));
 		} catch (IOException e) {
 			e.printStackTrace();
