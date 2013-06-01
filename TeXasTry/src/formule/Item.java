@@ -9,6 +9,14 @@ import briquesElementaires.Couleur;
 import briquesElementaires.DashedBorder;
 
 
+/**
+ * Classe de base, qui représente un item. Son utilité est de retenir l'état sélectionné
+ * ou non de l'item en cours, et de la traduire visuellement (couleur des bordures).
+ * Un item est toujours le layer le plus bas d'un ItemLayeredPane
+ * @author nicolasgoutay
+ *
+ * @see ItemLayeredPane
+ */
 public class Item extends JPanel{
 	
 	//private int couleur = (int) Math.round(5 * Math.random());

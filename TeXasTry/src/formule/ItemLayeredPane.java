@@ -7,6 +7,19 @@ import java.awt.event.FocusListener;
 import javax.swing.JLayeredPane;
 
 
+/**
+ * Réceptacle de chaque item. Le système de layered pane permet de superposer plusieurs couches
+ * (layer) : un Item comme couche de base, et les couches 2 et 3 alternent entre le BoutonInvisible 
+ * et le ContenuItem associés
+ * @author nicolasgoutay
+ *
+ * @see Item
+ * @see ContenuItem
+ * @see BoutonInvisible
+ * 
+ * @param formuleMere La formule de laquelle est issue le ItemLayeredPane
+ *
+ */
 public class ItemLayeredPane extends JLayeredPane{
 	
 	private int depth;
@@ -26,7 +39,7 @@ public class ItemLayeredPane extends JLayeredPane{
 	public ItemLayeredPane(int depth, Formule formuleMere){
 		
 		
-		
+		// Gestion de la taille des items en fonction de leur profondeur
 		if (depth <= 3){
 			this.depth = depth;
 			}
@@ -44,10 +57,7 @@ public class ItemLayeredPane extends JLayeredPane{
 		}
 		
 		
-		this.setPreferredSize(new Dimension(this.width,this.height));
-		
-//		this.addFocusListener(this);
-		
+		this.setPreferredSize(new Dimension(this.width,this.height));		
 	}
 	
 	public void setWidth(int w){
@@ -78,6 +88,10 @@ public class ItemLayeredPane extends JLayeredPane{
 		return this.formuleMere;		
 	}
 
+	/* 
+	 * Lors de la création d'une structure (ex. fraction), permet d'agrandir la hauteur de l'item
+	 * en accord avec sa profondeur 
+	 */
 	public void agrandirEnCascade(int num, int denom) {
 		
 
@@ -117,19 +131,5 @@ public class ItemLayeredPane extends JLayeredPane{
 		this.getFormuleMere().repaintRevalidate();
 		
 	}
-//	
-//	@Override
-//	public void focusGained(FocusEvent arg0) {
-//		// TODO Auto-generated method stub
-//		
-//	}
-//
-//
-//
-//	@Override
-//	public void focusLost(FocusEvent arg0) {
-//		// TODO Auto-generated method stub
-//		System.out.println("FocusLost");
-//		this.formuleMere.layeredPaneHasLostFocus();
-//	}
+
 }
