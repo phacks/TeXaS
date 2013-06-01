@@ -28,13 +28,13 @@ public class BoutonInsererItem extends JButton implements MouseListener {
 		}
 		
 		this.width = 20;
-		this.height = 100;
+		this.height = 50;
 		
 		for(int i = 0; i< this.depth - 1; i++){
 			if (this.width > 10){
 			this.width = this.width - 5;
 			}
-			this.height = this.height *3/4 - 5;
+			this.height = this.height *3/4 - 2;
 		}
 		
 		this.setPreferredSize(new Dimension(this.width, this.height));

@@ -40,15 +40,17 @@ public class ContenuItemSplit extends JPanel{
 				
 				int heightPanel = 50;
 				
-				for(int i = 0; i< this.layeredPane.getDepth() ; i++){
+				for(int i = 0; i< this.layeredPane.getDepth(); i++){
 					heightPanel = (int) heightPanel *3/4 - 2;
 				}
 				
 				split.setPreferredSize(new Dimension(this.layeredPane.getPreferredSize().width - 10, 5));
 				
-				this.panelHaut.setPreferredSize(new Dimension(this.layeredPane.getPreferredSize().width - 10, 0));
+				this.panelHaut.setPreferredSize(new Dimension(this.layeredPane.getPreferredSize().width - 10, heightPanel));
+				this.panelHaut.setLayout(new FlowLayout(FlowLayout.CENTER, 0,0));
 				
-				this.panelBas.setPreferredSize(new Dimension(this.layeredPane.getPreferredSize().width - 10, 0));
+				this.panelBas.setPreferredSize(new Dimension(this.layeredPane.getPreferredSize().width - 10, heightPanel));
+				this.panelBas.setLayout(new FlowLayout(FlowLayout.CENTER, 0,0));
 
 
 				this.splitHaut = new Formule(this.panelHaut,this.layeredPane.getDepth() +1, this.layeredPane);
@@ -63,7 +65,7 @@ public class ContenuItemSplit extends JPanel{
 
 
 				this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
-								
+
 				this.panelHaut.setAlignmentX((float) 0.5);
 				this.panelBas.setAlignmentX((float) 0.5);
 

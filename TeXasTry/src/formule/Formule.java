@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
+import briquesElementaires.Couleur;
+
 import EcranEditionCentral.EditeurFormule;
 
 public class Formule implements ActionListener, KeyListener{
@@ -52,10 +54,10 @@ public class Formule implements ActionListener, KeyListener{
 		formuleContainer.add(formule);
 
 
-		// this.formule.setBackground(Color.WHITE);
-		this.formuleContainer.setBackground(Color.YELLOW);
+		this.formule.setBackground(Couleur.white);
+		this.formuleContainer.setBackground(Couleur.white);
 
-		formule.setLayout(new FlowLayout(FlowLayout.LEFT));
+		formule.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
 
 
 		layeredpanes.add(new ItemLayeredPane(this.depth, this));
@@ -556,7 +558,7 @@ public class Formule implements ActionListener, KeyListener{
 						layeredpanes.get(i).setHeight(layeredpanes.get(i).getPreferredSize().height + 28);					
 					}
 					else{
-						layeredpanes.get(i).setHeight(layeredpanes.get(i).getPreferredSize().height * 2);
+						layeredpanes.get(i).setHeight(layeredpanes.get(i).getPreferredSize().height * 3/2);
 					}
 
 					layeredpanes.get(i).redefinirApparence();
