@@ -101,15 +101,9 @@ public class EditeurTitre extends Editeur implements KeyListener, FocusListener{
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		if(selected){
-			if(!numerote){
-				numArea.setForeground(Couleur.bleuTexte);
-			}
 			this.setBackground(Couleur.bleuTexte);
 		}
 		else{
-			if(!numerote){
-				numArea.setForeground(Couleur.white);
-			}
 			this.setBackground(Couleur.white);
 		}
 	}
@@ -218,6 +212,18 @@ public class EditeurTitre extends Editeur implements KeyListener, FocusListener{
 		else{
 			for (int j = 1; j <= numeroHierarchie; j++) {
 				numArea.setText(numArea.getText()+coordHierarchie[j]+".");
+			}
+		}
+		if(!numerote){
+			if(numeroHierarchie<2){
+				if(numeroHierarchie==1){
+					numArea.setForeground(Couleur.gray.brighter());
+					numArea.setText("Chapitre");
+				}
+				else{
+					numArea.setForeground(Couleur.gray.brighter());
+					numArea.setText("Partie");
+				}
 			}
 		}
 	}
