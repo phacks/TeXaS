@@ -86,6 +86,14 @@ public class ContenuEditable extends JPanelDef {
 		tmp.reindenter();
 	}
 	
+	public static void addEditeurParagrapheAtTheEnd(String textEditeur){
+		listeContenu.add(new EditeurParagraphe(textEditeur));
+		revalider();
+		EditeurParagraphe tmp = (EditeurParagraphe) listeContenu.get(listeContenu.size()-1);
+		refocus(tmp);
+		tmp.reindenter();
+	}
+	
 	public static void addEditeurFormule(){
 		int indice=-1;
 		for (int j = 0; j < listeContenu.size(); j++) {
@@ -133,7 +141,6 @@ public class ContenuEditable extends JPanelDef {
 		revalider();
 		refocus(nouveauTitre);
 		nouveauTitre.renumeroter();
-
 	}
 
 	public static void detruire(Editeur c) {

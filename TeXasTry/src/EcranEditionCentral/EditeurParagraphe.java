@@ -44,6 +44,11 @@ public class EditeurParagraphe extends Editeur implements KeyListener, FocusList
 		this.add(decalageArea,BorderLayout.WEST);
 	}
 
+	public EditeurParagraphe(String textEditeur) {
+		this();
+		textArea.setText(textEditeur);
+	}
+
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);

@@ -155,6 +155,7 @@ public class EditeurTitre extends Editeur implements KeyListener, FocusListener{
 		if(titreArea.getText().equals("Votre titre ici")){
 			titreArea.setText("");
 		}
+		titreArea.setCaretPosition(titreArea.getDocument().getLength());
 		ContenuEditable.refocus(this);
 		this.repaint();
 	}

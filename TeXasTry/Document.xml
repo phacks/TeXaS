@@ -1,4 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document>
-  <part>coucou</part>
+  <Titre Type="part">Fonctionnalités</Titre>
+  <Titre Type="chapter">TeXaS : vue d'ensemble des fonctionnalités</Titre>
+  <Titre Type="section">Création de document</Titre>
+  <Titre Type="section">Rédaction de document</Titre>
+  <Titre Type="section">Visualisation de document</Titre>
+  <Titre Type="chapter">Création du document</Titre>
+  <Titre Type="section">Gabarits proposés</Titre>
+  <Titre Type="subsection">Rapport de stage</Titre>
+  <Titre Type="subsection">Rapport de projet</Titre>
+  <Titre Type="subsection">Lettre formelle</Titre>
+  <Titre Type="subsection">Cours</Titre>
+  <Titre Type="subsection">Fiche de révision</Titre>
+  <Titre Type="subsection">Article court</Titre>
+  <Titre Type="section">Mode personnalisé / Par défaut</Titre>
+  <Titre Type="subsection">Mode personnalisé</Titre>
+  <Titre Type="subsection">Mode par défaut</Titre>
+  <Titre Type="section">Informations document</Titre>
+  <Titre Type="subsection">En tête et pied de page</Titre>
+  <Titre Type="subsection">Page de garde</Titre>
+  <Titre Type="part">Ergonomie</Titre>
+  <Titre Type="part">Algorithmes</Titre>
 </document>

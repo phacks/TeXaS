@@ -38,23 +38,11 @@ public class ConversionXMLversLaTeX {
 
 		while(iterator.hasNext()){
 			Element courant = iterator.next();
-			if(courant.getName().equals("part")){
-				codeLaTeX = codeLaTeX + "\\part{"+courant.getText()+"} \n \n";
-			}
-			if(courant.getName().equals("chapter")){
-				codeLaTeX = codeLaTeX + "\\chapter{"+courant.getText()+"} \n \n";
-			}
-			if(courant.getName().equals("section")){
-				codeLaTeX = codeLaTeX + "\\section{"+courant.getText()+"} \n \n";
-			}
-			if(courant.getName().equals("subsection")){
-				codeLaTeX = codeLaTeX + "\\subsection{"+courant.getText()+"} \n \n";
-			}
-			if(courant.getName().equals("subsubsection")){
-				codeLaTeX = codeLaTeX + "\\subsection{"+courant.getText()+"} \n \n";
+			if(courant.getName().equals("Titre")){
+				gestionTitre(courant);
 			}
 			if(courant.getName().equals("p")){
-				codeLaTeX = codeLaTeX + " " +courant.getText()+ "\n \n";
+				gestionParagraphe(courant);
 			}
 		}
 		
@@ -99,5 +87,28 @@ public class ConversionXMLversLaTeX {
 		
 		
 		
+	}
+
+	private static void gestionParagraphe(Element courant) {
+		codeLaTeX = codeLaTeX + " " +courant.getText()+ "\n \n";
+	}
+
+	private static void gestionTitre(Element courant) {
+		String attribute = courant.getAttributeValue("Type");
+		if(attribute.equals("part")){
+			codeLaTeX = codeLaTeX + "\\part{"+courant.getText()+"} \n \n";
+		}
+		if(attribute.equals("chapter")){
+			codeLaTeX = codeLaTeX + "\\chapter{"+courant.getText()+"} \n \n";
+		}
+		if(attribute.equals("section")){
+			codeLaTeX = codeLaTeX + "\\section{"+courant.getText()+"} \n \n";
+		}
+		if(attribute.equals("subsection")){
+			codeLaTeX = codeLaTeX + "\\subsection{"+courant.getText()+"} \n \n";
+		}
+		if(attribute.equals("subsubsection")){
+			codeLaTeX = codeLaTeX + "\\subsubsection{"+courant.getText()+"} \n \n";
+		}
 	}
 }

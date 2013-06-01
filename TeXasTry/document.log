@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2012.10.30)  1 JUN 2013 15:45
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2012.10.30)  1 JUN 2013 19:59
 entering extended mode
 **C:/Users/Kilian/Documents/TeXaS/TeXasTry/Document.tex
 (C:/Users/Kilian/Documents/TeXaS/TeXasTry/Document.tex
@@ -133,22 +133,33 @@ LaTeX Info: Redefining \up on input line 6.
 
 
 {C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]
-(C:\Users\Kilian\Documents\TeXaS\TeXasTry\Document.aux) ) 
+Chapitre 1.
+[2
+
+]
+Chapitre 2.
+[3
+
+] [4
+
+] [5
+
+] (C:\Users\Kilian\Documents\TeXaS\TeXasTry\Document.aux) ) 
 Here is how much of TeX's memory you used:
- 1193 strings out of 493921
- 15031 string characters out of 3147278
- 67302 words of memory out of 3000000
- 4533 multiletter control sequences out of 15000+200000
- 16404 words of font info for 19 fonts, out of 3000000 for 9000
+ 1200 strings out of 493921
+ 15120 string characters out of 3147278
+ 68302 words of memory out of 3000000
+ 4539 multiletter control sequences out of 15000+200000
+ 28398 words of font info for 23 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
  24i,4n,24p,212b,129s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files/MiKT
-eX 2.9/fonts/enc/dvips/lm/lm-ec.enc}<C:/Program Files/MiKTeX 2.9/fonts/type1/pu
-blic/lm/lmbx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr10.pfb
->
-Output written on Document.pdf (1 page, 40442 bytes).
+{C:/Program Files/Mi
+KTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}<C:/Program Files/MiKTeX 2.9/fonts/type1/
+public/lm/lmbx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr10.p
+fb>
+Output written on Document.pdf (5 pages, 54958 bytes).
 PDF statistics:
- 15 PDF objects out of 1000 (max. 8388607)
+ 27 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -1,6 +1,10 @@
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 
+import EcranEditionCentral.ContenuEditable;
+import EcranEditionCentral.EcranEditionCentral;
+import XML.ConversionXMLversInterface;
+
 
 public class Main {
 
@@ -12,8 +16,13 @@ public class Main {
 		    } catch (Exception e) {
 		      e.printStackTrace();
 		    }
+		 
 		Fenetre maFen = new Fenetre();
 
+		ConversionXMLversInterface.fromXML();
+		
+		
+		
 		maFen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 
 	}
