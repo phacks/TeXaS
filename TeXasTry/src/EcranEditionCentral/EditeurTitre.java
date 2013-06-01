@@ -229,7 +229,9 @@ public class EditeurTitre extends Editeur implements KeyListener, FocusListener{
 	}
 
 
-
+	public String getText(){
+		return titreArea.getText();
+	}
 
 
 
