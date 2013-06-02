@@ -16,6 +16,10 @@ public class ConversionXMLversLaTeX {
 	static org.jdom2.Document document;
 	static Element racine;
 
+	private static boolean problemeCompilation = false;
+
+
+
 	public static void toLaTeX(){
 		codeLaTeX = "\\documentclass[a4paper,10pt]{report} \n"+
 				"\\usepackage[T1]{fontenc} \n"+
@@ -84,7 +88,14 @@ public class ConversionXMLversLaTeX {
 			String[] cmd = {"pdflatex", file.getAbsolutePath()};
 
 			RunExternal.launch(cmd);
-			java.awt.Desktop.getDesktop().open(new File("Document.pdf"));
+
+			if(!problemeCompilation){
+				java.awt.Desktop.getDesktop().open(new File("Document.pdf"));
+			}
+			
+			problemeCompilation = false;
+
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
@@ -100,7 +111,7 @@ public class ConversionXMLversLaTeX {
 
 
 	}
-	
+
 	private static void parseFormule(Element courant) {
 		// TODO Auto-generated method stub
 		List<Element> listFormuleElement = courant.getChildren();
@@ -152,5 +163,9 @@ public class ConversionXMLversLaTeX {
 		if(attribute.equals("subsubsection")){
 			codeLaTeX = codeLaTeX + "\\subsubsection{"+courant.getText()+"} \n \n";
 		}
+	}
+
+	public static void setProblemeCompilation(boolean b) {
+		problemeCompilation = b;
 	}
 }

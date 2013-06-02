@@ -8,6 +8,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.JTextArea;
+import javax.swing.text.BadLocationException;
 
 import briquesElementaires.Couleur;
 import briquesElementaires.Police;
@@ -20,10 +21,11 @@ public class EditeurParagraphe extends Editeur implements KeyListener, FocusList
 
 	//	private int nbEntreePresse = 1;
 	private boolean selected;
-	private int positionCarret;
-
 	private JTextArea textArea = new JTextArea();
 	private JTextArea decalageArea = new JTextArea();
+
+	private int previousCarretPosition;
+
 
 	public EditeurParagraphe(){
 		super(new BorderLayout());
@@ -63,14 +65,35 @@ public class EditeurParagraphe extends Editeur implements KeyListener, FocusList
 
 	@Override
 	public  void keyPressed(KeyEvent e) {
+		// Appui sur efface
 		if(e.getKeyCode()==8){
 			if(textArea.getText().equals("")){
 				ContenuEditable.detruire(this);
 				e.consume();
 			}
+			else{
+				if(textArea.getCaretPosition()==0){
+					int indiceComp = ContenuEditable.getListeContenu().indexOf(this);
+					if(indiceComp>0 && ContenuEditable.getListeContenu().get(indiceComp-1).getClass().toString().contains("EditeurParagraphe")){
+						EditeurParagraphe tmp = (EditeurParagraphe) ContenuEditable.getListeContenu().get(indiceComp-1);
+						String textPrecedent = tmp.getText();
+						ContenuEditable.getListeContenu().remove(indiceComp-1);
+						ContenuEditable.revalider();
+						textArea.setText(textPrecedent + textArea.getText());
+						textArea.setCaretPosition(textPrecedent.length());
+						ContenuEditable.refocus(this);
+						e.consume();
+					}
+				}
+			}
 		}
+
+		// Appui sur entrée
 		if(e.getKeyCode()==10){
-			ContenuEditable.addEditeurParagraphe(this);
+			String beforeCarret = textArea.getText().substring(0, textArea.getCaretPosition());
+			String afterCarret = textArea.getText().substring(textArea.getCaretPosition(),textArea.getDocument().getLength());
+			textArea.setText(beforeCarret);
+			ContenuEditable.addEditeurParagraphe(this, afterCarret);
 			e.consume();
 		}
 
@@ -79,17 +102,36 @@ public class EditeurParagraphe extends Editeur implements KeyListener, FocusList
 			ContenuEditable.focusNext(this);
 			e.consume();
 		}
-
+		
 		//Appui sur PageUp
 		if(e.getKeyCode()==33){
 			ContenuEditable.focusPrevious(this);
 			e.consume();
 		}
+		
+
+		//Appui sur flecheBas / flecheHaut - gestion avec le relachement de la touche
+		if(e.getKeyCode()==40 || e.getKeyCode()==38){
+			previousCarretPosition = textArea.getCaretPosition();
+		}
+		
+
+
 	}
 
 	@Override
 	public  void keyReleased(KeyEvent e) {
-
+		// Appui sur flecheBas
+		if(e.getKeyCode()==40 && previousCarretPosition == textArea.getCaretPosition()){
+			ContenuEditable.focusNext(this);
+			e.consume();
+		}
+		
+		// Appui sur flecheHaut
+		if(e.getKeyCode()==38 && previousCarretPosition == textArea.getCaretPosition()){
+			ContenuEditable.focusPrevious(this);
+			e.consume();
+		}
 	}
 
 	@Override
@@ -101,6 +143,7 @@ public class EditeurParagraphe extends Editeur implements KeyListener, FocusList
 	@Override
 	public void focusGained(FocusEvent e) {
 		this.selected = true;
+		
 		if(this.getText().equals("Votre texte ici...")){
 			this.setText("");
 		}
@@ -112,7 +155,7 @@ public class EditeurParagraphe extends Editeur implements KeyListener, FocusList
 
 	@Override
 	public void focusLost(FocusEvent e) {
-
+		this.previousCarretPosition=-1;
 	}
 
 	public void setSelected(boolean b) {
@@ -150,6 +193,10 @@ public class EditeurParagraphe extends Editeur implements KeyListener, FocusList
 		for (int i = -1; i < numeroHierarchie; i++) {
 			decalageArea.setText(decalageArea.getText()+"coucou");
 		}
+	}
+
+	public void setCarretPosition(int i) {
+		textArea.setCaretPosition(0);
 	}
 
 

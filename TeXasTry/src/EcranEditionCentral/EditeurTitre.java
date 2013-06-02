@@ -125,14 +125,14 @@ public class EditeurTitre extends Editeur implements KeyListener, FocusListener{
 			}
 		}
 
-		// Appui sur tabulation
-		if(e.getKeyCode()==9){
+		// Appui sur tabulation ou flecheBas
+		if(e.getKeyCode()==9 || e.getKeyCode()==40){
 			ContenuEditable.focusNext(this);
 			e.consume();
 		}
 
 		//Appui sur PageUp
-		if(e.getKeyCode()==33){
+		if(e.getKeyCode()==33 || e.getKeyCode()==38){
 			ContenuEditable.focusPrevious(this);
 			e.consume();
 		}

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document>
-  <p>\begin{flushright} Mon adresse \end{flushright}</p>
-  <p>Adresse destinataire</p>
-  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean eget lectus eget nulla commodo auctor non sollicitudin mauris. Proin in semper leo. Nunc ac neque nisi, sed cursus tortor. Cras sed nulla dui, at fermentum velit. Sed turpis orci, cursus vitae hendrerit non, pellentesque et ligula. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Curabitur placerat viverra metus eget fringilla. Integer diam enim, laoreet quis accumsan nec, accumsan et magna.
-
-Integer at sem euismod nisl bibendum porta iaculis eu sem. Duis auctor ipsum et orci porta volutpat. Proin aliquam molestie ligula, ut varius ante interdum nec. Nam gravida neque quis turpis porta ut viverra arcu auctor. Curabitur iaculis, massa ut ornare dignissim, urna augue suscipit enim, id porttitor urna lectus at neque. Mauris a turpis tortor, ut rhoncus nulla. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam consequat, diam eu suscipit egestas, risus augue molestie leo, ac facilisis felis dolor eget dui. Mauris blandit egestas dui, sit amet feugiat nisi auctor at. Aenean mauris justo, fermentum eu eleifend sit amet, consectetur eu metus. Vestibulum ornare metus justo. In sit amet eros id metus scelerisque lacinia sit amet non ante. Fusce sollicitudin justo vitae purus euismod egestas. Integer diam metus, rhoncus vel lacinia at, interdum sit amet libero. In faucibus augue luctus quam pharetra pulvinar et vitae velit.</p>
-  <p>\begin{center} Kilian Demeulemeester \end{center}</p>
+  <Titre Type="chapter">Entraînement à vitesse variable</Titre>
+  <Titre Type="section">Machine à courant continu</Titre>
+  <Titre Type="section">Convertisseurs : modélisation, principes de commande et limitations</Titre>
+  <Titre Type="chapter">Droit de l'entreprise</Titre>
+  <Titre Type="section">Charges entraînées : éléments de modélisation des charges mécaniques</Titre>
+  <Titre Type="chapter">Composant à semi-conducteur</Titre>
 </document>
