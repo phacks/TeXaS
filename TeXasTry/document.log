@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2012.10.30)  2 JUN 2013 20:21
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2012.10.30)  2 JUN 2013 21:08
 entering extended mode
 **C:/Users/Kilian/Documents/TeXaS/TeXasTry/Document.tex
 (C:/Users/Kilian/Documents/TeXaS/TeXasTry/Document.tex
@@ -129,31 +129,43 @@ File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 LaTeX Info: Redefining \degres on input line 6.
 LaTeX Info: Redefining \dots on input line 6.
 LaTeX Info: Redefining \up on input line 6.
+ [1
 
+
+{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]
 Chapitre 1.
-[1
+[2
 
-
-{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}] [2]
+]
 Chapitre 2.
 [3
 
+] [4
+
+]
+Chapitre 3.
+[5
+
+]
+Chapitre 4.
+[6
+
 ] (C:\Users\Kilian\Documents\TeXaS\TeXasTry\Document.aux) ) 
 Here is how much of TeX's memory you used:
- 1198 strings out of 493921
- 15093 string characters out of 3147278
- 70302 words of memory out of 3000000
- 4537 multiletter control sequences out of 15000+200000
+ 1196 strings out of 493921
+ 15070 string characters out of 3147278
+ 67302 words of memory out of 3000000
+ 4535 multiletter control sequences out of 15000+200000
  22401 words of font info for 21 fonts, out of 3000000 for 9000
  841 hyphenation exceptions out of 8191
- 24i,4n,24p,726b,129s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 24i,4n,24p,212b,129s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/Mi
 KTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}<C:/Program Files/MiKTeX 2.9/fonts/type1/
 public/lm/lmbx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmr10.p
 fb>
-Output written on Document.pdf (3 pages, 60632 bytes).
+Output written on Document.pdf (6 pages, 52418 bytes).
 PDF statistics:
- 21 PDF objects out of 1000 (max. 8388607)
+ 30 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

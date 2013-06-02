@@ -20,6 +20,8 @@ public class EditeurTitre extends Editeur implements KeyListener, FocusListener{
 
 	private boolean selected = false;
 
+	private boolean masque = false;
+
 	private int numeroHierarchie;
 
 	private boolean numerote = true;
@@ -34,7 +36,7 @@ public class EditeurTitre extends Editeur implements KeyListener, FocusListener{
 	private JTextArea decalageArea = new JTextArea();
 	private JTextArea titreArea = new JTextArea();
 	private JTextArea numArea = new JTextArea();
-	
+
 	private BouttonMasquerParagraphe boutonAffMasq;
 
 	private JPanelDef partieGauche = new JPanelDef(new BorderLayout());
@@ -43,8 +45,8 @@ public class EditeurTitre extends Editeur implements KeyListener, FocusListener{
 	public EditeurTitre(int numeroHierarchie, boolean numerotation, String title){
 		super(new BorderLayout());
 		this.numeroHierarchie = numeroHierarchie;
-		
-		
+
+
 		if(!numerotation){
 			numerote = false;
 		}
@@ -78,7 +80,7 @@ public class EditeurTitre extends Editeur implements KeyListener, FocusListener{
 
 		boutonAffMasq = new BouttonMasquerParagraphe(numeroHierarchie);
 		boutonAffMasq.addActionListener(new ActionListener() {
-			
+
 			public void actionPerformed(ActionEvent arg0) {
 				if(boutonAffMasq.isMasque()){
 					masquer(false);
@@ -89,7 +91,7 @@ public class EditeurTitre extends Editeur implements KeyListener, FocusListener{
 			}
 
 		});
-		
+
 		if(!numerote){
 			numArea.setForeground(Couleur.white);
 		}
@@ -135,6 +137,10 @@ public class EditeurTitre extends Editeur implements KeyListener, FocusListener{
 	public void keyPressed(KeyEvent e) {
 		// Appui sur entré
 		if(e.getKeyCode() == KeyEvent.VK_ENTER){
+			if(masque){
+				ContenuEditable.masquer(this, false);
+			}
+			ContenuEditable.masquer(this, false);
 			ContenuEditable.addEditeurParagraphe(this);
 			e.consume();
 		}
@@ -259,9 +265,17 @@ public class EditeurTitre extends Editeur implements KeyListener, FocusListener{
 	private void masquer(boolean b) {
 		ContenuEditable.masquer(this, b);
 	}
-	
+
 	public void setBoutonMasque(boolean b){
 		this.boutonAffMasq.setMasque(b);
+	}
+
+	public boolean isMasque() {
+		return masque;
+	}
+
+	public void setMasque(boolean masque) {
+		this.masque = masque;
 	}
 
 }

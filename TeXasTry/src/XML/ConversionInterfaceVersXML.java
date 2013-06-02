@@ -35,10 +35,12 @@ public class ConversionInterfaceVersXML{
 		contenuDocument = ContenuEditable.getListeContenu();
 
 		// Réouverture des menus
-		while(ContenuEditable.getSizeListeContenuMasque()>0){
-			ContenuEditable.masquer(ContenuEditable.getFirstMasque(), false);
+		for (int i = 0; i < 5; i++) {
+			while(ContenuEditable.getSizeListeContenuMasque(i)>0){
+				ContenuEditable.masquer(ContenuEditable.getFirstMasque(i), false);
+			}
 		}
-		
+
 		ListIterator<Editeur> iterator = contenuDocument.listIterator();
 		while(iterator.hasNext()){
 			Editeur editeur = iterator.next();

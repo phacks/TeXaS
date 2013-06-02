@@ -18,7 +18,11 @@ public class ContenuEditable extends JPanelDef {
 	private static Box conteneurGeneral = Box.createVerticalBox();
 
 	// Liste contenant les éditeurs masqués, chaque suites d'éditeurs masqué étant précédé par l'éditeur non masqué déclancheur
-	private static List<Editeur> listeContenuMasque = new LinkedList<Editeur>();
+	private static LinkedList[] tabListeContenuMasque = {new LinkedList<Editeur>(), 
+		new LinkedList<Editeur>(), 
+		new LinkedList<Editeur>(), 
+		new LinkedList<Editeur>(), 
+		new LinkedList<Editeur>()};
 
 	private static int[] coordHierarchieActuelle = { 0 , 0 , 0 , 0 , 0};
 
@@ -227,13 +231,18 @@ public class ContenuEditable extends JPanelDef {
 
 	public static void masquer(Editeur c, boolean b) {
 		if(b){
+			
 			int numHierarchie = ((EditeurTitre)c).getNumeroHierarchie();
+			((EditeurTitre)c).setMasque(true);
 			int indiceCListeContenu = listeContenu.indexOf(c);
-
-			listeContenuMasque.add(c);
+			int numActuel = numHierarchie+1;
+			
+			// Parcours des éléments de niveau hierarchique inférieur pour les masquer
+		
+			tabListeContenuMasque[numHierarchie].add(c);
 
 			ListIterator<Editeur> iterator = listeContenu.listIterator(indiceCListeContenu);
-			int numActuel = numHierarchie+1;
+			
 			Editeur tmp = iterator.next();
 			((EditeurTitre)tmp).setBoutonMasque(true);
 			int nbElementaEnlever=0;
@@ -248,16 +257,18 @@ public class ContenuEditable extends JPanelDef {
 				}
 			}
 			for (int i = 0; i < nbElementaEnlever; i++) {
-				listeContenuMasque.add(listeContenu.get(indiceCListeContenu+1));
+				tabListeContenuMasque[numHierarchie].add(listeContenu.get(indiceCListeContenu+1));
 				listeContenu.remove(indiceCListeContenu+1);
 			}
 			revalider();
 		}
 		else{
-			int indiceCListeContenuMasque = listeContenuMasque.indexOf(c);
+			int numHierarchie = ((EditeurTitre)c).getNumeroHierarchie();
+			((EditeurTitre)c).setMasque(false);
+			int indiceCListeContenuMasque = tabListeContenuMasque[numHierarchie].indexOf(c);
 			int indiceCListeContenu = listeContenu.indexOf(c);
 			if(indiceCListeContenuMasque!=-1){
-				ListIterator<Editeur> iterator = listeContenuMasque.listIterator(indiceCListeContenuMasque);
+				ListIterator<Editeur> iterator = tabListeContenuMasque[numHierarchie].listIterator(indiceCListeContenuMasque);
 				Editeur tmp = iterator.next();
 				((EditeurTitre)tmp).setBoutonMasque(false);
 				int nbElementaEnlever=1;
@@ -271,19 +282,19 @@ public class ContenuEditable extends JPanelDef {
 					}
 				}
 				for (int i = 1; i <= nbElementaEnlever; i++) {
-					listeContenuMasque.remove(indiceCListeContenuMasque);
+					tabListeContenuMasque[numHierarchie].remove(indiceCListeContenuMasque);
 				}
 				revalider();
 			}
 		}
 	}
 
-	public static int getSizeListeContenuMasque() {
-		return listeContenuMasque.size();
+	public static int getSizeListeContenuMasque(int i) {
+		return tabListeContenuMasque[i].size();
 	}
 	
-	public static Editeur getFirstMasque(){
-		return listeContenuMasque.get(0);
+	public static Editeur getFirstMasque(int i){
+		return (Editeur) tabListeContenuMasque[i].get(0);
 	}
 
 }
