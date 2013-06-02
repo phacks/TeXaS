@@ -6,6 +6,14 @@ import java.awt.Dimension;
 import javax.swing.JButton;
 
 
+/**
+ * Classe implémentant le bouton associé à chaqque item. Il est invisible pour laisser
+ * apparaître le contenu en dessous
+ * @author nicolasgoutay
+ * 
+ * @param layeredPane Le ItemLayeredPane duquel est issu le bouton invisible
+ *
+ */
 public class BoutonInvisible extends JButton{
 
 	private ItemLayeredPane layeredPane;

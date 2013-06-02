@@ -11,6 +11,11 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 
 
+/**
+ * Bouton se situant à côté des items permettant la création de nouveaux items.
+ * @author nicolasgoutay
+ *
+ */
 public class BoutonInsererItem extends JButton implements MouseListener {
 	
 	private boolean hover = false;
@@ -20,6 +25,7 @@ public class BoutonInsererItem extends JButton implements MouseListener {
 	
 	public BoutonInsererItem(int depth){
 		
+		// Gestion de la taille du bouton en fonction de sa profondeur
 		if (depth <= 3){
 		this.depth = depth;
 		}

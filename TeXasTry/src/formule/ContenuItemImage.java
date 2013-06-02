@@ -40,6 +40,11 @@ import java.io.Serializable;
 import javax.swing.JPanel;
 
 import briquesElementaires.Couleur;
+/**
+ * Classe qui crée et stocke le contenu d'un item dans le cas d'un symbole (image)
+ * @author nicolasgoutay
+ *
+ */
 public class ContenuItemImage extends JPanel implements Serializable {
     private Image image = null;
     private String text = "";

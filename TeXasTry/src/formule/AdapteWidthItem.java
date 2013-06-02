@@ -1,6 +1,12 @@
 package formule;
 import javax.swing.JPanel;
 
+/**
+ * Thread qui permet de gérer la largeur d'un item en fonction de la largeur 
+ * de la formule à l'intérieur (dans le cas d'une structure par exemple)
+ * @author nicolasgoutay
+ *
+ */
 public class AdapteWidthItem extends Thread {
 
 	private Formule[] formuleArray;

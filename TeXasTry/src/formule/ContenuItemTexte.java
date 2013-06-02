@@ -13,6 +13,13 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 
 
+/**
+ * /**
+ * Classe qui crée et stocke le contenu d'un item dans le cas d'une saisie de texte
+ * @author nicolasgoutay
+ *
+ */
+
 public class ContenuItemTexte extends JTextField{
 	
 	private ItemLayeredPane layeredPane;
