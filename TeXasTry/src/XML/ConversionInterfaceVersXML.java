@@ -33,6 +33,12 @@ public class ConversionInterfaceVersXML{
 		racine = new Element("document");
 		document = new Document(racine);
 		contenuDocument = ContenuEditable.getListeContenu();
+
+		// Réouverture des menus
+		while(ContenuEditable.getSizeListeContenuMasque()>0){
+			ContenuEditable.masquer(ContenuEditable.getFirstMasque(), false);
+		}
+		
 		ListIterator<Editeur> iterator = contenuDocument.listIterator();
 		while(iterator.hasNext()){
 			Editeur editeur = iterator.next();
@@ -43,16 +49,16 @@ public class ConversionInterfaceVersXML{
 				gestionTitre(editeur);
 
 			}
-			
+
 			if(editeur.getClass().toString().contains("EditeurFormule")){
 				EditeurFormule tmp = (EditeurFormule) editeur;
-				
-				
+
+
 				ArrayList<ContenuItem> contenuItemArrayList = editeur.getFormule().getContenuItemArrayList();
-				
+
 				Element formule = parseFormule(contenuItemArrayList, "formule");
-				
-				
+
+
 				racine.addContent(formule);
 			}
 		}
@@ -92,45 +98,45 @@ public class ConversionInterfaceVersXML{
 	private static Element parseFormule(ArrayList<ContenuItem> contenuItemArrayList, String type) {
 		// TODO Auto-generated method stub
 		Element formule = new Element(type);
-		
+
 		for (int i = 0; i < contenuItemArrayList.size(); i++){
-			
+
 			if (contenuItemArrayList.get(i).getType().equals("fraction")){
 				Element fraction = new Element("fraction");
 				Element fractionHaut = new Element("fraction-haut");
 				Element fractionBas = new Element("fraction-bas");
-				
+
 				ArrayList<ContenuItem> contenuItemArrayListHaut = (contenuItemArrayList.get(i)).getArraySplit()[0].getContenuItemArrayList();
 				ArrayList<ContenuItem> contenuItemArrayListBas = (contenuItemArrayList.get(i)).getArraySplit()[1].getContenuItemArrayList();
-				
+
 				fractionHaut = parseFormule(contenuItemArrayListHaut, "fractionHaut");
 				fractionBas = parseFormule(contenuItemArrayListBas, "fractionBas");
-				
+
 				fraction.addContent(fractionHaut);
 				fraction.addContent(fractionBas);
 				formule.addContent(fraction);
-				
+
 			}	
 			if (contenuItemArrayList.get(i).getType().equals("symbole")){
 				Element symbole = new Element("symbole");
 				symbole.setText((contenuItemArrayList.get(i)).getText());
-				
+
 				formule.addContent(symbole);
 			}
 			if (contenuItemArrayList.get(i).getType().equals("texte")){
 				Element texte = new Element("texte");
 				texte.setText((contenuItemArrayList.get(i)).getText());
-				
+
 				formule.addContent(texte);
 			}
-					
+
 		}
-		
+
 		return formule;	
-		
+
 	}
 
-	
+
 
 	private static void gestionParagraphe(Editeur editeur) {
 		Element paragraphe = new Element("p");

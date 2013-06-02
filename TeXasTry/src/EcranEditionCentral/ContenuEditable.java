@@ -2,6 +2,7 @@ package EcranEditionCentral;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.event.ActionListener;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
@@ -12,8 +13,12 @@ import briquesElementaires.JPanelDef;
 
 public class ContenuEditable extends JPanelDef {
 
+	// Liste contenant les editeurs affichés
 	private static List<Editeur> listeContenu = new LinkedList<Editeur>();
 	private static Box conteneurGeneral = Box.createVerticalBox();
+
+	// Liste contenant les éditeurs masqués, chaque suites d'éditeurs masqué étant précédé par l'éditeur non masqué déclancheur
+	private static List<Editeur> listeContenuMasque = new LinkedList<Editeur>();
 
 	private static int[] coordHierarchieActuelle = { 0 , 0 , 0 , 0 , 0};
 
@@ -21,6 +26,7 @@ public class ContenuEditable extends JPanelDef {
 	public static List<Editeur> getListeContenu() {
 		return listeContenu;
 	}
+	
 
 	public static void setListeContenu(List<Editeur> listeContenu) {
 		ContenuEditable.listeContenu = listeContenu;
@@ -85,7 +91,7 @@ public class ContenuEditable extends JPanelDef {
 		refocus(tmp);
 		tmp.reindenter();
 	}
-	
+
 	public static void addEditeurParagrapheAtTheEnd(String textEditeur){
 		if(listeContenu.size()==1 && listeContenu.get(0).getClass().toString().contains("EditeurParagraphe")){
 			EditeurParagraphe tmp = (EditeurParagraphe) listeContenu.get(0);
@@ -99,7 +105,7 @@ public class ContenuEditable extends JPanelDef {
 		refocus(tmp);
 		tmp.reindenter();
 	}
-	
+
 
 	public static void addEditeurParagraphe(Editeur c, String textEditeur) {
 		int indice = listeContenu.indexOf(c);
@@ -111,7 +117,7 @@ public class ContenuEditable extends JPanelDef {
 		tmp.setCarretPosition(0);
 	}
 
-	
+
 	public static void addEditeurFormule(){
 		int indice=-1;
 		for (int j = 0; j < listeContenu.size(); j++) {
@@ -217,6 +223,67 @@ public class ContenuEditable extends JPanelDef {
 				}
 			}
 		}
+	}
+
+	public static void masquer(Editeur c, boolean b) {
+		if(b){
+			int numHierarchie = ((EditeurTitre)c).getNumeroHierarchie();
+			int indiceCListeContenu = listeContenu.indexOf(c);
+
+			listeContenuMasque.add(c);
+
+			ListIterator<Editeur> iterator = listeContenu.listIterator(indiceCListeContenu);
+			int numActuel = numHierarchie+1;
+			Editeur tmp = iterator.next();
+			((EditeurTitre)tmp).setBoutonMasque(true);
+			int nbElementaEnlever=0;
+			while(numActuel>numHierarchie && iterator.hasNext()){
+				tmp = iterator.next();
+				if(tmp.getClass().toString().contains("EditeurTitre")){
+					EditeurTitre tmp2 = (EditeurTitre) tmp;
+					numActuel = tmp2.getNumeroHierarchie();
+				}
+				if(numActuel>numHierarchie){
+					nbElementaEnlever++;
+				}
+			}
+			for (int i = 0; i < nbElementaEnlever; i++) {
+				listeContenuMasque.add(listeContenu.get(indiceCListeContenu+1));
+				listeContenu.remove(indiceCListeContenu+1);
+			}
+			revalider();
+		}
+		else{
+			int indiceCListeContenuMasque = listeContenuMasque.indexOf(c);
+			int indiceCListeContenu = listeContenu.indexOf(c);
+			if(indiceCListeContenuMasque!=-1){
+				ListIterator<Editeur> iterator = listeContenuMasque.listIterator(indiceCListeContenuMasque);
+				Editeur tmp = iterator.next();
+				((EditeurTitre)tmp).setBoutonMasque(false);
+				int nbElementaEnlever=1;
+				boolean estPresent = false;
+				while(!estPresent && iterator.hasNext()){
+					tmp = iterator.next();
+					estPresent = listeContenu.indexOf(tmp) != -1 ;
+					if(!estPresent){
+						listeContenu.add(indiceCListeContenu+nbElementaEnlever, tmp);
+						nbElementaEnlever++;
+					}
+				}
+				for (int i = 1; i <= nbElementaEnlever; i++) {
+					listeContenuMasque.remove(indiceCListeContenuMasque);
+				}
+				revalider();
+			}
+		}
+	}
+
+	public static int getSizeListeContenuMasque() {
+		return listeContenuMasque.size();
+	}
+	
+	public static Editeur getFirstMasque(){
+		return listeContenuMasque.get(0);
 	}
 
 }

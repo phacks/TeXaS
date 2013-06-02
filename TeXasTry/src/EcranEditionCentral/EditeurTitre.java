@@ -3,6 +3,8 @@ package EcranEditionCentral;
 import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
@@ -32,6 +34,8 @@ public class EditeurTitre extends Editeur implements KeyListener, FocusListener{
 	private JTextArea decalageArea = new JTextArea();
 	private JTextArea titreArea = new JTextArea();
 	private JTextArea numArea = new JTextArea();
+	
+	private BouttonMasquerParagraphe boutonAffMasq;
 
 	private JPanelDef partieGauche = new JPanelDef(new BorderLayout());
 	private JPanelDef partieCentrale = new JPanelDef(new BorderLayout());
@@ -39,6 +43,8 @@ public class EditeurTitre extends Editeur implements KeyListener, FocusListener{
 	public EditeurTitre(int numeroHierarchie, boolean numerotation, String title){
 		super(new BorderLayout());
 		this.numeroHierarchie = numeroHierarchie;
+		
+		
 		if(!numerotation){
 			numerote = false;
 		}
@@ -70,6 +76,20 @@ public class EditeurTitre extends Editeur implements KeyListener, FocusListener{
 
 		partieCentrale.setOpaque(false);
 
+		boutonAffMasq = new BouttonMasquerParagraphe(numeroHierarchie);
+		boutonAffMasq.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent arg0) {
+				if(boutonAffMasq.isMasque()){
+					masquer(false);
+				}
+				else{
+					masquer(true);
+				}
+			}
+
+		});
+		
 		if(!numerote){
 			numArea.setForeground(Couleur.white);
 		}
@@ -82,6 +102,7 @@ public class EditeurTitre extends Editeur implements KeyListener, FocusListener{
 			}
 			partieCentrale.add(numArea, BorderLayout.NORTH);
 			partieCentrale.add(titreArea, BorderLayout.SOUTH);
+			partieGauche.add(boutonAffMasq, BorderLayout.CENTER);
 			partieGauche.add(decalageArea, BorderLayout.WEST);
 		}
 		else{
@@ -90,6 +111,7 @@ public class EditeurTitre extends Editeur implements KeyListener, FocusListener{
 			}
 			partieGauche.add(numArea, BorderLayout.EAST);
 			partieCentrale.add(titreArea, BorderLayout.SOUTH);
+			partieGauche.add(boutonAffMasq, BorderLayout.CENTER);
 			partieGauche.add(decalageArea, BorderLayout.WEST);
 		}
 
@@ -234,6 +256,12 @@ public class EditeurTitre extends Editeur implements KeyListener, FocusListener{
 		return titreArea.getText();
 	}
 
-
+	private void masquer(boolean b) {
+		ContenuEditable.masquer(this, b);
+	}
+	
+	public void setBoutonMasque(boolean b){
+		this.boutonAffMasq.setMasque(b);
+	}
 
 }
