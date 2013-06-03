@@ -28,10 +28,10 @@ public class ConversionXMLversInterface {
 
 		List<Element> listElement = racine.getChildren();
 
-		Iterator<Element> iterator = listElement.iterator();
+		Iterator<Element> iteratorElement = listElement.iterator();
 
-		while(iterator.hasNext()){
-			Element courant = iterator.next();
+		while(iteratorElement.hasNext()){
+			Element courant = iteratorElement.next();
 			if(courant.getName().equals("Titre")){
 				gestionTitre(courant);
 			}

@@ -2,7 +2,7 @@ package briquesElementaires;
 
 import java.awt.Color;
 
-
+// Classe regroupant les couleurs utilisées par le programme
 public class Couleur {
 	
 	public static Color white  = Color.WHITE;
@@ -31,5 +31,6 @@ public class Couleur {
 	public static Color grisFonce = new Color(200,201,202);
 	
 	public static Color bleuTexte = new Color(232,242,254);
+	public static Color vertPomme = new Color(197,255,199);
 
 }

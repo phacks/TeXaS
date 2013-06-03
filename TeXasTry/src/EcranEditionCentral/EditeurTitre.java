@@ -16,7 +16,10 @@ import briquesElementaires.Couleur;
 import briquesElementaires.JPanelDef;
 import briquesElementaires.Police;
 
+//Classe générant les éditeurs de titre
 public class EditeurTitre extends Editeur implements KeyListener, FocusListener{
+
+	public static boolean masquable = false;
 
 	private boolean selected = false;
 
@@ -42,6 +45,66 @@ public class EditeurTitre extends Editeur implements KeyListener, FocusListener{
 	private JPanelDef partieGauche = new JPanelDef(new BorderLayout());
 	private JPanelDef partieCentrale = new JPanelDef(new BorderLayout());
 
+	public void setSelected(boolean b) {
+		this.selected = b;
+		this.repaint();
+		if(b){
+			String sauv = titreArea.getText();
+			titreArea.setText("");
+			titreArea.setText(sauv);
+			titreArea.requestFocusInWindow();
+			titreArea.grabFocus();
+		}
+	}
+
+	// >>>>>>>>>>> Getters and setters
+	public boolean isSelected(){
+		return selected;
+	}
+
+	public int getNumeroHierarchie() {
+		return numeroHierarchie;
+	}
+
+	public void setCoordHierarchie(int[] coordHierarchie) {
+		for (int i = 0; i < coordHierarchie.length; i++) {
+			this.coordHierarchie[i] = coordHierarchie[i];
+		}
+	}
+
+	public int[] getCoordHierarchie() {
+		return this.coordHierarchie;
+	}
+
+
+
+	public boolean isNumerote() {
+		return numerote;
+	}
+
+	public String getText(){
+		return titreArea.getText();
+	}
+
+	private void masquer(boolean b) {
+		ContenuEditable.masquer(this, b);
+	}
+
+	public void setBoutonMasque(boolean b){
+		this.boutonAffMasq.setMasque(b);
+	}
+
+	public boolean isMasque() {
+		return masque;
+	}
+
+	public void setMasque(boolean masque) {
+		this.masque = masque;
+	}
+
+	// >>>>>>>>>>> Fin Getters and setters
+
+	
 	public EditeurTitre(int numeroHierarchie, boolean numerotation, String title){
 		super(new BorderLayout());
 		this.numeroHierarchie = numeroHierarchie;
@@ -104,7 +167,9 @@ public class EditeurTitre extends Editeur implements KeyListener, FocusListener{
 			}
 			partieCentrale.add(numArea, BorderLayout.NORTH);
 			partieCentrale.add(titreArea, BorderLayout.SOUTH);
-			partieGauche.add(boutonAffMasq, BorderLayout.CENTER);
+			if(masquable){
+				partieGauche.add(boutonAffMasq, BorderLayout.CENTER);
+			}
 			partieGauche.add(decalageArea, BorderLayout.WEST);
 		}
 		else{
@@ -113,7 +178,9 @@ public class EditeurTitre extends Editeur implements KeyListener, FocusListener{
 			}
 			partieGauche.add(numArea, BorderLayout.EAST);
 			partieCentrale.add(titreArea, BorderLayout.SOUTH);
-			partieGauche.add(boutonAffMasq, BorderLayout.CENTER);
+			if(masquable){
+				partieGauche.add(boutonAffMasq, BorderLayout.CENTER);
+			}
 			partieGauche.add(decalageArea, BorderLayout.WEST);
 		}
 
@@ -194,40 +261,7 @@ public class EditeurTitre extends Editeur implements KeyListener, FocusListener{
 
 	}
 
-	public void setSelected(boolean b) {
-		this.selected = b;
-		this.repaint();
-		if(b){
-			titreArea.requestFocusInWindow();
-			titreArea.grabFocus();
-		}
-	}
-
-	public boolean isSelected(){
-		return selected;
-	}
-
-	public int getNumeroHierarchie() {
-		return numeroHierarchie;
-	}
-
-	public void setCoordHierarchie(int[] coordHierarchie) {
-		for (int i = 0; i < coordHierarchie.length; i++) {
-			this.coordHierarchie[i] = coordHierarchie[i];
-		}
-	}
-
-	public int[] getCoordHierarchie() {
-		return this.coordHierarchie;
-	}
-
-
-
-	public boolean isNumerote() {
-		return numerote;
-	}
-
-
+	
 	public void renumeroter() {
 		numArea.setText("");
 		if(numeroHierarchie<2){
@@ -258,24 +292,5 @@ public class EditeurTitre extends Editeur implements KeyListener, FocusListener{
 	}
 
 
-	public String getText(){
-		return titreArea.getText();
-	}
-
-	private void masquer(boolean b) {
-		ContenuEditable.masquer(this, b);
-	}
-
-	public void setBoutonMasque(boolean b){
-		this.boutonAffMasq.setMasque(b);
-	}
-
-	public boolean isMasque() {
-		return masque;
-	}
-
-	public void setMasque(boolean masque) {
-		this.masque = masque;
-	}
-
+	
 }

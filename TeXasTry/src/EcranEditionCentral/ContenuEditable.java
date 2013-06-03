@@ -11,6 +11,8 @@ import javax.swing.Box;
 
 import briquesElementaires.JPanelDef;
 
+
+// Classe de gestion de l'affichage du document
 public class ContenuEditable extends JPanelDef {
 
 	// Liste contenant les editeurs affichés
@@ -24,18 +26,30 @@ public class ContenuEditable extends JPanelDef {
 		new LinkedList<Editeur>(), 
 		new LinkedList<Editeur>()};
 
+	// Tableau des coordonnées hierarchique des composants, pour la renumérotation du document
 	private static int[] coordHierarchieActuelle = { 0 , 0 , 0 , 0 , 0};
 
 
+	// >>>>>>>>>>> Getters and setters
 	public static List<Editeur> getListeContenu() {
 		return listeContenu;
 	}
-	
+
 
 	public static void setListeContenu(List<Editeur> listeContenu) {
 		ContenuEditable.listeContenu = listeContenu;
 	}
+	
+	public static int getSizeListeContenuMasque(int i) {
+		return tabListeContenuMasque[i].size();
+	}
 
+	public static Editeur getFirstMasque(int i){
+		return (Editeur) tabListeContenuMasque[i].get(0);
+	}
+	// >>>>>>>>>>> Fin getters and setters
+
+	// Constructeur de classe
 	public ContenuEditable(){
 		super(new BorderLayout());
 
@@ -47,6 +61,7 @@ public class ContenuEditable extends JPanelDef {
 
 	}
 
+	// Fonction appelée pour revalider les éditeurs présent dans l'affichage
 	public static void revalider(){
 		conteneurGeneral.removeAll();
 		// Recalcul de la numérotation
@@ -87,6 +102,7 @@ public class ContenuEditable extends JPanelDef {
 		conteneurGeneral.revalidate();
 	}
 
+	// Fonction ajout éditeur paragraphe après l'éditeur c 
 	public static void addEditeurParagraphe(Editeur c){
 		int indice = listeContenu.indexOf(c);
 		listeContenu.add(indice+1, new EditeurParagraphe());
@@ -96,6 +112,7 @@ public class ContenuEditable extends JPanelDef {
 		tmp.reindenter();
 	}
 
+	// Fonction ajout éditeur paragraphe après tous les éditeurs
 	public static void addEditeurParagrapheAtTheEnd(String textEditeur){
 		if(listeContenu.size()==1 && listeContenu.get(0).getClass().toString().contains("EditeurParagraphe")){
 			EditeurParagraphe tmp = (EditeurParagraphe) listeContenu.get(0);
@@ -111,6 +128,7 @@ public class ContenuEditable extends JPanelDef {
 	}
 
 
+	// Fonction ajout éditeur de paragraphe après l'éditeur c, contenant le texte textEditeur
 	public static void addEditeurParagraphe(Editeur c, String textEditeur) {
 		int indice = listeContenu.indexOf(c);
 		listeContenu.add(indice+1,new EditeurParagraphe(textEditeur));
@@ -122,6 +140,7 @@ public class ContenuEditable extends JPanelDef {
 	}
 
 
+	// Fonction d'ajout d'une formule, après le conteneur sélectionné actuellement
 	public static void addEditeurFormule(){
 		int indice=-1;
 		for (int j = 0; j < listeContenu.size(); j++) {
@@ -146,9 +165,7 @@ public class ContenuEditable extends JPanelDef {
 		tmp.setSelected(true);
 	}
 
-
-
-
+	// Fonction ajout éditeur titre, de niveau hierarchique i, numéroté ou non, titré title
 	public static void addEditeurTitre(int i,boolean numerotation, String title ){
 		int indice=listeContenu.size()-1;
 		for (int j = 0; j < listeContenu.size(); j++) {
@@ -171,6 +188,7 @@ public class ContenuEditable extends JPanelDef {
 		nouveauTitre.renumeroter();
 	}
 
+	// Fonction de destruction de l'éditeur C
 	public static void detruire(Editeur c) {
 		int indice = listeContenu.indexOf(c);
 		listeContenu.remove(indice);
@@ -186,7 +204,8 @@ public class ContenuEditable extends JPanelDef {
 		}
 	}
 
-	public static void refocus(Component c) {
+	// Fonction de gestion des focus, refocus sur l'éditeur c
+	public static void refocus(Editeur c) {
 		ListIterator<Editeur> iterator = listeContenu.listIterator();
 		while(iterator.hasNext()){
 			Editeur tmp = iterator.next();
@@ -199,7 +218,8 @@ public class ContenuEditable extends JPanelDef {
 		}
 	}
 
-	public static void focusNext(Component c) {
+	// Fonction de gestion des focus, refocus sur l'éditeur suivant l'éditeur c
+	public static void focusNext(Editeur c) {
 		int indiceNext = listeContenu.indexOf(c)+1;
 		if(indiceNext != listeContenu.size()){
 			for (int i = 0; i < listeContenu.size(); i++) {
@@ -214,6 +234,7 @@ public class ContenuEditable extends JPanelDef {
 		}
 	}
 
+	// Fonction de gestion des focus, refocus sur l'éditeur précédent l'éditeur c
 	public static void focusPrevious(Editeur c) {
 		int indiceNext = listeContenu.indexOf(c)-1;
 		if(indiceNext != -1){
@@ -229,20 +250,21 @@ public class ContenuEditable extends JPanelDef {
 		}
 	}
 
+	// Fonction masquant/affichant les éditeurs suivant l'éditeur c, de niveau hierarchique inférieur à celui de l'éditeur c
 	public static void masquer(Editeur c, boolean b) {
 		if(b){
-			
+
 			int numHierarchie = ((EditeurTitre)c).getNumeroHierarchie();
 			((EditeurTitre)c).setMasque(true);
 			int indiceCListeContenu = listeContenu.indexOf(c);
 			int numActuel = numHierarchie+1;
-			
+
 			// Parcours des éléments de niveau hierarchique inférieur pour les masquer
-		
+
 			tabListeContenuMasque[numHierarchie].add(c);
 
 			ListIterator<Editeur> iterator = listeContenu.listIterator(indiceCListeContenu);
-			
+
 			Editeur tmp = iterator.next();
 			((EditeurTitre)tmp).setBoutonMasque(true);
 			int nbElementaEnlever=0;
@@ -261,6 +283,7 @@ public class ContenuEditable extends JPanelDef {
 				listeContenu.remove(indiceCListeContenu+1);
 			}
 			revalider();
+			refocus(c);
 		}
 		else{
 			int numHierarchie = ((EditeurTitre)c).getNumeroHierarchie();
@@ -285,16 +308,10 @@ public class ContenuEditable extends JPanelDef {
 					tabListeContenuMasque[numHierarchie].remove(indiceCListeContenuMasque);
 				}
 				revalider();
-			}
+				refocus(c);
+				}
 		}
 	}
 
-	public static int getSizeListeContenuMasque(int i) {
-		return tabListeContenuMasque[i].size();
-	}
 	
-	public static Editeur getFirstMasque(int i){
-		return (Editeur) tabListeContenuMasque[i].get(0);
-	}
-
 }

@@ -6,11 +6,13 @@ import java.awt.event.KeyListener;
 
 import formule.Formule;
 
+// Classe générant les éditeurs de formule
 public class EditeurFormule extends Editeur implements KeyListener {
 
 	private boolean selected;
 	private Formule formule;
 
+	// >>>>>>>>>>> Getters and setters
 	public boolean isSelected() {
 		return selected;
 	}
@@ -18,11 +20,10 @@ public class EditeurFormule extends Editeur implements KeyListener {
 	public void setSelected(boolean selected) {
 		this.selected = selected;
 	}
+	// >>>>>>>>>>> Fin Getters and setters
 
 	public EditeurFormule() {
 		super(new BorderLayout());
-		
-		
 		
 		this.formule = new Formule((EditeurFormule) this, this, 1, null);
 		

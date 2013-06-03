@@ -10,6 +10,7 @@ import briquesElementaires.Couleur;
 
 public class BouttonMasquerParagraphe extends JButton implements MouseListener{
 
+	// Boolean indiquant si les éléments hierarchique inférieur sont masqué ou non.
 	private boolean masque = false;
 
 	public boolean isMasque() {
@@ -20,7 +21,10 @@ public class BouttonMasquerParagraphe extends JButton implements MouseListener{
 		this.masque = masque;
 	}
 
+	// Boolean indiquant si la souris est sur le bouton ou non
 	private boolean reveal = false;
+	
+	// Taille de l'icone
 	private int size;
 
 	public BouttonMasquerParagraphe(int hierarchie){

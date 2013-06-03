@@ -6,6 +6,7 @@ import java.awt.LayoutManager;
 
 import javax.swing.JPanel;
 
+// Classe remplaçant l'objet JPanel afin d'avoir la bonne police et la bonne couleur de fond (blanc au lieu de gris)
 public class JPanelDef extends JPanel {
 
 	public JPanelDef(){

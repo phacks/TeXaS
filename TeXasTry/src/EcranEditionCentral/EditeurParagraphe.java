@@ -14,18 +14,47 @@ import briquesElementaires.Couleur;
 import briquesElementaires.Police;
 
 
-
+//Classe générant les éditeurs de paragraphe
 public class EditeurParagraphe extends Editeur implements KeyListener, FocusListener{
 
 	private int numeroHierarchie = 1;
 
-	//	private int nbEntreePresse = 1;
 	private boolean selected;
+
 	private JTextArea textArea = new JTextArea();
+
 	private JTextArea decalageArea = new JTextArea();
 
 	private int previousCarretPosition;
 
+
+	// >>>>>>>>>>> Getters and setters
+	public boolean isSelected(){
+		return selected;
+	}
+
+	public String getText() {
+		return textArea.getText();
+	}
+
+	private void setText(String string) {
+		textArea.setText(string);
+
+	}
+
+	public int getNumeroHierarchie() {
+		return numeroHierarchie;
+	}
+
+	public void setNumeroHierarchie(int numeroHierarchie) {
+		this.numeroHierarchie = numeroHierarchie;
+	}
+
+	public void setCarretPosition(int i) {
+		textArea.setCaretPosition(i);
+	}
+
+	// >>>>>>>>>>> Fin Getters and setters
 
 	public EditeurParagraphe(){
 		super(new BorderLayout());
@@ -102,19 +131,19 @@ public class EditeurParagraphe extends Editeur implements KeyListener, FocusList
 			ContenuEditable.focusNext(this);
 			e.consume();
 		}
-		
+
 		//Appui sur PageUp
 		if(e.getKeyCode()==33){
 			ContenuEditable.focusPrevious(this);
 			e.consume();
 		}
-		
+
 
 		//Appui sur flecheBas / flecheHaut - gestion avec le relachement de la touche
 		if(e.getKeyCode()==40 || e.getKeyCode()==38){
 			previousCarretPosition = textArea.getCaretPosition();
 		}
-		
+
 
 
 	}
@@ -126,7 +155,7 @@ public class EditeurParagraphe extends Editeur implements KeyListener, FocusList
 			ContenuEditable.focusNext(this);
 			e.consume();
 		}
-		
+
 		// Appui sur flecheHaut
 		if(e.getKeyCode()==38 && previousCarretPosition == textArea.getCaretPosition()){
 			ContenuEditable.focusPrevious(this);
@@ -143,7 +172,7 @@ public class EditeurParagraphe extends Editeur implements KeyListener, FocusList
 	@Override
 	public void focusGained(FocusEvent e) {
 		this.selected = true;
-		
+
 		if(this.getText().equals("Votre texte ici...")){
 			this.setText("");
 		}
@@ -167,26 +196,6 @@ public class EditeurParagraphe extends Editeur implements KeyListener, FocusList
 		}
 	}
 
-	public boolean isSelected(){
-		return selected;
-	}
-
-	public String getText() {
-		return textArea.getText();
-	}
-
-	private void setText(String string) {
-		textArea.setText(string);
-
-	}
-
-	public int getNumeroHierarchie() {
-		return numeroHierarchie;
-	}
-
-	public void setNumeroHierarchie(int numeroHierarchie) {
-		this.numeroHierarchie = numeroHierarchie;
-	}
 
 	public void reindenter(){
 		decalageArea.setText("");
@@ -194,10 +203,4 @@ public class EditeurParagraphe extends Editeur implements KeyListener, FocusList
 			decalageArea.setText(decalageArea.getText()+"coucou");
 		}
 	}
-
-	public void setCarretPosition(int i) {
-		textArea.setCaretPosition(0);
-	}
-
-
 }
