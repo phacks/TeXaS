@@ -2,7 +2,10 @@ package briquesElementaires;
 
 import java.awt.Font;
 
-// Classe regroupant les polices utilisées par le logiciel
+/** Classe regroupant les polices utilisées par le logiciel
+ * @author Kilian
+ *
+ */
 public class Police {
 
 	public static Font segoe = new Font("Segoe UI", Font.PLAIN, 15);

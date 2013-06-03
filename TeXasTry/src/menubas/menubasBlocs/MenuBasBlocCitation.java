@@ -15,6 +15,10 @@ import briquesElementaires.Couleur;
 import briquesElementaires.JPanelDef;
 import briquesElementaires.Police;
 
+/**Pannel du menu bas permettant la création de bloc de citation
+ * @author Kilian
+ *
+ */
 public class MenuBasBlocCitation extends JPanelDef {
 
 	private JPanelDef main = new JPanelDef();

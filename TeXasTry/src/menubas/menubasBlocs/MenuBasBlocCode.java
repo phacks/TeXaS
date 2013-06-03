@@ -17,6 +17,10 @@ import briquesElementaires.Couleur;
 import briquesElementaires.JPanelDef;
 import briquesElementaires.Police;
 
+/**Pannel du menu bas permettant la création de bloc de code
+ * @author Kilian
+ *
+ */
 public class MenuBasBlocCode extends JPanelDef {
 
 	private JPanelDef main = new JPanelDef();

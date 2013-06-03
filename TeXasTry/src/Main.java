@@ -7,8 +7,16 @@ import SlpashScreen.OpenWindow;
 import XML.ConversionXMLversInterface;
 
 
+/** 
+ * @author Kilian
+ *
+ */
 public class Main {
 
+	/**
+	 * Fonction main du programme
+	 * @param args
+	 */
 	public static void main(String[] args) {
 
 		try {

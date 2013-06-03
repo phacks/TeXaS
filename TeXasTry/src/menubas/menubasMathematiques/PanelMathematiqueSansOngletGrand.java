@@ -13,6 +13,10 @@ import menubas.PanelboutonStyle;
 import EcranEditionCentral.ContenuEditable;
 import briquesElementaires.JPanelDef;
 
+/**Pannel du menu bas affichant les boutons de symboles en grand
+ * @author Kilian
+ *
+ */
 public class PanelMathematiqueSansOngletGrand extends JPanelDef {
 
 	//Images des symboles

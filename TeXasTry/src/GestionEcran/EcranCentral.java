@@ -11,6 +11,10 @@ import MenuHaut.MenuHaut;
 import MenuNouveauDocument.ecranNouveauDocument;
 import briquesElementaires.JPanelDef;
 
+/**Pannel contenant tous les ecran central du logiciel (ecran edition, nouveau document, etc.)
+ * @author Kilian
+ *
+ */
 public class EcranCentral extends JPanelDef{
 
 	// Instanciation des objets globaux

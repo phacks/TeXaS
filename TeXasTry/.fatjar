@@ -1,0 +1,14 @@
+#Fat Jar Configuration File
+#Mon Jun 03 13:00:10 CEST 2013
+onejar.license.required=false
+manifest.classpath=
+manifest.removesigners=true
+onejar.checkbox=false
+jarname=TeXasTry_fat.jar
+manifest.mergeall=true
+manifest.mainclass=Main
+manifest.file=<createnew>
+jarname.isextern=false
+onejar.expand=
+excludes=
+includes=

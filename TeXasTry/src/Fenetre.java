@@ -12,6 +12,11 @@ import SlpashScreen.OpenWindow;
 
 
 
+/**<b>Fenetre est la classe affichant le programme</b>
+ * 
+ * @author Kilian
+ * 
+ */
 public class Fenetre extends JFrame {
 
 	//Instanciation des objets JPanel

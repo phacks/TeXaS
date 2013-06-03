@@ -16,9 +16,16 @@ import briquesElementaires.Couleur;
 import briquesElementaires.JPanelDef;
 import briquesElementaires.Police;
 
-//Classe générant les éditeurs de titre
+/**Classe générant les éditeurs de titre
+ * 
+ * @author Kilian
+ *
+ */
 public class EditeurTitre extends Editeur implements KeyListener, FocusListener{
 
+	/**
+	 * Boolean temporaire indiquant si on veut implémenter ou non la fonction de masquage de titre
+	 */
 	public static boolean masquable = false;
 
 	private boolean selected = false;
@@ -262,6 +269,9 @@ public class EditeurTitre extends Editeur implements KeyListener, FocusListener{
 	}
 
 	
+	/**Renumerote le titre
+	 * 
+	 */
 	public void renumeroter() {
 		numArea.setText("");
 		if(numeroHierarchie<2){

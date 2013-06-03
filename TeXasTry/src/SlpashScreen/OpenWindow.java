@@ -14,6 +14,10 @@ import briquesElementaires.Couleur;
 import briquesElementaires.JPanelDef;
 import briquesElementaires.Police;
 
+/**
+ * @author Kilian
+ *
+ */
 public class OpenWindow extends JWindow {
 
 	private static JLabel labelSouth;
@@ -50,6 +54,10 @@ public class OpenWindow extends JWindow {
 
 
 
+	/** 
+	 * @author Kilian
+	 *
+	 */
 	public class PanelIcone extends JPanelDef{
 		public PanelIcone(){
 			super();

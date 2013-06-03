@@ -12,24 +12,41 @@ import javax.swing.border.Border;
 import briquesElementaires.JPanelDef;
 
 
-// Classe de gestion de l'écran d'édition central du logiciel
+/** Classe de gestion de l'écran d'édition central du logiciel
+ * @author Kilian
+ *
+ */
 public class EcranEditionCentral extends JPanelDef {
 
-	// Le contenu de l'écran
+	/** Le contenu de l'écran
+	 * 
+	 */
 	private static ContenuEditable contenuEditable = new ContenuEditable(); 
 
-	// Le panel d'affichage
+	/** Le panel d'affichage
+	 * 
+	 */
 	private JPanelDef center = new JPanelDef();
 
-	// Le panel scrollable contenant l'affichage
+	/** Le panel scrollable contenant l'affichage
+	 * 
+	 */
 	private static JScrollPane scrollPane = new JScrollPane(contenuEditable);
 	
 	
 	// >>>>>>>>>>> Getters and setters
+	/** Renvoie la liste des conteneurs affichés dans l'écran central
+	 * @return contenuEditable
+	 * 			La liste des contenus editable
+	 */
 	public static ContenuEditable getContenuEditable() {
 		return contenuEditable;
 	}
 
+	/** Edite la liste des contenus affichés dans l'écran central
+	 * @param contenuEditable
+	 * 			La liste des contenus editable
+	 */
 	public static void setContenuEditable(ContenuEditable contenuEditable) {
 		EcranEditionCentral.contenuEditable = contenuEditable;
 	}

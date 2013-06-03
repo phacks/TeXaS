@@ -8,7 +8,10 @@ import menubas.PanelboutonStyle;
 import menubas.TextFieldAutoSuppression;
 import briquesElementaires.JPanelDef;
 
-
+/**Pannel du menu bas permettant la création de note de bas de page
+ * @author Kilian
+ *
+ */
 public class MenuBasBlocNoteBasPage extends JPanelDef {
 	
 	private JPanelDef main = new JPanelDef();

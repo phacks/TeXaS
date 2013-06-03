@@ -8,9 +8,16 @@ import formule.Formule;
 import briquesElementaires.JPanelDef;
 
 
-// Classe abstraite permettant la manipulation de tous les type d'éditeurs
+/** Classe abstraite permettant la manipulation de tous les type d'éditeurs
+ * 
+ * @author Kilian
+ *
+ */
 public abstract class Editeur extends JPanelDef {
 
+	/**Boolean indiquant si l'editeur à le focus ou non
+	 * 
+	 */
 	private boolean selected;
 	
 	public Editeur(BorderLayout borderLayout) {

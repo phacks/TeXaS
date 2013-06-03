@@ -4,15 +4,17 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 
 import javax.swing.ButtonGroup;
-import javax.swing.JTextField;
 
 import menubas.BoutonMenuBasValidate;
 import menubas.PanelboutonStyle;
 import menubas.RadioButtonDefaut;
 import menubas.TextFieldAutoSuppression;
 import briquesElementaires.JPanelDef;
-import briquesElementaires.Police;
 
+/**Pannel du menu bas permettant la création de bloc mathématiques (théroème, proposition, etc.)
+ * @author Kilian
+ *
+ */
 public class MenuBasBlocMaths extends JPanelDef {
 
 	private JPanelDef main = new JPanelDef();

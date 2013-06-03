@@ -17,6 +17,10 @@ import javax.swing.JButton;
 import briquesElementaires.Couleur;
 import briquesElementaires.Police;
 
+/**Bouton pour l'insertion de figure (avec icone)
+ * @author Kilian
+ *
+ */
 public class BoutonMenuBasFigure extends JButton implements MouseListener{
 
 	private String name;

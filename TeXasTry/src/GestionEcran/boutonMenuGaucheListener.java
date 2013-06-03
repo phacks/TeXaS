@@ -3,12 +3,18 @@ package GestionEcran;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**Listener pour les boutons du menu gauche, pour le switch entre les écrans du logiciel (principal, nouveau document, etc.)
+ * @author Kilian
+ *
+ */
 public class boutonMenuGaucheListener implements ActionListener {
 
 	private static EcranCentral ecranCentral;
 	private static boolean[] etatBouton;
 
-	// Gestion indicateur des boutons
+	/** Gestion indicateur des boutons
+	 * 
+	 */
 	private static boolean monProjetCheck= false;
 
 	public boutonMenuGaucheListener(EcranCentral ecranCentral){

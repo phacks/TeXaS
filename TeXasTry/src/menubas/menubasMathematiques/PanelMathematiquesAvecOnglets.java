@@ -13,6 +13,10 @@ import javax.swing.event.ChangeListener;
 
 import briquesElementaires.Couleur;
 
+/**Pannel du menu bas permettant la création d'onglets pour les pannels de symboles
+ * @author Kilian
+ *
+ */
 public class PanelMathematiquesAvecOnglets extends JTabbedPane implements ChangeListener, Runnable{
 
 	// Element de design du jtabbedpan

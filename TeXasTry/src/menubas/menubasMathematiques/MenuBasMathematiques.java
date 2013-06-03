@@ -15,6 +15,10 @@ import menubas.MenuBasDesignOngletsInterneGaucheUI;
 import briquesElementaires.Couleur;
 import briquesElementaires.JPanelDef;
 
+/**Pannel du menu bas permettant la création de formule mathématiques
+ * @author Kilian
+ *
+ */
 public class MenuBasMathematiques extends JTabbedPane implements ChangeListener, Runnable{
 
 	// Element de design du jtabbedpan

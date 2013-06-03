@@ -7,7 +7,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JSlider;
-import javax.swing.JTextField;
 
 import menubas.BoutonMenuBasValidate;
 import menubas.PanelboutonStyle;
@@ -20,6 +19,10 @@ import briquesElementaires.Police;
 
 
 
+/**Pannel du menu bas permettant la création de figure
+ * @author Kilian
+ *
+ */
 public class MenuBasFigures extends JPanelDef {
 	// Les JPanelDefs
 		private JPanelDef main = new JPanelDef();

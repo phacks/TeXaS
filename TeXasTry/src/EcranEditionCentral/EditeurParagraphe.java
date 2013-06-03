@@ -14,11 +14,28 @@ import briquesElementaires.Couleur;
 import briquesElementaires.Police;
 
 
-//Classe générant les éditeurs de paragraphe
+/**Classe générant les éditeurs de paragraphe
+ * 
+ * @author Kilian
+ *
+ */
 public class EditeurParagraphe extends Editeur implements KeyListener, FocusListener{
 
+	/**
+	 * L'indice hierarchique du titre
+	 * <ul>
+	 * <li> 0 - Partie
+	 * <li> 1 - Chapitre
+	 * <li> 2 - Section
+	 * <li> 3 - Sous-section
+	 * <li> 4 - Sous-sous-section
+	 * </ul>
+	 */
 	private int numeroHierarchie = 1;
 
+	/**
+	 * Boolean indiquant si l'éditeur à le focus ou non
+	 */
 	private boolean selected;
 
 	private JTextArea textArea = new JTextArea();
@@ -31,6 +48,15 @@ public class EditeurParagraphe extends Editeur implements KeyListener, FocusList
 	// >>>>>>>>>>> Getters and setters
 	public boolean isSelected(){
 		return selected;
+	}
+
+	public void setSelected(boolean b) {
+		this.selected = b;
+		this.repaint();
+		if(b){
+			textArea.requestFocusInWindow();
+			textArea.grabFocus();
+		}
 	}
 
 	public String getText() {
@@ -187,14 +213,7 @@ public class EditeurParagraphe extends Editeur implements KeyListener, FocusList
 		this.previousCarretPosition=-1;
 	}
 
-	public void setSelected(boolean b) {
-		this.selected = b;
-		this.repaint();
-		if(b){
-			textArea.requestFocusInWindow();
-			textArea.grabFocus();
-		}
-	}
+
 
 
 	public void reindenter(){

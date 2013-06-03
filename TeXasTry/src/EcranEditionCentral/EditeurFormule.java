@@ -6,10 +6,21 @@ import java.awt.event.KeyListener;
 
 import formule.Formule;
 
-// Classe générant les éditeurs de formule
+/** Classe générant les éditeurs de formule
+ * 
+ * @author Kilian
+ *
+ */
 public class EditeurFormule extends Editeur implements KeyListener {
 
+	/**
+	 * Boolean indiquant si la formule à le focus ou non
+	 */
 	private boolean selected;
+	
+	/**
+	 * La formule affichée dans l'editeur
+	 */
 	private Formule formule;
 
 	// >>>>>>>>>>> Getters and setters

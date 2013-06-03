@@ -16,6 +16,10 @@ import EcranEditionCentral.ContenuEditable;
 import briquesElementaires.Couleur;
 import briquesElementaires.JPanelDef;
 
+/**Pannel du menu bas affichant les boutons de symboles en petit
+ * @author Kilian
+ *
+ */
 public class PanelMathematiquesSansOnglet extends JPanelDef {
 
 	//Images des symboles

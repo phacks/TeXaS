@@ -14,6 +14,10 @@ import menubas.PanelboutonStyle;
 import EcranEditionCentral.ContenuEditable;
 import briquesElementaires.JPanelDef;
 
+/**Pannel du menu bas affichant les icônes favoris de l'utilisateur
+ * @author Kilian
+ *
+ */
 public class PanelMathematiquesFavoris extends JPanelDef {
 
 	//Images des symboles

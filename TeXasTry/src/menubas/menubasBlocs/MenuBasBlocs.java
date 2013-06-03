@@ -17,6 +17,10 @@ import briquesElementaires.Couleur;
 import briquesElementaires.JPanelDef;
 import briquesElementaires.Police;
 
+/**Pannel a onglet du menu bas contenant les pannels de "blocs"
+ * @author Kilian
+ *
+ */
 public class MenuBasBlocs extends JTabbedPane implements ChangeListener, Runnable{
 
 	// Element de design du jtabbedpan

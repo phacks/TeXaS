@@ -12,38 +12,64 @@ import javax.swing.Box;
 import briquesElementaires.JPanelDef;
 
 
-// Classe de gestion de l'affichage du document
+/**
+ * <b>ContenuEditable est la classe représentant les Editeurs affichés dans le logiciel</b>
+ * <p>
+ * Le contenu est représenté par les informations suivantes
+ * <ul>
+ * <li>Une liste des contenus affichés.</li>
+ * <li>Un tableau de liste des contenus masqué.</li>
+ * <li>Un tableau des coordonnées hiérarchiques de l'éditeur actuel</li>
+ * </ul>
+ * </p>
+ * 
+ * @author Kilian
+ **/
 public class ContenuEditable extends JPanelDef {
 
-	// Liste contenant les editeurs affichés
 	private static List<Editeur> listeContenu = new LinkedList<Editeur>();
 	private static Box conteneurGeneral = Box.createVerticalBox();
 
-	// Liste contenant les éditeurs masqués, chaque suites d'éditeurs masqué étant précédé par l'éditeur non masqué déclancheur
 	private static LinkedList[] tabListeContenuMasque = {new LinkedList<Editeur>(), 
 		new LinkedList<Editeur>(), 
 		new LinkedList<Editeur>(), 
 		new LinkedList<Editeur>(), 
 		new LinkedList<Editeur>()};
 
-	// Tableau des coordonnées hierarchique des composants, pour la renumérotation du document
 	private static int[] coordHierarchieActuelle = { 0 , 0 , 0 , 0 , 0};
 
 
 	// >>>>>>>>>>> Getters and setters
+	  /**
+     * Retourne la liste des editeurs affichés à l'écran central
+     */
 	public static List<Editeur> getListeContenu() {
 		return listeContenu;
 	}
 
-
+	  /**
+     * Modifie la liste des éditeurs affichés à l'écran central
+     * 
+     * @param listeContenu
+     * 			La nouvelle liste des éditeurs
+     */
 	public static void setListeContenu(List<Editeur> listeContenu) {
 		ContenuEditable.listeContenu = listeContenu;
 	}
 	
+	  /**
+     * Retourne la taille de la liste des editeurs masqués à l'écran central
+     */
 	public static int getSizeListeContenuMasque(int i) {
 		return tabListeContenuMasque[i].size();
 	}
 
+	 /**
+     * Retourne le premier conteneur masqué au niveau hierarchique i
+     * 
+     * @param i
+     * 			Le niveau hierarchique considéré
+     */
 	public static Editeur getFirstMasque(int i){
 		return (Editeur) tabListeContenuMasque[i].get(0);
 	}
@@ -61,7 +87,9 @@ public class ContenuEditable extends JPanelDef {
 
 	}
 
-	// Fonction appelée pour revalider les éditeurs présent dans l'affichage
+	/**
+     * Reconstruit l'écran central, renumerote les composant, rétablit les indentations.
+     */
 	public static void revalider(){
 		conteneurGeneral.removeAll();
 		// Recalcul de la numérotation
@@ -101,8 +129,11 @@ public class ContenuEditable extends JPanelDef {
 		}
 		conteneurGeneral.revalidate();
 	}
-
-	// Fonction ajout éditeur paragraphe après l'éditeur c 
+	/**
+	* Fonction ajout éditeur paragraphe après l'éditeur c.
+	* @param c
+	* 			L'éditeur après lequel on désire ajouter l'éditeur de paragraphe.
+	*/
 	public static void addEditeurParagraphe(Editeur c){
 		int indice = listeContenu.indexOf(c);
 		listeContenu.add(indice+1, new EditeurParagraphe());
@@ -112,7 +143,11 @@ public class ContenuEditable extends JPanelDef {
 		tmp.reindenter();
 	}
 
-	// Fonction ajout éditeur paragraphe après tous les éditeurs
+	/** 
+	 * Fonction ajout éditeur paragraphe après tous les éditeurs.
+	 * @param textEditeur
+	 * 			Le texte que l'on veut mettre dans l'éditeur de paragraphe.
+	 */
 	public static void addEditeurParagrapheAtTheEnd(String textEditeur){
 		if(listeContenu.size()==1 && listeContenu.get(0).getClass().toString().contains("EditeurParagraphe")){
 			EditeurParagraphe tmp = (EditeurParagraphe) listeContenu.get(0);
@@ -128,7 +163,13 @@ public class ContenuEditable extends JPanelDef {
 	}
 
 
-	// Fonction ajout éditeur de paragraphe après l'éditeur c, contenant le texte textEditeur
+	/**
+	 * Fonction ajout éditeur de paragraphe après l'éditeur c, contenant le texte textEditeur
+	 * @param c
+	 * 			L'éditeur après lequel on désire ajouter l'éditeur de paragraphe.
+	 * @param textEditeur
+	 * 			Le texte que l'on désire ajouter dans l'éditeur de paragraphe
+	 */
 	public static void addEditeurParagraphe(Editeur c, String textEditeur) {
 		int indice = listeContenu.indexOf(c);
 		listeContenu.add(indice+1,new EditeurParagraphe(textEditeur));
@@ -140,7 +181,9 @@ public class ContenuEditable extends JPanelDef {
 	}
 
 
-	// Fonction d'ajout d'une formule, après le conteneur sélectionné actuellement
+	/**
+	 * Fonction d'ajout d'une formule, après le conteneur sélectionné actuellement
+	 */
 	public static void addEditeurFormule(){
 		int indice=-1;
 		for (int j = 0; j < listeContenu.size(); j++) {
@@ -165,7 +208,15 @@ public class ContenuEditable extends JPanelDef {
 		tmp.setSelected(true);
 	}
 
-	// Fonction ajout éditeur titre, de niveau hierarchique i, numéroté ou non, titré title
+	/**
+	 *  Fonction ajout éditeur titre, de niveau hierarchique i, numéroté ou non, titré title
+	 * @param i
+	 * 			Le niveau hierarchique considéré
+	 * @param numerotation
+	 * 			Indique si il y a numérotation
+	 * @param title
+	 * 			Le titre de la partie
+	 */
 	public static void addEditeurTitre(int i,boolean numerotation, String title ){
 		int indice=listeContenu.size()-1;
 		for (int j = 0; j < listeContenu.size(); j++) {
@@ -188,7 +239,11 @@ public class ContenuEditable extends JPanelDef {
 		nouveauTitre.renumeroter();
 	}
 
-	// Fonction de destruction de l'éditeur C
+	/**
+	 *  Fonction de destruction de l'éditeur C
+	 * @param c
+	 * 			Editeur à détruire
+	 */
 	public static void detruire(Editeur c) {
 		int indice = listeContenu.indexOf(c);
 		listeContenu.remove(indice);
@@ -204,7 +259,12 @@ public class ContenuEditable extends JPanelDef {
 		}
 	}
 
-	// Fonction de gestion des focus, refocus sur l'éditeur c
+	/**
+	 *  Fonction de gestion des focus, refocus sur l'éditeur c
+	 *  
+	 * @param c
+	 * 			Editeur que l'on focus
+	 */
 	public static void refocus(Editeur c) {
 		ListIterator<Editeur> iterator = listeContenu.listIterator();
 		while(iterator.hasNext()){
@@ -218,7 +278,12 @@ public class ContenuEditable extends JPanelDef {
 		}
 	}
 
-	// Fonction de gestion des focus, refocus sur l'éditeur suivant l'éditeur c
+	/**
+	 *  Fonction de gestion des focus, refocus sur l'éditeur suivant l'éditeur c
+	 *  
+	 * @param c
+	 * 			Editeur référence
+	 */
 	public static void focusNext(Editeur c) {
 		int indiceNext = listeContenu.indexOf(c)+1;
 		if(indiceNext != listeContenu.size()){
@@ -234,7 +299,12 @@ public class ContenuEditable extends JPanelDef {
 		}
 	}
 
-	// Fonction de gestion des focus, refocus sur l'éditeur précédent l'éditeur c
+	/**
+	 * Fonction de gestion des focus, refocus sur l'éditeur précédent l'éditeur c
+	 * 
+	 * @param c
+	 * 				Editeur reférence
+	 */
 	public static void focusPrevious(Editeur c) {
 		int indiceNext = listeContenu.indexOf(c)-1;
 		if(indiceNext != -1){
@@ -250,7 +320,14 @@ public class ContenuEditable extends JPanelDef {
 		}
 	}
 
-	// Fonction masquant/affichant les éditeurs suivant l'éditeur c, de niveau hierarchique inférieur à celui de l'éditeur c
+	/**
+	 *  Fonction masquant/affichant les éditeurs suivant l'éditeur c, de niveau hierarchique inférieur à celui de l'éditeur c
+	 *  
+	 *  @param c
+	 *  		Editeur à masquer/afficher
+	 *  @param b
+	 *  		VRAI pour masquer le composant, FALSE pour l'afficher
+	 */
 	public static void masquer(Editeur c, boolean b) {
 		if(b){
 
